@@ -21,10 +21,10 @@ const Auth = (props) => {
                 errors: []
             }
         }
-        // Birthdate.errors[0].message
+
     };
     const [state, dispatch] = useReducer(setState, initialState);
-    const {form: {getFieldDecorator, validateFields}, onForm, buttonTitle, confirmEmail, messageSuccess, stepButton} = props;
+    const {form: {getFieldDecorator, validateFields}, stateHandler, done, onForm, buttonTitle, confirmEmail, messageSuccess, stepsState} = props;
 
 
     const handleSubmit = e => {
@@ -34,29 +34,21 @@ const Auth = (props) => {
 
             dispatch({type: "SET_ERR", payload: err});
             if (!err) {
-
-                messageSuccess.success(`Processing complete!${confirmEmail}`)
+                stateHandler(stepsState)
             } else {
                 messageSuccess.error("Fill all required fields!")
-
             }
+
+            stepsState === 1 && done();
+            stepsState === "done" && messageSuccess.success(`Processing complete!${confirmEmail}`)
         });
     };
 
     return (
         <div className="form_container">
             <Form onSubmit={handleSubmit} className="login-form">
-                {onForm === "First" && <FirstWindow {...props} getFieldDecorator={getFieldDecorator}/>}
-                <Form.Item>
-                    <div className="form_bottom_navigation">
-                        <Button type="primary" htmlType="submit" onClick={stepButton} className="login-form-button">
-                            {buttonTitle}
-                        </Button>
 
-                    </div>
-                </Form.Item>
-            </Form>
-            <Form>
+                {onForm === "First" && <FirstWindow getFieldDecorator={getFieldDecorator}/>}
                 {onForm === "Second" &&
                 <SecondWindow state={state} messageSuccess={messageSuccess} validateFields={validateFields}
                               dispatch={dispatch} getFieldDecorator={getFieldDecorator}/>}
@@ -64,10 +56,10 @@ const Auth = (props) => {
                     <div className="form_bottom_navigation">
 
                         {buttonTitle === "Previous" && <Button type="primary" htmlType="submit"
-                                                               className="login-form-button done_button">
+                           className="login-form-button done_button">
                             Done
                         </Button>}
-                        <Button type="primary" htmlType="submit" onClick={stepButton} className="login-form-button">
+                        <Button type="primary" htmlType="submit" className="login-form-button">
                             {buttonTitle}
                         </Button>
 

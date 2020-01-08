@@ -3,7 +3,8 @@ import {antdInput} from "../../../../functions";
 
 
 const FirstWindow = (props) => {
-    const {form: {getFieldDecorator}} = props;
+
+    const {getFieldDecorator} = props;
     return (
         <div>
             {/*<div className="form_container_header" >*/}

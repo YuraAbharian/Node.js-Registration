@@ -10,29 +10,31 @@ const StepMenu = () => {
 
     const confirmEmail = " On your email was sent a message to confirm your registration follow the link in message";
 
-    const next = () => setState(prevState => prevState + 1);
-    const prev = () => setState(prevState => prevState - 1);
+    const stateHandler = () => setState(prevState => prevState !== 1 ? prevState + 1 : prevState - 1);
 
+    const done = ()=> setState("done");
     const steps = [
         {
             title: 'First',
-            content: <AuthContainer buttonTitle="Next" stepButton={next} stepsState={state} onForm="First"/>,
+            content: <AuthContainer stateHandler={stateHandler} buttonTitle="Next" messageSuccess={message}
+                                    stepsState={state} onForm="First"/>,
         },
         {
             title: 'Second',
-            content: <AuthContainer messageSuccess={message} confirmEmail={confirmEmail} buttonTitle="Previous"
-                                    onForm="Second"  stepButton={prev}/>,
+            content: <AuthContainer done={done} messageSuccess={message} confirmEmail={confirmEmail} buttonTitle="Previous"
+                                    stepsState={state}       stateHandler={stateHandler} onForm="Second" />,
         },
     ];
 
     return (
         <div className="steps_container">
             <Steps current={state}>
-                {steps.map(item => (
+            {steps.map(item => (
                     <Step key={item.title} title={item.title}/>
                 ))}
             </Steps>
-            <div className="steps-content">{steps[state].content}</div>
+            {/*{ steps.map(obj=> <div className="steps-content">{obj.content}</div> )}*/}
+         { typeof Number() &&  <div className="steps-content">{steps[state].content}</div>}
 
         </div>
     );
