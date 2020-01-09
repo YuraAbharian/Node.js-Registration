@@ -38,10 +38,12 @@
 .RangePicker{
   height: 50px;
 }
+ 
 .Gender{
   margin: 4px 0 4px 0;
   height: 46px;
 }
+
 .Country,
 .Birthdate{
   margin-top: 8px;
@@ -56,7 +58,9 @@
   margin-top: 4px;
 
 }
-
+.Role{
+  height: 50px;
+}
 .css-yk16xz-control{
   width: 100%;
 }
@@ -64,6 +68,4 @@
   border-color: red;
 
 }
-.Country{
-
-}
+ 

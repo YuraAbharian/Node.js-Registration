@@ -94,6 +94,6 @@ const Auth = (props) => {
     );
 };
 const WrappedNormalLoginForm = Form.create({name: 'normal_login'});
-// export default withRouter(WrappedNormalLoginForm);
+
 export default compose(WrappedNormalLoginForm, withRouter)(Auth);
 

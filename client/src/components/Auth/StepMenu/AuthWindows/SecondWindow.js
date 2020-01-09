@@ -1,7 +1,7 @@
 import React from 'react';
 import {DatePicker, Select} from 'antd';
 import moment from "moment";
-import {antdInput} from "../../../../functions";
+import {antdInput, selectorHandler, showError, Pickers, isTrueHandler} from "../../../../functions";
 import cn from "classnames";
 import countryList from 'react-select-country-list'
 
@@ -9,20 +9,20 @@ const SecondWindow = (props) => {
 
     const {RangePicker} = DatePicker;
     const {getFieldDecorator, state, dispatch} = props;
-    const isBirthdate = state.errors.Birthdate && state.errors.Birthdate.errors.length > 0;
-    const isGender = state.errors.Gender && state.errors.Gender.errors.length > 0;
-    const isRangePicker = state.errors.RangePicker && state.errors.RangePicker.errors.length > 0;
-    const isCountry = state.errors.CountryPicker && state.errors.CountryPicker.errors.length > 0;
+    const isBirthdate =  isTrueHandler(state, "Birthdate"); 
+    const isGender = isTrueHandler(state, "Gender") 
+    const isRangePicker = isTrueHandler(state, "RangePicker") 
+    const isCountry = isTrueHandler(state, "CountryPicker") 
+    const isRole = isTrueHandler(state, "Role")  
     const dateFormat = 'YYYY/MM/DD';
     const {Option} = Select;
+    const genderArr =[{ label: "Male"}, { label: "Female"}]
+    const roleArr = [{label: "Listener"}, { label: "Speaker"}]
 
     const styles = {
         marginBottom: 0,
         height: "56px"
-    };
-
-
-
+    }; 
 
     return (
         <div>
@@ -30,117 +30,27 @@ const SecondWindow = (props) => {
                 <h1>Profile</h1>
             </div>
             <div className="RangePicker">
-                {getFieldDecorator("RangePicker", {
-                    initialValue: state.values.RangePicker && state.values.RangePicker,
-                    rules: [{required: true, message: `Please choose your dates!`}],
-                })(<RangePicker
-                    disabledDate={current =>current < moment().add(0, "month") || current.isAfter(moment().add(1, "months"))}
-                    format={dateFormat}
-                    className={cn('', {'has-error': (isGender)})}
-                    onChange={() => dispatch({
-                        type: "ON_CHANGE_ERR",
-                        payload: {RangePicker: {errors: []}}
-                    })}
-                    ranges={{
-                        Today: [moment(), moment()],
-                        'This Month': [moment().startOf('month'), moment().endOf('month')],
-                    }}
-                />)}
-                {isRangePicker && state.errors.RangePicker.errors[0].message ?
-                    <span
-                        className={cn('', {'errFont': (isRangePicker)})}>{state.errors.RangePicker.errors[0].message}</span> : null}
+                { Pickers(getFieldDecorator, "RangePicker", isRangePicker, state, dispatch, cn, RangePicker,moment, dateFormat ) }               
+                { showError(isRangePicker, state, cn, "RangePicker", '') }                 
             </div>
-
-            {antdInput(getFieldDecorator, 'Company', styles, state)}
-            {antdInput(getFieldDecorator, 'Position', styles, state)}
-
-            <div className="Gender">
-                {
-                    getFieldDecorator("Gender", {
-                        initialValue: state.values.Gender,
-                        rules: [{required: true, message: `Please select your Gender!`}],
-                    })
-                    (<Select
-                        // value={state.values.Gender}
-                        className={cn('', {'has-error': (isGender)})}
-                        onChange={() => dispatch({
-                            type: "ON_CHANGE_ERR",
-                            payload: {Gender: {errors: []}}
-                        })}
-                        placeholder="Gender"
-                        optionFilterProp="children"
-                        filterOption={(input, option) =>
-                            option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-                        }
-                    >
-                        <Option value="male">Male</Option>
-                        <Option value="female">Female</Option>
-                    </Select>)
-
-                }
-                {isGender && state.errors.Gender.errors[0].message ?
-                    <span
-                        className={cn('', {'errFont': (isGender)})}>{state.errors.Gender.errors[0].message}</span> : null}
+                { antdInput(getFieldDecorator, 'Company', styles, state) }
+                { antdInput(getFieldDecorator, 'Position', styles, state) }
+            <div className="Role"  style={{height:50}}> 
+                { selectorHandler(getFieldDecorator, "Role",  state.values.Role, isRole, "Role", "ON_CHANGE_ERR", dispatch, cn, roleArr , Select, Option  )}
+                { showError(isRole, state, cn, "Role", '') } 
             </div>
-            <div className="Birthdate">
-                {getFieldDecorator("Birthdate", {
-                    initialValue: state.values.Birthdate && state.values.Birthdate,
-                    rules: [{required: true, message: `Please indicate your Birthdate!`}],
-                })(<DatePicker
-                    disabledDate={current =>  current.isAfter(moment())}
-                    format={dateFormat}
-                    className={cn('date_picker_width', {'has-error': (isBirthdate)})}
-                    showToday={false}
-                    placeholder="Birthdate" onChange={() => dispatch({
-                    type: "ON_CHANGE_ERR", payload: {Birthdate: {errors: []}}
-                })}/>)}
-                {isBirthdate && state.errors.Birthdate.errors[0].message ?
-                    <span
-                        className={cn('', {'errFont': (isBirthdate)})}>{state.errors.Birthdate.errors[0].message}</span> : null}
+            <div className="Gender">            
+                { selectorHandler(getFieldDecorator, "Gender",  state.values.Gender, isGender, "Gender", "ON_CHANGE_ERR", dispatch, cn, genderArr , Select,Option  )}
+                { showError(isGender, state, cn, "Gender", '') }                
             </div>
-
-
-            <div className="Country">
-
-
-                {
-                    getFieldDecorator("CountryPicker", {
-                        initialValue: state.values.CountryPicker,
-                        rules: [{required: true, message: `Please choose your country!`}],
-                    })
-                    (<Select
-                        showSearch={true}
-                        className={cn('', {'has-error': (isCountry)})}
-                        onChange={() => dispatch({
-                            type: "ON_CHANGE_ERR",
-                            payload: {CountryPicker: {errors: []}}
-                        })}
-                        placeholder="Country picker"
-                        optionFilterProp="children"
-                        filterOption={(input, option) =>
-                            option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-                        }
-                    >
-
-                        { countryList().getData().map((el, i)=>  <Option key={i} value={el.label.toLowerCase()}>{el.label}</Option>) }
-
-                    </Select>)
-
-                }
-
-                {isCountry && state.errors.CountryPicker.errors[0].message ?
-                    <span
-                        className={cn('', {'errFont': (isCountry)})}>{state.errors.CountryPicker.errors[0].message}</span> : null}
-
-
-
-
-
-
-
+            <div className="Birthdate"> 
+                { Pickers(getFieldDecorator, "Birthdate", isBirthdate, state, dispatch, cn, DatePicker, moment, dateFormat, 'date_picker_width' )} 
+                { showError(isBirthdate, state, cn, "Birthdate", '') }
             </div>
-
-
+                <div className="Country">
+                { selectorHandler(getFieldDecorator, "CountryPicker",  state.values.CountryPicker, isCountry, "Country picker", "ON_CHANGE_ERR", dispatch, cn, "Country", Select,Option, countryList  )}
+                { showError(isCountry, state, cn, "CountryPicker", '')}     
+            </div>
 
         </div>
     );
