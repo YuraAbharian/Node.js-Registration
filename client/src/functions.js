@@ -12,25 +12,12 @@ export const antdInput = (getFieldDecorator, key, styles, state)=>{
             rules: [{required: true, message: `Please input your ${key}!`}],
         })(
             <Input
-
                 prefix={<Icon type={ key === "Email" ? "google" : "user" } style={{color: 'rgba(0,0,0,.25)'}}/>}
                 placeholder={[key.toLowerCase()]}
             />,
         )}
     </Form.Item>)
 };
-
-
-
-
-
-
-
-
-
-
-
-
 
 // reducers
 export const setState=(state, action)=>{
@@ -49,7 +36,6 @@ export const setState=(state, action)=>{
                         ([key, value]) => [key, value=null]
                     )
                 )
-                    // state.errors.forEach(obj =>  )
             }
         }
         case "ON_CHANGE_ERR":{

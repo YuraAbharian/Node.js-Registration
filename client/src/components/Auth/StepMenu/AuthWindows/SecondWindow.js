@@ -29,6 +29,7 @@ const SecondWindow = (props) => {
                     initialValue: state.values.RangePicker && state.values.RangePicker,
                     rules: [{required: true, message: `Please input your dates!`}],
                 })(<RangePicker
+                    disabledDate={current =>current < moment().add(0, "month") || current.isAfter(moment().add(1, "months"))}
                     format={dateFormat}
                     className={cn('', {'has-error': (isGender)})}
                     onChange={() => dispatch({
@@ -81,6 +82,7 @@ const SecondWindow = (props) => {
                     initialValue: state.values.Birthdate && state.values.Birthdate,
                     rules: [{required: true, message: `Please input your Birthdate!`}],
                 })(<DatePicker
+                    disabledDate={current =>  current.isAfter(moment())}
                     format={dateFormat}
                     className={cn('date_picker_width', {'has-error': (isBirthdate)})}
                     showToday={false}
