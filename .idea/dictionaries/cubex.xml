@@ -4,6 +4,7 @@
       <w>antd</w>
       <w>birthdate</w>
       <w>dotenv</w>
+      <w>formik</w>
       <w>lastname</w>
       <w>singup</w>
     </words>

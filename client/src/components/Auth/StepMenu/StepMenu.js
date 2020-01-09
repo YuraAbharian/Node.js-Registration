@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import "./StepMenu.css";
 import {Steps, message} from 'antd';
 import AuthContainer from "../AuthContainer";
+// import {Message} from "../../../helper/Message";
 
 const {Step} = Steps;
 const StepMenu = () => {
@@ -12,29 +13,29 @@ const StepMenu = () => {
 
     const stateHandler = () => setState(prevState => prevState !== 1 ? prevState + 1 : prevState - 1);
 
-    const done = ()=> setState("done");
+    const done = () => setState("done");
+
     const steps = [
         {
-            title: 'First',
+            title: 'Form 1',
             content: <AuthContainer stateHandler={stateHandler} buttonTitle="Next" messageSuccess={message}
                                     stepsState={state} onForm="First"/>,
         },
         {
-            title: 'Second',
-            content: <AuthContainer done={done} messageSuccess={message} confirmEmail={confirmEmail} buttonTitle="Previous"
-                                    stepsState={state}       stateHandler={stateHandler} onForm="Second" />,
+            title: 'Form 2',
+            content: <AuthContainer done={done} messageSuccess={message} confirmEmail={confirmEmail}
+                                    buttonTitle="Previous"
+                                    stepsState={state} stateHandler={stateHandler} onForm="Second"/>,
         },
     ];
-
     return (
         <div className="steps_container">
-            <Steps current={state}>
-            {steps.map(item => (
-                    <Step key={item.title} title={item.title}/>
-                ))}
-            </Steps>
-            {/*{ steps.map(obj=> <div className="steps-content">{obj.content}</div> )}*/}
-         { typeof Number() &&  <div className="steps-content">{steps[state].content}</div>}
+            {typeof state === 'number' && <Steps current={state}>
+                {steps.map(item => <Step key={item.title} title={item.title}/>)}
+            </Steps>}
+
+            {typeof state === 'number' && steps[state].content &&
+            <div className="steps-content">{steps[state].content}</div>}
 
         </div>
     );
