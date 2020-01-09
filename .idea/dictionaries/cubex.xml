@@ -2,10 +2,12 @@
   <dictionary name="cubex">
     <words>
       <w>antd</w>
+      <w>autocreate</w>
       <w>birthdate</w>
       <w>dotenv</w>
       <w>formik</w>
       <w>lastname</w>
+      <w>privat</w>
       <w>singup</w>
     </words>
   </dictionary>
