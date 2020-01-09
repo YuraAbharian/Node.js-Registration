@@ -28,13 +28,21 @@
   margin: 4px 0 4px 0;
   height: 46px; }
 
+.Country,
 .Birthdate {
   margin-top: 8px;
   height: 50px; }
+  .Country i,
   .Birthdate i {
     top: 50%; }
 
 .login-form-button {
   margin-top: 4px; }
+
+.css-yk16xz-control {
+  width: 100%; }
+
+.error {
+  border-color: red; }
 
 /*# sourceMappingURL=Auth.css.map */

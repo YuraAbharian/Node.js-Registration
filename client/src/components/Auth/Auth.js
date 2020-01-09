@@ -21,6 +21,9 @@ const Auth = (props) => {
             },
             Gender: {
                 errors: []
+            },
+            CountryPicker: {
+                errors: []
             }
         },
         values: null
