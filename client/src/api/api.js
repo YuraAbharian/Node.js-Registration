@@ -9,12 +9,13 @@ class RequestHttp {
         this.transport = transport
     }
 // admin login
-    async logIn(email, password){
-        return  await this.transport.post("/admin", { email, password })
+    async logIn({Email, Password}){
+        console.log(Email, Password);
+        return  await this.transport.post("/admin", { email: Email, password: Password })
     };
 // participant
     async apply(data){
-        console.log(data);
+
         return await this.transport.post("/apply", data)
     }
 }

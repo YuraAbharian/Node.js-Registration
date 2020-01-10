@@ -15,9 +15,8 @@ const  App =()=> {
 
                 <div>
                     <HeaderContainer/>
-                    {/*<AuthContainer/>*/}
-                  {/*` <AdminContainer/>*/}
-                    <Route exact path='/apply' render={() => <StepMenu/>}/>
+                  <Route exact path='/apply' render={() => <StepMenu/>}/>
+                  <Route exact path='/admin' render={() => <AdminContainer/>}/>
                 </div>
 
                 </Provider>
