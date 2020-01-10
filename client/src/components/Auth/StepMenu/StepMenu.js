@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import "./StepMenu.css";
 import {Steps, message} from 'antd';
 import AuthContainer from "../AuthContainer";
-// import {Message} from "../../../helper/Message";
 
 const {Step} = Steps;
 const StepMenu = () => {

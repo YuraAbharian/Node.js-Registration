@@ -1,5 +1,7 @@
-import {  Form, Icon, Input} from "antd";
+import {Button, Form, Icon, Input} from "antd";
 import React from "react";
+import FirstWindow from "./components/Auth/StepMenu/AuthWindows/FirstWindow";
+import SecondWindow from "./components/Auth/StepMenu/AuthWindows/SecondWindow";
 
 // isTrue
 export const isTrueHandler=(state, name)=>  state.errors[name] && state.errors[name].errors.length > 0;
@@ -16,7 +18,7 @@ export const setState=(state, action)=>{
         case "RESET_ERR": {
 
             return {
-                ...state, errors:   new Map(
+                ...state, errors: new Map(
                     Object.entries(state.errors).map(
                         ([key, value]) => [key, value=null]
                     )
@@ -42,14 +44,15 @@ export const setState=(state, action)=>{
 
 
 // inputs
-export const antdInput = (getFieldDecorator, key, styles, state)=>{ 
-    const currState = state.values && state.values[key] ? state.values[key] : ''; 
+export const antdInput = (getFieldDecorator, key, styles, state)=>{
+    const currState = state.values && state.values[key] ? state.values[key] : '';
     return (<Form.Item style={styles}>
         {getFieldDecorator([key], {
             initialValue: currState,
             rules: [{required: true, message: `Please input your ${key}!`}],
         })(
             <Input
+                type={key === "Password" ? "password" : key === "Email" ? "email" : "text" }
                 prefix={<Icon type={ key === "Email" ? "google" : "user" } style={{color: 'rgba(0,0,0,.25)'}}/>}
                 placeholder={[key.toLowerCase()]}
             />,
@@ -60,7 +63,7 @@ export const antdInput = (getFieldDecorator, key, styles, state)=>{
 // component selector
 export const selectorHandler=(getFieldDecorator, name, initVal, isTrue, holder, types, dispatch, cn, arr , Component, ComponentTwo, countryList  )=>{
      const countryArr = typeof arr === "string" ? countryList().getData() : arr;
-   
+
      return getFieldDecorator(name, {
        initialValue: initVal,
        rules: [{ required: true, message: `Please choose your ${holder}!` }]
@@ -90,7 +93,7 @@ export const selectorHandler=(getFieldDecorator, name, initVal, isTrue, holder, 
        </Component>
      );
 
-   
+
 }
 // errors
 export const showError = (isTrue, state, cn, name, oldStyle = "") => {
@@ -102,11 +105,11 @@ export const showError = (isTrue, state, cn, name, oldStyle = "") => {
 };
 
 
-// pickers 
+// pickers
 export const Pickers=(getFieldDecorator, name, isTrue, state, dispatch, cn, Component, moment, dateFormat, oldStyle=''  )=>{
     const disabledDates =(day)=>  name === "Birthdate" ?  day.isAfter(moment()) :
       day < moment().add(0, "month") || day.isAfter(moment().add(1, "months"));
-    
+
   return( getFieldDecorator([name], {
         initialValue: state.values[name] && state.values[name],
         rules: [{required: true, message: `Please indicate your ${name}!`}],
@@ -116,12 +119,45 @@ export const Pickers=(getFieldDecorator, name, isTrue, state, dispatch, cn, Comp
         className={cn( oldStyle, {'has-error': (isTrue)})}
         showToday={false}
         placeholder={name} onChange={() => dispatch({
-            // ranges={{
-            //         Today: [moment(), moment()],
-            //         'This Month': [moment().startOf('month'), moment().endOf('month')],
-            //     }}
         type: "ON_CHANGE_ERR", payload: { [name]: {errors: []}}
     })}/>))
-}
+};
 
-  
+
+
+export const onSendButtonHandler=(buttonTitle, key, values)=>{
+    const val = values ? values : '';
+    return (buttonTitle === "Previous" && key(val));
+};
+
+// { fromCreator(handleSubmit, props ,dispatch, doneHandler, state)}
+export const fromCreator=(handleSubmit,props, dispatch, doneHandler, state, ParticipantThunk )=> {
+    const isPrevious = props.buttonTitle === "Previous";
+    return (  <Form onSubmit={handleSubmit} className="login-form">
+
+        {props.onForm === "First" &&
+        <FirstWindow form={props.form} state={state} getFieldDecorator={props.form.getFieldDecorator}/>}
+        {props.onForm === "Second" &&
+        <SecondWindow ParticipantThunk={ParticipantThunk} state={state} messageSuccess={props.messageSuccess} validateFields={props.form.validateFields}
+                      form={props.form} dispatch={dispatch} getFieldDecorator={props.form.getFieldDecorator}/>}
+
+
+        <Form.Item>
+            <div className="form_bottom_navigation">
+
+                { isPrevious && <Button type="primary" htmlType="submit" className="login-form-button done_button">
+                    Done
+                </Button>}
+
+
+                {isPrevious  &&  <Button  type="primary" onClick={() => doneHandler()} className="login-form-button">
+                    {props.buttonTitle}
+                </Button>  }
+                {  !isPrevious  &&   <Button type="primary" htmlType="submit" className="login-form-button">
+                    {props.buttonTitle}
+                </Button>
+                }
+            </div>
+        </Form.Item>
+    </Form>)
+};

@@ -9,7 +9,7 @@ const FirstWindow = (props) => {
     return (
         <div>
             <div className="form_container_header" >
-                <h1>SingUp</h1>
+                <h1>Apply</h1>
             </div>
             {antdInput(getFieldDecorator,'Username','', state )}
 

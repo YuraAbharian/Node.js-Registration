@@ -3,8 +3,8 @@ import 'antd/dist/antd.css';
 import { PageHeader, Button } from 'antd';
 
 
-const Header = () => {
-
+const Header = (props) => {
+const { history } = props;
     return (
         <PageHeader
             style={{
@@ -12,7 +12,7 @@ const Header = () => {
             }}
             title="Title"
             extra={[
-                <Button key="3">LogIn</Button>,
+                <Button onClick={()=>history.push("/apply")} key="3">Apply</Button>,
                 <Button key="2">SingUp</Button>,
                 <Button key="1">LogOut</Button>,
             ]}

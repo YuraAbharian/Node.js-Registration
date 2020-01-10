@@ -1,11 +1,11 @@
 import React, {useReducer} from 'react';
 import "./Auth.css";
-import {Form, Button, /*Checkbox*/} from "antd";
+import {Form, Button,  /*Checkbox*/} from "antd";
 import {withRouter} from "react-router-dom";
 import {compose} from "redux";
 import FirstWindow from "./StepMenu/AuthWindows/FirstWindow";
 import SecondWindow from "./StepMenu/AuthWindows/SecondWindow";
-import {setState} from "../../functions";
+import {fromCreator, onSendButtonHandler, setState} from "../../functions";
 
 
 const Auth = (props) => {
@@ -27,12 +27,12 @@ const Auth = (props) => {
             }
         },
         values: null
-
-
     };
+
     const [state, dispatch] = useReducer(setState, initialState);
 
-    const {form: {getFieldDecorator, validateFields}, stateHandler, done, onForm, buttonTitle, confirmEmail, messageSuccess, stepsState} = props;
+    const {from, form: {getFieldDecorator, validateFields}, stateHandler, ParticipantThunk, done, onForm, buttonTitle, confirmEmail, messageSuccess, stepsState} = props;
+
 
 
     const doneHandler = () => {
@@ -49,6 +49,9 @@ const Auth = (props) => {
             if (!err) {
 
                 dispatch({type: "SET_VALUES", payload: values});
+
+                onSendButtonHandler(buttonTitle, ParticipantThunk, {...values, ...state.values });
+                // buttonTitle === "Previous" && ParticipantThunk(values);
                 stateHandler(stepsState);
             } else if (err) {
 
@@ -56,40 +59,19 @@ const Auth = (props) => {
                 messageSuccess.error("Fill all required fields!");
                 return;
             }
-            buttonTitle === "Previous" && done();
-            buttonTitle === "Previous" && messageSuccess.success(`Processing complete!${confirmEmail}`)
+            onSendButtonHandler(buttonTitle, done );
+            // buttonTitle === "Previous" && done();
+
+            onSendButtonHandler(buttonTitle, messageSuccess.success,`Processing complete!${confirmEmail}`  );
+
+            // buttonTitle === "Previous" && messageSuccess.success(`Processing complete!${confirmEmail}`);
 
         });
     };
 
     return (
         <div className="form_container">
-            <Form onSubmit={handleSubmit} className="login-form">
-
-                {onForm === "First" &&
-                <FirstWindow form={props.form} state={state} getFieldDecorator={getFieldDecorator}/>}
-                {onForm === "Second" &&
-                <SecondWindow state={state} messageSuccess={messageSuccess} validateFields={validateFields}
-                              form={props.form} dispatch={dispatch} getFieldDecorator={getFieldDecorator}/>}
-                <Form.Item>
-                    <div className="form_bottom_navigation">
-
-                        {buttonTitle === "Previous" && <Button   type="primary" htmlType="submit"
-                           className="login-form-button done_button">
-                            Done
-                        </Button>}
-
-
-                        {buttonTitle === "Previous"   &&  <Button  type="primary" onClick={() => doneHandler()} className="login-form-button">
-                            {buttonTitle}
-                            </Button>  }
-                        {  buttonTitle !== "Previous" &&   <Button type="primary" htmlType="submit" className="login-form-button">
-                                {buttonTitle}
-                            </Button>
-                        }
-                    </div>
-                </Form.Item>
-            </Form>
+            { fromCreator(handleSubmit, props ,dispatch, doneHandler, state, ParticipantThunk)}
         </div>
     );
 };

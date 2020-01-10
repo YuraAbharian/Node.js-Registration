@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from "./Header";
+import {withRouter} from "react-router-dom";
 
-const HeaderContainer = () =>  <Header/>;
+const HeaderContainer = (props) =>  <Header {...props}/>;
 
-export default HeaderContainer;
+export default withRouter(HeaderContainer);
