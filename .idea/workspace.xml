@@ -2,54 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="336ca889-1338-46b0-9d7c-629ab15a3de0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/backend/helper/helper.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/routes/userRoute.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/Redux/adminReducer.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/Redux/userReducer.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/Header/Header.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/SideBar/ContainerSideBar.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/SideBar/SideBar.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/SideBar/SiderDemo.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/StepMenu/AuthWindows/ThirdWindows.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/User/User.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/User/User.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/User/UserContainer.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/User/UserWindow.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/cubex.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/cubex.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/Collections/ParticipantsCollections.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/Collections/ParticipantsCollections.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/Collections/UserCollections.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/Collections/UserCollections.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/routes/ParticipantRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/routes/ParticipantRoute.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/routes/managerRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/routes/managerRoute.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/server.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/Redux/actions.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Redux/actions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/Redux/participantReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Redux/participantReducer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/Redux/types.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Redux/types.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/api/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/api/api.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Admin/.sass-cache/ea6b92493607ce7fedb36d6d7a7e7f473cf8b517/Admin.scssc" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Admin/.sass-cache/ea6b92493607ce7fedb36d6d7a7e7f473cf8b517/Admin.scssc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Admin/Admin.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Admin/Admin.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Admin/Admin.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Admin/Admin.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Admin/Admin.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Admin/Admin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Admin/Admin.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Admin/Admin.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Auth/.sass-cache/42a79599e3ac3c0fdd5c0ba89302809c4fabb7e5/Auth.scssc" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Participant/.sass-cache/42a79599e3ac3c0fdd5c0ba89302809c4fabb7e5/Auth.scssc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Auth/.sass-cache/42a79599e3ac3c0fdd5c0ba89302809c4fabb7e5/Login.scssc" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Participant/.sass-cache/42a79599e3ac3c0fdd5c0ba89302809c4fabb7e5/Login.scssc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Auth/.sass-cache/ecc627272890f4290abe23222489cc2903853656/Auth.scssc" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Participant/.sass-cache/ecc627272890f4290abe23222489cc2903853656/Auth.scssc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Auth/Auth.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Participant/Participant.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Auth/Auth.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Participant/Participant.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Auth/Auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Participant/Participant.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Auth/Auth.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Participant/Participant.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Auth/AuthContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Participant/AuthContainer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Auth/StepMenu/.sass-cache/0e6598c3dbcf8c196bc1490f550dcc6c5362c8ff/StepMenu.scssc" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/StepMenu/.sass-cache/0e6598c3dbcf8c196bc1490f550dcc6c5362c8ff/StepMenu.scssc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Auth/StepMenu/AuthWindows/FirstWindow.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/StepMenu/AuthWindows/FirstWindow.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Auth/StepMenu/AuthWindows/SecondWindow.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/StepMenu/AuthWindows/SecondWindow.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Auth/StepMenu/StepMenu.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/StepMenu/StepMenu.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Auth/StepMenu/StepMenu.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/StepMenu/StepMenu.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Auth/StepMenu/StepMenu.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/StepMenu/StepMenu.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Auth/StepMenu/StepMenu.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/StepMenu/StepMenu.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Header/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Header/Header.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/functions.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/functions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/store.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/SideBar/SideBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/SideBar/SideBar.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -62,11 +15,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/src/components/SideBar/SideBar.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-146">
-              <caret line="18" column="3" selection-start-line="18" selection-start-column="3" selection-end-line="21" />
+            <state relative-caret-position="415">
+              <caret line="49" column="31" selection-start-line="49" selection-start-column="31" selection-end-line="49" selection-end-column="31" />
               <folding>
                 <element signature="e#0#38#0" expanded="true" />
               </folding>
@@ -74,35 +27,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/backend/Collections/ParticipantsCollections.js">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/client/node_modules/antd/lib/card/index.d.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="678">
-              <caret line="56" column="17" selection-start-line="56" selection-start-column="17" selection-end-line="56" selection-end-column="17" />
-              <folding>
-                <element signature="e#0#33#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/src/components/SideBar/SiderDemo.scss">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="20" column="1" selection-start-line="20" selection-start-column="1" selection-end-line="20" selection-end-column="1" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/src/components/SideBar/ContainerSideBar.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="20" column="15" selection-start-line="20" selection-start-column="4" selection-end-line="20" selection-end-column="15" />
-              <folding>
-                <element signature="e#0#39#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="187">
+              <caret line="15" column="13" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -299,12 +228,12 @@
       <workItem from="1578469956061" duration="32133000" />
       <workItem from="1578553281647" duration="29625000" />
       <workItem from="1578643578609" duration="24032000" />
-      <workItem from="1578726253272" duration="21392000" />
+      <workItem from="1578726253272" duration="22788000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="107182000" />
+    <option name="totallyTimeSpent" value="108578000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -370,13 +299,6 @@
     </option>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/client/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="9" selection-end-line="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/backend/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
@@ -515,16 +437,6 @@
           <caret line="4" column="37" selection-start-line="4" selection-start-column="37" selection-end-line="4" selection-end-column="37" />
           <folding>
             <element signature="e#0#33#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/functions.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="245">
-          <caret line="189" column="50" selection-start-line="189" selection-start-column="45" selection-end-line="189" selection-end-column="50" />
-          <folding>
-            <element signature="e#0#47#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -758,10 +670,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/functions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-153">
+          <caret line="21" column="5" lean-forward="true" selection-start-line="21" selection-start-column="5" selection-end-line="24" selection-end-column="9" />
+          <folding>
+            <element signature="e#0#47#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/backend/Collections/ParticipantsCollections.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="678">
-          <caret line="56" column="17" selection-start-line="56" selection-start-column="17" selection-end-line="56" selection-end-column="17" />
+        <state relative-caret-position="687">
+          <caret line="58" column="13" selection-start-line="58" selection-start-column="3" selection-end-line="58" selection-end-column="13" />
           <folding>
             <element signature="e#0#33#0" expanded="true" />
           </folding>
@@ -770,11 +692,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/client/src/components/SideBar/SideBar.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-146">
-          <caret line="18" column="3" selection-start-line="18" selection-start-column="3" selection-end-line="21" />
+        <state relative-caret-position="415">
+          <caret line="49" column="31" selection-start-line="49" selection-start-column="31" selection-end-line="49" selection-end-column="31" />
           <folding>
             <element signature="e#0#38#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/node_modules/antd/lib/card/index.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="15" column="13" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="13" />
         </state>
       </provider>
     </entry>

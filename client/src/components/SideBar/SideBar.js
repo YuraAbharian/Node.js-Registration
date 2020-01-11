@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import "./SiderDemo.css";
 
 import {Layout, Menu, Icon, Card } from 'antd';
+import moment from "moment";
 
 const { Sider, Content } = Layout;
 
@@ -51,7 +52,7 @@ const SideBar = (props) =>  {
                                 <p>{el.Position}</p>
                                 <p>{el.Country}</p>
                                 <p>{el.Email}</p>
-                                <p>{el.createdAt}</p>
+                                <p>{ new Date(el.createdAt).toLocaleString() }</p>
                                 <p>{el.Status ? el.Status: "New"}</p>
                             </Card>
                         </div>)
