@@ -1,5 +1,5 @@
 import React from 'react';
-import {antdInput} from "../../../../functions";
+import {antdInput} from "../../../functions";
 
 
 const FirstWindow = (props) => {

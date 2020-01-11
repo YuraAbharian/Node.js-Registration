@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA,kBAAkB;EAChB,MAAM,EAAE,IAAI;;AAEd,iBAAkB;EAEhB,MAAM,EAAE,SAAS;EACjB,OAAO,EAAE,IAAI;EACb,UAAU,EAAE,IAAI;EAChB,UAAU,EAAE,KAAK;;AAInB,gBAAiB;EACf,UAAU,EAAE,IAAI;EAChB,OAAO,EAAE,CAAC;;AAGZ,cAAe;EACb,UAAU,EAAE,OAAO;EACnB,OAAO,EAAE,IAAI",
+"sources": ["SiderDemo.scss"],
+"names": [],
+"file": "SiderDemo.css"
+}

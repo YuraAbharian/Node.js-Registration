@@ -2,7 +2,7 @@ import mongoose  from 'mongoose';
 import validator from "validator";
 
 const newUser = new mongoose.Schema({
-    Email:{
+    email:{
         type: String,
         unique: true,
         trim: true,
@@ -14,16 +14,21 @@ const newUser = new mongoose.Schema({
             }
         }
     },
-    Username:{
+    username:{
         type: String,
         trim: true,
         required: true,
     },
-    Lastname:{
+    lastname:{
         type: String,
         trim: true,
         required: true,
     },
+    password:{
+        type: String,
+        trim: true,
+        required: true
+    }
 
 },{timestamps: true});
 

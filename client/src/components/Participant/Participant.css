@@ -39,10 +39,16 @@
 .login-form-button {
   margin-top: 4px; }
 
+.Role {
+  height: 50px; }
+
 .css-yk16xz-control {
   width: 100%; }
 
 .error {
   border-color: red; }
 
-/*# sourceMappingURL=Auth.css.map */
+.ant-calendar-picker {
+  width: 100%; }
+
+/*# sourceMappingURL=Participant.css.map */

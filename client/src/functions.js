@@ -1,8 +1,10 @@
 import {Button, Form, Icon, Input} from "antd";
 import React from "react";
-import FirstWindow from "./components/Auth/StepMenu/AuthWindows/FirstWindow";
-import SecondWindow from "./components/Auth/StepMenu/AuthWindows/SecondWindow";
+import FirstWindow from "./components/StepMenu/AuthWindows/FirstWindow";
+import SecondWindow from "./components/StepMenu/AuthWindows/SecondWindow";
 import AdminWindow from "./components/Admin/AdminWindow";
+import UserWindow from "./components/User/UserWindow";
+import ThirdWindows from "./components/StepMenu/AuthWindows/ThirdWindows";
 
 // isTrue
 export const isTrueHandler = (state, name) => state.errors[name] && state.errors[name].errors.length > 0;
@@ -56,7 +58,6 @@ export const setState = (state, action) => {
         default: {
             return state;
         }
-
     }
 };
 // inputs
@@ -69,7 +70,8 @@ export const antdInput = (getFieldDecorator, key, styles, state) => {
         })(
             <Input
                 type={key === "Password" ? "password" : key === "Email" ? "email" : "text"}
-                prefix={<Icon type={key === "Email" ? "google" : "user"} style={{color: 'rgba(0,0,0,.25)'}}/>}
+                prefix={<Icon type={key === "Email" ? "google" : key === "Password" ? "eye-invisible" : "user"}
+                              style={{color: 'rgba(0,0,0,.25)'}}/>}
                 placeholder={[key.toLowerCase()]}
             />,
         )}
@@ -114,8 +116,8 @@ export const selectorHandler = (getFieldDecorator, name, initVal, isTrue, holder
 export const showError = (isTrue, state, cn, name, oldStyle = "") => {
     return isTrue && state.errors[name].errors[0].message ? (
         <span className={cn(oldStyle, {errFont: isTrue})}>
-      {state.errors[name].errors[0].message}
-    </span>
+           {state.errors[name].errors[0].message}
+        </span>
     ) : null;
 };
 // pickers
@@ -144,7 +146,7 @@ export const onSendButtonHandler = (buttonTitle, key, values) => {
 // handler submit
 const handleSubmit = (e, props, Thunk, dispatch, state,) => {
 
-    const isButtonTrue=  props.buttonTitle === "Next" || props.buttonTitle === "Previous" ;
+    const isButtonTrue = props.buttonTitle === "Next" || props.buttonTitle === "Previous";
     e.preventDefault();
     props.form.validateFields((err, values) => {
 
@@ -156,6 +158,8 @@ const handleSubmit = (e, props, Thunk, dispatch, state,) => {
 
             props.buttonTitle === "Previous" && Thunk({...values, ...state.values});
             props.buttonTitle === "Login" && Thunk({...values, ...state.values});
+            props.buttonTitle === "User" && Thunk({...values, ...state.values});
+            console.log("BUTTON", props.buttonTitle);
             props.stateHandler && props.stateHandler(props.stepsState);
         } else if (err) {
 
@@ -165,7 +169,7 @@ const handleSubmit = (e, props, Thunk, dispatch, state,) => {
         }
         isButtonTrue && onSendButtonHandler(props.buttonTitle, props.done);
 
-      isButtonTrue && onSendButtonHandler(props.buttonTitle, props.messageSuccess.success, `Processing complete!${props.confirmEmail}`)
+        isButtonTrue && onSendButtonHandler(props.buttonTitle, props.messageSuccess.success, `Processing complete!${props.confirmEmail}`)
 
     });
 };
@@ -177,44 +181,66 @@ const doneHandler = (dispatch, props) => {
 };
 
 // button
-const formButton =(props, styles='', name)=>( <Button type="primary" htmlType="submit" className={`login-form-button ${styles}`}>
-    { !name ? props.buttonTitle : name}
-</Button>);
+const formButton = (props, styles = '', name) => (
+    <Button type="primary" htmlType="submit" className={`login-form-button ${styles}`}>
+        {!name ? props.buttonTitle : name}
+    </Button>);
 
 // form creator
 export const fromCreator = (props, dispatch, state, currentThunk) => {
 
 
-    const isPrevious = props.buttonTitle === "Previous" ;
+    const isPrevious = props.buttonTitle === "Previous";
     const isNext = props.buttonTitle === "Next";
 
 
     return (<Form onSubmit={(e) => handleSubmit(e, props, currentThunk, dispatch, state)} className="login-form">
 
-        {props.onForm === "First" &&
-        <FirstWindow form={props.form} state={state} getFieldDecorator={props.form.getFieldDecorator}/>}
-        {props.onForm === "Second" &&
-        <SecondWindow ParticipantThunk={currentThunk} state={state} messageSuccess={props.messageSuccess}
-                      validateFields={props.form.validateFields}
-                      form={props.form} dispatch={dispatch} getFieldDecorator={props.form.getFieldDecorator}/>}
+        {
+            props.onForm === "First" && <FirstWindow form={props.form} state={state} getFieldDecorator={props.form.getFieldDecorator}/>
+
+        }
+
+        {
+            props.onForm === "Second" && <SecondWindow ParticipantThunk={currentThunk} state={state} messageSuccess={props.messageSuccess}
+                      validateFields={props.form.validateFields}  form={props.form} dispatch={dispatch} getFieldDecorator={props.form.getFieldDecorator}/>}
+
+
+
+        {
+            props.onForm === "Third" && <ThirdWindows {...props} state={state} />
+
+        }
+
+
+
         {
             props.onForm === "admin" &&
-            <AdminWindow buttonTitle="Login"  ParticipantThunk={currentThunk} state={state} getFieldDecorator={props.form.getFieldDecorator}/>
+            <AdminWindow buttonTitle="Login" ParticipantThunk={currentThunk} state={state}
+                         getFieldDecorator={props.form.getFieldDecorator}/>
+        }
+        {
+            props.onForm === "user" &&
+            <UserWindow buttonTitle="Add User" ParticipantThunk={currentThunk} state={state}
+                        getFieldDecorator={props.form.getFieldDecorator}/>
         }
 
         <Form.Item>
             <div className="form_bottom_navigation">
 
-                {isPrevious ? formButton(props, "done_button", "Done") : props.buttonTitle === "Login" ?
-                    formButton(props,'', null)
-                    : null }
+                {
+                    isPrevious ? formButton(props, "done_button", "Done") : props.buttonTitle === "Login" ?
+                        formButton(props, '', null) : props.buttonTitle === "User" ?
+                            formButton(props, '', null)
+                            : null
+                }
 
                 {isPrevious &&
                 <Button type="primary" onClick={() => doneHandler(dispatch, props)} className="login-form-button">
                     {props.buttonTitle}
                 </Button>}
                 {
-                    isNext ?  formButton(props,'', null) : null
+                    isNext ? formButton(props, '', null) : null
                 }
             </div>
         </Form.Item>

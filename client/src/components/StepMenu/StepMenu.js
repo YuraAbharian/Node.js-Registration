@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
 import "./StepMenu.css";
 import {Steps, message} from 'antd';
-import AuthContainer from "../AuthContainer";
+import AuthContainer from "../Participant/AuthContainer";
+
 
 const {Step} = Steps;
 const StepMenu = () => {
@@ -12,7 +13,7 @@ const StepMenu = () => {
 
     const stateHandler = () => setState(prevState => prevState !== 1 ? prevState + 1 : prevState - 1);
 
-    const done = () => setState("done");
+    const done = () => setState(2);
 
     const steps = [
         {
@@ -26,7 +27,12 @@ const StepMenu = () => {
                                     buttonTitle="Previous"
                                     stepsState={state} stateHandler={stateHandler} onForm="Second"/>,
         },
+        {
+            title: 'Finish',
+            content: <AuthContainer  onForm="Third" confirmEmail={confirmEmail} />,
+        },
     ];
+    console.log("state", state);
     return (
         <div className="steps_container">
             {typeof state === 'number' && <Steps current={state}>
@@ -35,6 +41,7 @@ const StepMenu = () => {
 
             {typeof state === 'number' && steps[state].content &&
             <div className="steps-content">{steps[state].content}</div>}
+
 
         </div>
     );

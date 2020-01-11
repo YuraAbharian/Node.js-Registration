@@ -1,8 +1,12 @@
 import {applyMiddleware, combineReducers, compose, createStore} from "redux";
 import ParticipantReducer from "./Redux/participantReducer";
 import thunk from "redux-thunk";
+import adminReducer from "./Redux/adminReducer";
+import userReducer from "./Redux/userReducer";
 const reducers = combineReducers({
      participant: ParticipantReducer,
+     admin: adminReducer,
+     user: userReducer,
 });
 
 

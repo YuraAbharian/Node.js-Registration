@@ -1,26 +1,14 @@
 import express from 'express';
 // import authMiddleware from "../middleware/authMiddleware" ;
 import Auth  from "../Collections/AuthenticateCollection";
+import {registerHandler} from "../helper/helper";
 const router = new express.Router();
 
 
 
-// registe admin
-router.post("/register", async (req, res) => {
-    const user = new Auth(await req.body);
-       try {
-           const data = {
-               userInfo: user,
-               message: "Profile created!",
-               statusCode: 0
-              };
-            await user.save();
-            res.status(201).send(data);
-       } catch (e) {
-           const data = { message: e.message, statusCode: 1 };
-           res.status(400).send(data);
-       }
-   });
+// register admin
+// registerHandler ("/register", Participant, "admin" );
+router.post("/register",registerHandler (Auth, "admin" ));
 
 // login
 router.post("/admin", async (req, res) => {

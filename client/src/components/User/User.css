@@ -1,8 +1,8 @@
-.admin__form__container {
+.user__form__container {
   display: flex;
   margin: 17em auto;
   position: relative;
   min-width: 25%;
   max-width: 50%; }
 
-/*# sourceMappingURL=Admin.css.map */
+/*# sourceMappingURL=User.css.map */

@@ -54,7 +54,7 @@ const newParticipant = new mongoose.Schema({
     },
     Status:{
         type:String,
-        // default: "New"
+        default: "New"
     }
 },{timestamps: true});
 
