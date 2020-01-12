@@ -3,6 +3,8 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cors from "cors";
 import managerRoute from "./routes/managerRoute";
+import ParticipantRoute from "./routes/ParticipantRoute";
+import userRoute from "./routes/userRoute";
 
 dotenv.config();
 
@@ -14,7 +16,7 @@ const port = process.env.PORT || 3001;
 const DB = process.env.DB;
 
 
-const options = { 
+const options = {
     useMongoClient:true,
 };
 
@@ -22,11 +24,13 @@ mongoose.connect(DB, options, ()=>console.log(`MongoDB server is up`));
 
 
 app.use(managerRoute);
+app.use(ParticipantRoute);
+app.use(userRoute);
 
 
 app.listen(port, () => {
   console.log(`Server is up on port ${port}`);
     });
 
- 
+
 

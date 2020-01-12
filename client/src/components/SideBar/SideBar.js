@@ -1,0 +1,57 @@
+import React, {useState} from 'react';
+import "./SideStyle.css";
+
+import {Layout, Menu, Icon, Table } from 'antd'; 
+import { chooseCurrentRoles, newColumns, newColumnsUser } from '../../functions';
+
+const { Sider, Content } = Layout;
+
+const SideBar = (props) =>  {
+    const { participant: {participants}, user:{user} } = props;   
+   
+    const [state, setState] = useState({ collapsed: true, show: '' });
+
+    const columns =state.show ==="Participants" ? newColumns : newColumnsUser(state.show);
+
+        const newData = state.show ==="Participants" ?  chooseCurrentRoles(participants, "Participants") :
+         state.show ==="Users" ? chooseCurrentRoles(user, "Users") : [];
+      
+     
+
+    const toggle = (e) => {
+        if(e.target.className !== "ant-layout-sider-children" ) return null;
+        setState({...state, collapsed: !state.collapsed });
+    }; 
+        return (
+            <Layout className="side-bar__wrapper" >
+                <Sider collapsible onClick={toggle} collapsed={state.collapsed}>
+                    <div className="logo" />
+                    <Menu theme="dark" mode="inline" >
+                        <Menu.Item key="1" onClick={()=>setState({...state, show: "Users"})}>
+                            <Icon type="user" />
+                            <span>Users</span>
+                        </Menu.Item>
+                        <Menu.Item key="2" onClick={()=>setState({...state, show: "Participants"})}>
+                            <Icon type="qq" />
+                            <span>Participants</span>
+                        </Menu.Item>
+                        <Menu.Item key="3" onClick={()=>setState({...state, show: "Bin"})}>
+                            <Icon type="rest" />
+                            <span>Bin</span>
+                        </Menu.Item>
+                    </Menu>
+                </Sider>
+                <Layout>
+
+                    <Content className="content__wrapper">
+
+                           {  state.show &&   <Table columns={columns}  dataSource={newData}  />}
+
+                    </Content>
+                </Layout>
+            </Layout>
+        );
+};
+
+
+export default  SideBar

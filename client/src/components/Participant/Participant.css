@@ -1,0 +1,54 @@
+.form_container {
+  display: flex;
+  margin: 5em auto;
+  position: relative; }
+
+.form_bottom_navigation {
+  display: grid; }
+
+.login-form {
+  margin: 0 auto;
+  width: 50%; }
+
+.form_container_header {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -100%); }
+
+.date_picker_width {
+  width: 100%; }
+
+.errFont {
+  color: red; }
+
+.RangePicker {
+  height: 50px; }
+
+.Gender {
+  margin: 4px 0 4px 0;
+  height: 46px; }
+
+.Country,
+.Birthdate {
+  margin-top: 8px;
+  height: 50px; }
+  .Country i,
+  .Birthdate i {
+    top: 50%; }
+
+.login-form-button {
+  margin-top: 4px; }
+
+.Role {
+  height: 50px; }
+
+.css-yk16xz-control {
+  width: 100%; }
+
+.error {
+  border-color: red; }
+
+.ant-calendar-picker {
+  width: 100%; }
+
+/*# sourceMappingURL=Participant.css.map */

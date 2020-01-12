@@ -54,14 +54,8 @@ const newParticipant = new mongoose.Schema({
     },
     Status:{
         type:String,
-        default: "new"
+        default: "New"
     }
-    // owner:{
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     required: true,
-    //     ref: 'Auth',
-    // }
-
 },{timestamps: true});
 
 
