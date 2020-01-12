@@ -5,10 +5,11 @@ import {getParticipantThunk, getUserThunk} from "../../Redux/actions";
 
 const ContainerSideBar = (props) => {
     const { admin: {isSuperAdmin}, getParticipantThunk, getUserThunk } = props;
+    console.log('isSuperAdmin :', isSuperAdmin);
     useEffect(()=>{
         getParticipantThunk();
         getUserThunk();
-    },[]);
+    },[getParticipantThunk, getUserThunk]);
     return (
         <div>
             <SideBar {...props}/>

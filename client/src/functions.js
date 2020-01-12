@@ -1,11 +1,15 @@
+ 
 import {Button, Form, Icon, Input, Card, Tag, Divider} from "antd";
+ 
 import React from "react";
 import FirstWindow from "./components/StepMenu/AuthWindows/FirstWindow";
 import SecondWindow from "./components/StepMenu/AuthWindows/SecondWindow";
 import AdminWindow from "./components/Admin/AdminWindow";
 import UserWindow from "./components/User/UserWindow";
 import ThirdWindows from "./components/StepMenu/AuthWindows/ThirdWindows";
+ 
 import { NavLink } from "react-router-dom";
+ 
 
 // isTrue
 export const isTrueHandler = (state, name) => state.errors[name] && state.errors[name].errors.length > 0;
@@ -63,6 +67,7 @@ export const setState = (state, action) => {
 };
 // inputs
 export const antdInput = (getFieldDecorator, key, styles, state) => {
+    const inputType =key === "Password" ? "password" : key === "Email" ? "email" : "text";
     const currState = state.values && state.values[key] ? state.values[key] : '';
     return (<Form.Item style={styles}>
         {getFieldDecorator([key], {
@@ -70,7 +75,8 @@ export const antdInput = (getFieldDecorator, key, styles, state) => {
             rules: [{required: true, message: `Please input your ${key}!`}],
         })(
             <Input
-                type={key === "Password" ? "password" : key === "Email" ? "email" : "text"}
+                autoComplete="new-password"
+                type={inputType}
                 prefix={<Icon type={key === "Email" ? "google" : key === "Password" ? "eye-invisible" : "user"}
                               style={{color: 'rgba(0,0,0,.25)'}}/>}
                 placeholder={[key.toLowerCase()]}
@@ -248,6 +254,7 @@ export const fromCreator = (props, dispatch, state, currentThunk) => {
     </Form>)
 };
 
+ 
 
 // map user or paticipants
 
@@ -374,3 +381,4 @@ export const chooseCurrentRoles =(arr, name)=>{
               } 
     });
 };
+ 

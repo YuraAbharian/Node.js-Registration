@@ -10,14 +10,17 @@ class RequestHttp {
     }
 // admin login
     async logIn({Email, Password}){
-    return  await this.transport.post("/admin", { email: Email, password: Password })
+ 
+    return  await this.transport.post("/admin", { email: Email, password: Password })  
     };
 // user add
     async addUser({Email, Password, Username, Lastname}){
 
         return  await this.transport.post("/addUser", { email: Email, password: Password, username: Username, lastname: Lastname  })
     };
+ 
 //get user
+ 
     async getUser(){
         return await this.transport.get("/getUser")
     }
