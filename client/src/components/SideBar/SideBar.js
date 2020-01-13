@@ -1,41 +1,45 @@
 import React, {useState} from 'react';
-import "./SiderDemo.css";
+import "./SideStyle.css";
 
-import {Layout, Menu, Icon, Card } from 'antd';
-import moment from "moment";
+import {Layout, Menu, Icon, Table } from 'antd';
+import { chooseCurrentRoles, newColumns, newColumnsUser } from '../../functions';
+import {withRouter} from "react-router-dom";
 
 const { Sider, Content } = Layout;
 
 const SideBar = (props) =>  {
-    const { participant: {participants}, user } = props;
-    console.log(participants);
-    const [state, setState] = useState({ collapsed: true });
+    const { participant: {participants}, user:{user}, deleteOrRestore,deleteUser, history } = props;
 
+
+    const [state, setState] = useState({ collapsed: true, show: '' });
+
+    const isParticipant = state.show ==="Participants";
+    const isUser = state.show ==="Users";
+    const isBin = state.show ==="Bin";
+
+    const columns = isParticipant ? newColumns : newColumnsUser(state.show, deleteOrRestore, deleteUser, history);
+
+        const newData = isParticipant ?  chooseCurrentRoles(participants, "Participants") :
+         isUser ? chooseCurrentRoles(user, "Users") : isBin ? chooseCurrentRoles(user, "Bin") : [];
 
     const toggle = (e) => {
-               if(e.target.className !== "ant-layout-sider-children" ) return null;
-        setState({ collapsed: !state.collapsed });
-
+        if(e.target.className !== "ant-layout-sider-children" ) return null;
+        setState({...state, collapsed: !state.collapsed });
     };
-    // const onClose=(e)=>{
-    //     if(e.target.className !== "ant-layout-sider-children" ) setState({ collapsed: true });
-    // };
-
-
         return (
             <Layout className="side-bar__wrapper" >
-                <Sider trigger={null} collapsible onClick={toggle} collapsed={state.collapsed}>
+                <Sider collapsible onClick={toggle} collapsed={state.collapsed}>
                     <div className="logo" />
-                    <Menu theme="dark" mode="inline"  >
-                        <Menu.Item key="1" >
+                    <Menu theme="dark" mode="inline" >
+                        <Menu.Item key="1" onClick={()=>setState({...state, show: "Users"})}>
                             <Icon type="user" />
                             <span>Users</span>
                         </Menu.Item>
-                        <Menu.Item key="2">
+                        <Menu.Item key="2" onClick={()=>setState({...state, show: "Participants"})}>
                             <Icon type="qq" />
                             <span>Participants</span>
                         </Menu.Item>
-                        <Menu.Item key="3">
+                        <Menu.Item key="3" onClick={()=>setState({...state, show: "Bin"})}>
                             <Icon type="rest" />
                             <span>Bin</span>
                         </Menu.Item>
@@ -43,25 +47,9 @@ const SideBar = (props) =>  {
                 </Sider>
                 <Layout>
 
-                    <Content    className="content__wrapper">
+                    <Content className="content__wrapper">
 
-                {
-                    participants.length > 0 && participants.map(el=> ( <div className="card__mapping" key={el._id}>
-                            <Card title={`${el.Username} ${el.Lastname}`} bordered={false} style={{ width: 300 }}>
-                                <p>{el.Company}</p>
-                                <p>{el.Position}</p>
-                                <p>{el.Country}</p>
-                                <p>{el.Email}</p>
-                                <p>{ new Date(el.createdAt).toLocaleString() }</p>
-                                <p>{el.Status ? el.Status: "New"}</p>
-                            </Card>
-                        </div>)
-                    )
-
-
-                 }
-
-
+                           {  state.show &&   <Table columns={columns}  dataSource={newData}  />}
 
                     </Content>
                 </Layout>
@@ -70,4 +58,4 @@ const SideBar = (props) =>  {
 };
 
 
-export default  SideBar
+export default  withRouter(SideBar)

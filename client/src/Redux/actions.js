@@ -1,4 +1,4 @@
-import {APPLY, ADMIN_LOGIN, ADD_USER, GET_USER, GET_PARTICIPANT} from "./types";
+import {APPLY, ADMIN_LOGIN, ADD_USER, GET_USER, GET_PARTICIPANT, DELETE_USER, REMOVE_USER} from "./types";
 import {requestHttp} from "../api/api";
 
 
@@ -49,3 +49,12 @@ export const getUserThunk = (data) => async dispatch => {
 };
 
 
+export const deleteOrRestore =(id, isDeleted)=>async (dispatch)=>{
+    await requestHttp.removeOrRestore(id, isDeleted);
+    dispatch({type: DELETE_USER, payload: {id, isDeleted}})
+};
+
+export const deleteUser =(id)=>async (dispatch)=>{
+    await requestHttp.deleteUser(id);
+    dispatch({type: REMOVE_USER, payload: id})
+};

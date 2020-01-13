@@ -5,9 +5,11 @@ const UserWindow = (props) => {
     const {getFieldDecorator, state} = props;
     return (
         <div>
+
             <div className="form_container_header" >
                 <h1>User</h1>
             </div>
+
             {antdInput(getFieldDecorator,'Username','', state)}
             {antdInput(getFieldDecorator,'Lastname','', state)}
             {antdInput(getFieldDecorator,'Email','', state)}
@@ -18,3 +20,4 @@ const UserWindow = (props) => {
 };
 
 export default UserWindow;
+

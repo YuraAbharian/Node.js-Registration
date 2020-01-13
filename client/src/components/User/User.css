@@ -5,4 +5,11 @@
   min-width: 25%;
   max-width: 50%; }
 
+.edit__user {
+  display: flex;
+  margin: 17em auto;
+  position: relative;
+  min-width: 25%;
+  max-width: 50%; }
+
 /*# sourceMappingURL=User.css.map */

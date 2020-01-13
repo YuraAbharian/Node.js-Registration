@@ -1,5 +1,5 @@
 
-
+// register user/ participant / admin
 export const registerHandler=( Collection, name )=>  async (req, res) => {
 
         [name] =  [new Collection(await req.body)];
@@ -25,11 +25,25 @@ export const registerHandler=( Collection, name )=>  async (req, res) => {
 
 };
 
-
+// get all data user/participant
 export const getAllDatas =(Collection)=>   async (req, res) => {
 
     const data = await Collection.find();
 
     res.status(200).send(data)
+
+};
+
+// delete or restore user
+export const deleteOrRestore =(Collection)=>async (req, res)=>{
+    const { id, isDeleted } = req.body;
+    try {
+        const obj = await Collection.findByIdAndUpdate(id);
+        obj.isDeleted = isDeleted;
+        obj.save();
+        res.status(200).send(obj)
+    } catch (e) {
+        res.status(500).send("Unable to delete")
+    }
 
 };

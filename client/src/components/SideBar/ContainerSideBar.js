@@ -1,23 +1,30 @@
 import React, {useEffect} from 'react';
 import SideBar from "./SideBar";
 import {connect} from "react-redux";
-import {getParticipantThunk, getUserThunk} from "../../Redux/actions";
+import {deleteOrRestore, deleteUser, getParticipantThunk, getUserThunk} from "../../Redux/actions";
 
 const ContainerSideBar = (props) => {
-    const { admin: {isSuperAdmin}, getParticipantThunk, getUserThunk } = props;
-    useEffect(()=>{
+
+    const {admin: {isSuperAdmin}, getParticipantThunk, getUserThunk} = props;
+
+
+
+    useEffect(() => {
         getParticipantThunk();
         getUserThunk();
-    },[]);
+    }, [getParticipantThunk, getUserThunk]);
+
     return (
         <div>
             <SideBar {...props}/>
         </div>
     );
 };
-const mapStateToProps =state=>({
+
+const mapStateToProps = state => ({
     admin: state.admin,
     user: state.user,
     participant: state.participant
 });
-export default connect(mapStateToProps, {getParticipantThunk, getUserThunk})(ContainerSideBar);
+
+export default connect(mapStateToProps, {getParticipantThunk, getUserThunk,deleteUser, deleteOrRestore})(ContainerSideBar);

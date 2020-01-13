@@ -28,6 +28,10 @@ const newUser = new mongoose.Schema({
         type: String,
         trim: true,
         required: true
+    },
+    isDeleted:{
+        type: Boolean,
+        default: null
     }
 
 },{timestamps: true});

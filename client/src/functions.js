@@ -1,10 +1,14 @@
-import {Button, Form, Icon, Input} from "antd";
+
+import {Button, Form, Icon, Input,  Tag, Divider} from "antd";
+
 import React from "react";
 import FirstWindow from "./components/StepMenu/AuthWindows/FirstWindow";
 import SecondWindow from "./components/StepMenu/AuthWindows/SecondWindow";
 import AdminWindow from "./components/Admin/AdminWindow";
 import UserWindow from "./components/User/UserWindow";
 import ThirdWindows from "./components/StepMenu/AuthWindows/ThirdWindows";
+
+
 
 // isTrue
 export const isTrueHandler = (state, name) => state.errors[name] && state.errors[name].errors.length > 0;
@@ -51,6 +55,7 @@ export const setState = (state, action) => {
             }
         }
         case "SET_VALUES": {
+            console.log("action.payload: ", action.payload);
             return {
                 ...state, values: !state.values ? action.payload : {...state.values, ...action.payload}
             }
@@ -62,14 +67,23 @@ export const setState = (state, action) => {
 };
 // inputs
 export const antdInput = (getFieldDecorator, key, styles, state) => {
+    const inputType =key === "Password" ? "password" : key === "Email" ? "email" : "text";
+    const emailValid = key === "Email" ? "email": null;
     const currState = state.values && state.values[key] ? state.values[key] : '';
+
+    if(state.values && !state.values.Email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{3,})$/i)){
+       return console.log("true: ", true);
+    }
     return (<Form.Item style={styles}>
         {getFieldDecorator([key], {
             initialValue: currState,
-            rules: [{required: true, message: `Please input your ${key}!`}],
+            rules: [{
+                type:emailValid, message: 'The input is not valid E-mail!',
+            },{required: true,  message: `Please input your ${key}!`}]
         })(
             <Input
-                type={key === "Password" ? "password" : key === "Email" ? "email" : "text"}
+                autoComplete="new-password"
+                type={inputType}
                 prefix={<Icon type={key === "Email" ? "google" : key === "Password" ? "eye-invisible" : "user"}
                               style={{color: 'rgba(0,0,0,.25)'}}/>}
                 placeholder={[key.toLowerCase()]}
@@ -159,7 +173,7 @@ const handleSubmit = (e, props, Thunk, dispatch, state,) => {
             props.buttonTitle === "Previous" && Thunk({...values, ...state.values});
             props.buttonTitle === "Login" && Thunk({...values, ...state.values});
             props.buttonTitle === "User" && Thunk({...values, ...state.values});
-            console.log("BUTTON", props.buttonTitle);
+            props.buttonTitle === "Edit" && Thunk("err");
             props.stateHandler && props.stateHandler(props.stepsState);
         } else if (err) {
 
@@ -192,38 +206,44 @@ export const fromCreator = (props, dispatch, state, currentThunk) => {
 
     const isPrevious = props.buttonTitle === "Previous";
     const isNext = props.buttonTitle === "Next";
+    const isEditUser =  props.onForm === "editUser";
 
+    const switchCaser = () => {
+        switch (props.onForm) {
+            case "First":{
+                return <FirstWindow form={props.form} state={state} getFieldDecorator={props.form.getFieldDecorator}/>
+            }
+            case "Second":{
+                return <SecondWindow ParticipantThunk={currentThunk} state={state} messageSuccess={props.messageSuccess}
+                                     validateFields={props.form.validateFields} form={props.form} dispatch={dispatch}
+                                     getFieldDecorator={props.form.getFieldDecorator}/>
+            }
+            case "Third":{
+                return <ThirdWindows {...props} state={state}/>
+            }
+            case "admin":{
+                return  <AdminWindow buttonTitle="Login" ParticipantThunk={currentThunk} state={state}
+                                     getFieldDecorator={props.form.getFieldDecorator}/>
+            }
+            case "user":{
+                return  <UserWindow buttonTitle="Add User" ParticipantThunk={currentThunk} state={state}
+                                    getFieldDecorator={props.form.getFieldDecorator}/>
+            }
+            case "editUser":{
+                return  <UserWindow buttonTitle="Edit" ParticipantThunk={currentThunk} state={state}
+                                    getFieldDecorator={props.form.getFieldDecorator}/>
+            }
+            default:{
+                return <FirstWindow form={props.form} state={state} getFieldDecorator={props.form.getFieldDecorator}/>
+            }
+        }
+    };
 
     return (<Form onSubmit={(e) => handleSubmit(e, props, currentThunk, dispatch, state)} className="login-form">
 
-        {
-            props.onForm === "First" && <FirstWindow form={props.form} state={state} getFieldDecorator={props.form.getFieldDecorator}/>
+                            {switchCaser()}
 
-        }
-
-        {
-            props.onForm === "Second" && <SecondWindow ParticipantThunk={currentThunk} state={state} messageSuccess={props.messageSuccess}
-                      validateFields={props.form.validateFields}  form={props.form} dispatch={dispatch} getFieldDecorator={props.form.getFieldDecorator}/>}
-
-
-
-        {
-            props.onForm === "Third" && <ThirdWindows {...props} state={state} />
-
-        }
-
-
-
-        {
-            props.onForm === "admin" &&
-            <AdminWindow buttonTitle="Login" ParticipantThunk={currentThunk} state={state}
-                         getFieldDecorator={props.form.getFieldDecorator}/>
-        }
-        {
-            props.onForm === "user" &&
-            <UserWindow buttonTitle="Add User" ParticipantThunk={currentThunk} state={state}
-                        getFieldDecorator={props.form.getFieldDecorator}/>
-        }
+{/*here mus be !!*/}
 
         <Form.Item>
             <div className="form_bottom_navigation">
@@ -242,9 +262,164 @@ export const fromCreator = (props, dispatch, state, currentThunk) => {
                 {
                     isNext ? formButton(props, '', null) : null
                 }
+                {
+                    isEditUser ? formButton(props, '', null) : null
+                }
             </div>
         </Form.Item>
     </Form>)
 };
 
+// ant table columns
+// participant
+export const newColumns = [
+    {
+      title: 'Fullname',
+      dataIndex: 'fullname',
+      key: 'fullname',
+      render: text =><span>{text}</span>,
+    },
+    {
+      title: 'Company',
+      dataIndex: 'company',
+      key: 'company',
+    },
+    {
+      title: 'Position',
+      dataIndex: 'position',
+      key: 'position',
+    },
+    {
+      title: 'Email',
+      dataIndex: 'email',
+      key: 'email',
+    },
+    {
+      title: 'Country',
+      dataIndex: 'country',
+      key: 'country',
+    },
+    {
+      title: 'Registration date',
+      dataIndex: 'registration',
+      key: 'registration',
+    },
+    {
+      title: 'Status',
+      key: 'tags',
+      dataIndex: 'tags',
+      render: tags => (
+        <span>
+          {tags.map(tag => {
+              let newTag = tag ? tag : 'new';
+            let color = newTag === "New" || !newTag ? 'geekblue' : tag === "Approved " ? 'green' : tag === "Declined " ? 'volcano': null;
+             return (
+              <Tag color={color} key={newTag}>
+                {newTag.toUpperCase()}
+              </Tag>
+            );
+          })}
+        </span>
+      ),
+    },
+    ];
 
+export const newColumnsUser = (name, func, delFunc, history)=>{
+    return [
+        {
+        title: 'Fullname',
+        dataIndex: 'fullname',
+        key: 'fullname',
+        render: text =><span>{text}</span>,
+      },
+      {
+        title: 'Email',
+        dataIndex: 'email',
+        key: 'email',
+      },
+    {
+        title: 'Action',
+        key: 'action',
+        render: (text, el) =>  {
+            console.log("el: ", el)
+           return name !== "Bin" ? (
+             <span>
+               <Button onClick={()=>  history.push(`/menu/editUser/${el.key}`) }>Edit</Button>
+               <Divider type="vertical" />
+               <Button onClick={()=>func(el.key, true)}>Delete</Button>
+             </span>
+           ) : (
+             <span>
+               <Button onClick={()=>func(el.key, null)}>Restore</Button>
+                  <Divider type="vertical" />
+                 <Button onClick={()=>delFunc(el.key)}>Delete</Button>
+             </span>
+           );
+               }
+      },
+    ]
+};
+const filterHandler=(array, bool)=>array.filter(el=>el.isDeleted === bool);
+export const chooseCurrentRoles =(arr, name)=>{
+
+    const isTrue = name === "Participants";
+    const isUser = name === "Users";
+    const isBin = name === "Bin";
+
+    const newArr =isTrue?  arr : isUser ? filterHandler(arr, null) : isBin ? filterHandler(arr, true): null;
+
+   return newArr.map(el=>{
+
+        const Status = isTrue &&  el.Status ? `${el.Status}` : "new";
+        let Country= isTrue && el.CountryPicker[0].toUpperCase() + el.CountryPicker.slice(1);
+
+        const date =  new Date(el.createdAt).toLocaleString();
+         return   !isTrue ? {
+            key: el._id,
+            fullname: `${el.username} ${el.lastname}`,
+            email: `${el.email}`,
+         } : {
+                key: el._id,
+                fullname: `${el.Username} ${el.Lastname}`,
+                company: `${el.Company}`,
+                position: `${el.Position}`,
+                email: `${el.Email}`,
+                country: `${Country}`,
+                registration: date,
+                tags: [Status],
+              }
+    });
+};
+
+
+
+
+//{
+//props.onForm === "First" &&
+//<FirstWindow form={props.form} state={state} getFieldDecorator={props.form.getFieldDecorator}/>
+//}
+//
+//{
+//props.onForm === "Second" &&
+//<SecondWindow ParticipantThunk={currentThunk} state={state} messageSuccess={props.messageSuccess}
+//  validateFields={props.form.validateFields} form={props.form} dispatch={dispatch}
+//  getFieldDecorator={props.form.getFieldDecorator}/>}
+//{
+//props.onForm === "Third" && <ThirdWindows {...props} state={state}/>
+//}
+//
+//{
+//props.onForm === "admin" &&
+//<AdminWindow buttonTitle="Login" ParticipantThunk={currentThunk} state={state}
+//  getFieldDecorator={props.form.getFieldDecorator}/>
+//}
+//{
+//props.onForm === "user" &&
+//<UserWindow buttonTitle="Add User" ParticipantThunk={currentThunk} state={state}
+//  getFieldDecorator={props.form.getFieldDecorator}/>
+//}
+//{
+//  isEditUser &&
+//            <UserWindow buttonTitle="Edit" ParticipantThunk={currentThunk} state={state}
+//  getFieldDecorator={props.form.getFieldDecorator}/>
+//}
