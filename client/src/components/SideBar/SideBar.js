@@ -1,16 +1,29 @@
 import React, {useState} from 'react';
 import "./SideStyle.css";
 
+<<<<<<< HEAD
 import {Layout, Menu, Icon, Table } from 'antd';
 import { chooseCurrentRoles, newColumns, newColumnsUser } from '../../functions';
 import {withRouter} from "react-router-dom";
+=======
+import {Layout, Menu, Icon, Table } from 'antd'; 
+import { chooseCurrentRoles, newColumns, newColumnsUser } from '../../functions';
+>>>>>>> cb92cefca0c854692de1dcc6f485ca74fabc1a50
 
 const { Sider, Content } = Layout;
 
 const SideBar = (props) =>  {
+<<<<<<< HEAD
     const { participant: {participants}, user:{user}, deleteOrRestore,deleteUser, history } = props;
+=======
+    const { participant: {participants}, user:{user} } = props;   
+   
+    const [state, setState] = useState({ collapsed: true, show: '' });
+>>>>>>> cb92cefca0c854692de1dcc6f485ca74fabc1a50
 
+    const columns =state.show ==="Participants" ? newColumns : newColumnsUser(state.show);
 
+<<<<<<< HEAD
     const [state, setState] = useState({ collapsed: true, show: '' });
 
     const isParticipant = state.show ==="Participants";
@@ -21,11 +34,21 @@ const SideBar = (props) =>  {
 
         const newData = isParticipant ?  chooseCurrentRoles(participants, "Participants") :
          isUser ? chooseCurrentRoles(user, "Users") : isBin ? chooseCurrentRoles(user, "Bin") : [];
+=======
+        const newData = state.show ==="Participants" ?  chooseCurrentRoles(participants, "Participants") :
+         state.show ==="Users" ? chooseCurrentRoles(user, "Users") : [];
+      
+     
+>>>>>>> cb92cefca0c854692de1dcc6f485ca74fabc1a50
 
     const toggle = (e) => {
         if(e.target.className !== "ant-layout-sider-children" ) return null;
         setState({...state, collapsed: !state.collapsed });
+<<<<<<< HEAD
     };
+=======
+    }; 
+>>>>>>> cb92cefca0c854692de1dcc6f485ca74fabc1a50
         return (
             <Layout className="side-bar__wrapper" >
                 <Sider collapsible onClick={toggle} collapsed={state.collapsed}>

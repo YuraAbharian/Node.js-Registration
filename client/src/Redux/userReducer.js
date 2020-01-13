@@ -37,6 +37,11 @@ const userReducer = (state = initialState, action) => {
                 ...state, user: state.user.filter(el=> el._id !== action.payload)
             }
         }
+        case EDIT_USER :{
+            return {
+                ...state, user: state.user.filter(el=> el._id !== action.payload)
+            }
+        }
         default:{
             return state
         }

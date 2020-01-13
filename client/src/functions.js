@@ -1,12 +1,21 @@
+<<<<<<< HEAD
 
 import {Button, Form, Icon, Input,  Tag, Divider} from "antd";
 
+=======
+ 
+import {Button, Form, Icon, Input, Card, Tag, Divider} from "antd";
+ 
+>>>>>>> cb92cefca0c854692de1dcc6f485ca74fabc1a50
 import React from "react";
 import FirstWindow from "./components/StepMenu/AuthWindows/FirstWindow";
 import SecondWindow from "./components/StepMenu/AuthWindows/SecondWindow";
 import AdminWindow from "./components/Admin/AdminWindow";
 import UserWindow from "./components/User/UserWindow";
 import ThirdWindows from "./components/StepMenu/AuthWindows/ThirdWindows";
+ 
+import { NavLink } from "react-router-dom";
+ 
 
 
 
@@ -68,7 +77,10 @@ export const setState = (state, action) => {
 // inputs
 export const antdInput = (getFieldDecorator, key, styles, state) => {
     const inputType =key === "Password" ? "password" : key === "Email" ? "email" : "text";
+<<<<<<< HEAD
     const emailValid = key === "Email" ? "email": null;
+=======
+>>>>>>> cb92cefca0c854692de1dcc6f485ca74fabc1a50
     const currState = state.values && state.values[key] ? state.values[key] : '';
 
     if(state.values && !state.values.Email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{3,})$/i)){
@@ -270,7 +282,28 @@ export const fromCreator = (props, dispatch, state, currentThunk) => {
     </Form>)
 };
 
+<<<<<<< HEAD
 // ant table columns
+=======
+ 
+
+// map user or paticipants
+
+export const chooseCurrentRole=(name, key )=>{
+   return name.length > 0 && name.map(el=> ( <div className="card__mapping" key={el._id}>
+    <Card title={key ? `${el.Username} ${el.Lastname}` : `${el.username} ${el.lastname}`} bordered={false} style={{ width: 300 }}>
+   {  key &&  <p>{el.Company}</p>}
+   {  key &&  <p>{el.Position}</p>}
+   {  key &&  <p>{el.Country}</p>}
+   {  key ?   <p>{el.Email}</p> :  <p>{el.email}</p> }
+   {  key &&  <p>{ new Date(el.createdAt).toLocaleString() }</p>}
+   {  key &&  <p>{el.Status ? el.Status: "New"}</p>}
+    </Card>
+</div>)
+) 
+}
+// ant table columns 
+>>>>>>> cb92cefca0c854692de1dcc6f485ca74fabc1a50
 // participant
 export const newColumns = [
     {
@@ -323,8 +356,13 @@ export const newColumns = [
       ),
     },
     ];
+<<<<<<< HEAD
 
 export const newColumnsUser = (name, func, delFunc, history)=>{
+=======
+// user
+export const newColumnsUser = (name)=>{
+>>>>>>> cb92cefca0c854692de1dcc6f485ca74fabc1a50
     return [
         {
         title: 'Fullname',
@@ -335,11 +373,16 @@ export const newColumnsUser = (name, func, delFunc, history)=>{
       {
         title: 'Email',
         dataIndex: 'email',
+<<<<<<< HEAD
         key: 'email',
+=======
+        key: 'email', 
+>>>>>>> cb92cefca0c854692de1dcc6f485ca74fabc1a50
       },
     {
         title: 'Action',
         key: 'action',
+<<<<<<< HEAD
         render: (text, el) =>  {
             console.log("el: ", el)
            return name !== "Bin" ? (
@@ -379,6 +422,37 @@ export const chooseCurrentRoles =(arr, name)=>{
             fullname: `${el.username} ${el.lastname}`,
             email: `${el.email}`,
          } : {
+=======
+        render: (text, record) => {
+           return name !== "Bin" ? (
+             <span>
+               <NavLink to="/edit">Edit</NavLink>
+               <Divider type="vertical" />
+               <NavLink to="/delete">Delete</NavLink>
+             </span>
+           ) : (
+             <span>
+               <NavLink to="/delete">Delete</NavLink>
+             </span>
+           ); 
+               } 
+      },
+    ]
+}
+
+export const chooseCurrentRoles =(arr, name)=>{
+   return arr.map(el=>{
+            
+        const Status = name === "Participants" &&  el.Status ? `${el.Status}` : "new";
+        let Country= name === "Participants" && el.CountryPicker[0].toUpperCase() + el.CountryPicker.slice(1); 
+
+        const date =  new Date(el.createdAt).toLocaleString()
+         return   name !== "Participants" ? {
+            key: el._id,
+            fullname: `${el.username} ${el.lastname}`,
+            email: `${el.email}`,
+         } : {               
+>>>>>>> cb92cefca0c854692de1dcc6f485ca74fabc1a50
                 key: el._id,
                 fullname: `${el.Username} ${el.Lastname}`,
                 company: `${el.Company}`,
@@ -387,6 +461,7 @@ export const chooseCurrentRoles =(arr, name)=>{
                 country: `${Country}`,
                 registration: date,
                 tags: [Status],
+<<<<<<< HEAD
               }
     });
 };
@@ -423,3 +498,9 @@ export const chooseCurrentRoles =(arr, name)=>{
 //            <UserWindow buttonTitle="Edit" ParticipantThunk={currentThunk} state={state}
 //  getFieldDecorator={props.form.getFieldDecorator}/>
 //}
+=======
+              } 
+    });
+};
+ 
+>>>>>>> cb92cefca0c854692de1dcc6f485ca74fabc1a50
