@@ -2,32 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="336ca889-1338-46b0-9d7c-629ab15a3de0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/client/src/components/User/EditUser.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/User/EditUserContainer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/cubex.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/cubex.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/Collections/UserCollections.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/Collections/UserCollections.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/helper/helper.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/helper/helper.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/routes/userRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/routes/userRoute.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/Redux/actions.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Redux/actions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/Redux/types.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Redux/types.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/Redux/userReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Redux/userReducer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/api/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/api/api.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Participant/Participant.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Participant/Participant.css.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/Participant/Participant.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Participant/Participant.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/SideBar/.sass-cache/161f41531d8cb2f89216774b34965ac2987a5fac/SiderDemo.scssc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/SideBar/ContainerSideBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/SideBar/ContainerSideBar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/SideBar/SideBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/SideBar/SideBar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/SideBar/SiderDemo.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/SideBar/SiderDemo.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/SideBar/SiderDemo.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/User/.sass-cache/53657da16c9172bf1740f1420722f479d307fc85/User.scssc" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/User/.sass-cache/53657da16c9172bf1740f1420722f479d307fc85/User.scssc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/User/User.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/User/User.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/User/User.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/User/User.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/User/User.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/User/User.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/User/UserWindow.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/User/UserWindow.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/functions.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/functions.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -44,7 +20,7 @@
         <entry file="file://$PROJECT_DIR$/client/src/components/SideBar/SideBar.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="136">
-              <caret line="19" column="112" lean-forward="true" selection-start-line="19" selection-start-column="112" selection-end-line="19" selection-end-column="112" />
+              <caret line="19" column="112" selection-start-line="19" selection-start-column="112" selection-end-line="19" selection-end-column="112" />
               <folding>
                 <element signature="e#0#38#0" expanded="true" />
               </folding>
@@ -64,8 +40,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/client/src/components/Participant/Participant.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="20" selection-start-line="2" selection-start-column="20" selection-end-line="2" selection-end-column="20" />
+            <state relative-caret-position="493">
+              <caret line="29" column="1" selection-start-line="29" selection-start-column="1" selection-end-line="29" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -95,7 +71,7 @@
         <entry file="file://$PROJECT_DIR$/client/src/functions.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="34">
-              <caret line="67" column="9" lean-forward="true" selection-start-line="67" selection-start-column="9" selection-end-line="67" selection-end-column="9" />
+              <caret line="67" column="9" selection-start-line="67" selection-start-column="9" selection-end-line="67" selection-end-column="9" />
               <folding>
                 <element signature="e#1#63#0" expanded="true" />
               </folding>
@@ -352,12 +328,12 @@
       <workItem from="1578553281647" duration="29625000" />
       <workItem from="1578643578609" duration="24032000" />
       <workItem from="1578726253272" duration="23580000" />
-      <workItem from="1578898572807" duration="15538000" />
+      <workItem from="1578898572807" duration="15843000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="124908000" />
+    <option name="totallyTimeSpent" value="125213000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -792,7 +768,7 @@
     <entry file="file://$PROJECT_DIR$/client/src/components/SideBar/SideBar.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
-          <caret line="19" column="112" lean-forward="true" selection-start-line="19" selection-start-column="112" selection-end-line="19" selection-end-column="112" />
+          <caret line="19" column="112" selection-start-line="19" selection-start-column="112" selection-end-line="19" selection-end-column="112" />
           <folding>
             <element signature="e#0#38#0" expanded="true" />
           </folding>
@@ -812,7 +788,7 @@
     <entry file="file://$PROJECT_DIR$/client/src/functions.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
-          <caret line="67" column="9" lean-forward="true" selection-start-line="67" selection-start-column="9" selection-end-line="67" selection-end-column="9" />
+          <caret line="67" column="9" selection-start-line="67" selection-start-column="9" selection-end-line="67" selection-end-column="9" />
           <folding>
             <element signature="e#1#63#0" expanded="true" />
           </folding>
@@ -835,8 +811,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/client/src/components/Participant/Participant.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="20" selection-start-line="2" selection-start-column="20" selection-end-line="2" selection-end-column="20" />
+        <state relative-caret-position="493">
+          <caret line="29" column="1" selection-start-line="29" selection-start-column="1" selection-end-line="29" selection-end-column="1" />
         </state>
       </provider>
     </entry>
