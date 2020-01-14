@@ -24,7 +24,8 @@ router.put("/update", async (req, res)=>{
          await User.updateOne({  _id: obj._id }, obj);
          res.status(200).send({message: "updated"});
      }catch (e) {
-         res.status(400).send({message: e});
+         const data = { message: e.message, statusCode: 1 };
+         res.status(200).send(data);
      }
 
 });

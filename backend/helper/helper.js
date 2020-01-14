@@ -35,7 +35,7 @@ export const registerHandler=( Collection, name )=>  async (req, res) => {
 
             const data = {message: e.message, statusCode: 1};
 
-            res.status(400).send(data);
+            res.status(200).send(data);
 
         }
 

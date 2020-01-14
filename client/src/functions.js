@@ -202,23 +202,34 @@ const handleSubmit =  (e, props, Thunk, dispatch, state) => {
                 }
                 case "Login":{
                     const response = await Thunk({...values, ...state.values},false);
-                    console.log("response: ", response);
+
                     if(typeof response !== "string"){
                         props.history.push("/menu");
                     } else {
                         dispatch({type: "RESET_VALUES"});
                     }
 
-
-
                     return
                 }
                 case "User":{
-                    return Thunk({...values, ...state.values});
+                    const response = await Thunk({...values, ...state.values});
+
+                    if(typeof response === "string"){
+                        dispatch({type: "RESET_VALUES"});
+                    }
+
+                    return
                 }
+
                 case "Edit":{
-                    const toLowerCase =  Object.keys(values).reduce((obj, k) => (obj[k.toLowerCase()] = values[k], obj), {});
-                    return Thunk({...toLowerCase, _id:state.values._id});
+                    const toLowerCase = Object.keys(values).reduce((obj, k) => (obj[k.toLowerCase()] = values[k], obj), {});
+                    const response = await Thunk({...toLowerCase, _id:state.values._id});
+
+                    if(typeof response === "string"){
+                        dispatch({type: "RESET_VALUES"});
+                    }
+
+                    return
 
                 }
                 default:{
@@ -286,7 +297,7 @@ export const fromCreator = (props, dispatch, state, currentThunk) => {
                                      getFieldDecorator={props.form.getFieldDecorator}/>
             }
             case "user":{
-                console.log("props.onForm: ", props.onForm);
+
                 return  <UserWindow buttonTitle="Add User" ParticipantThunk={currentThunk} state={state}
                                     getFieldDecorator={props.form.getFieldDecorator}/>
             }

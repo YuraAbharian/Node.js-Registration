@@ -33,7 +33,7 @@ export const LoginAdminThunk = (data, type ) => async dispatch => {
     if(type) return dispatch({type: ADMIN_LOGIN, payload: data });
 
     const res = await requestHttp.logIn(data);
-    console.log("res: ", res);
+
     switch (res.data.statusCode) {
         case 0: {
             const { isSuperAdmin, isAdmin, _id, } =res.data.info;
@@ -56,7 +56,18 @@ export const LoginAdminThunk = (data, type ) => async dispatch => {
 
 export const addNewUserThunk = (data) => async dispatch => {
     const res = await requestHttp.addUser(data);
-    dispatch({type: ADD_USER, payload: res});
+    switch (res.data.statusCode) {
+        case 0: {
+            dispatch({type: ADD_USER, payload: res});
+            return
+        }
+        case 1 :{
+            message.error("User with this email is already exist");
+            return "User with this email is already exist"
+        }
+        default: return
+    }
+
 };
 
 // get participants thunk
@@ -78,8 +89,20 @@ export const deleteUser =(id)=>async (dispatch)=>{
 
 export const UpdateUser=(obj)=>async dispatch=>{
 
-     await requestHttp.updateUser(obj);
-    dispatch({ type: EDIT_USER, payload: obj })
+   const res =  await requestHttp.updateUser(obj);
+    console.log("res.data.statusCode: ", res.data.statusCode);
+    switch (res.data.statusCode) {
+        case 0: {
+            dispatch({ type: EDIT_USER, payload: obj });
+            return
+        }
+        case 1 :{
+            message.error("User with this email is already exist");
+            return 'User with this email is already exist'
+        }
+        default: return
+    }
+
 
 };
 
