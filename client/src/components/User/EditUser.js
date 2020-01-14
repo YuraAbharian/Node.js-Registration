@@ -1,9 +1,9 @@
-import React, {useReducer} from 'react';
+import React from 'react';
 import { Form} from "antd";
 import "./User.css";
 import {compose} from "redux";
 import {withRouter} from "react-router-dom";
-import {fromCreator, initialState, setState} from "../../functions";
+import {fromCreator} from "../../functions";
 
 const EditUser = (props) => {
 
@@ -12,7 +12,7 @@ const EditUser = (props) => {
 
     return (
         <div className="edit__user">
-            {fromCreator(props, props.dispatch, props.state, alert  )}
+            {fromCreator(props, props.dispatch, props.state, props.UpdateUser  )}
         </div>
     );
 };

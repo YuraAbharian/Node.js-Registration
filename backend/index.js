@@ -9,18 +9,21 @@ import userRoute from "./routes/userRoute";
 dotenv.config();
 
 const app = express();
-app.use(cors({credentials: true, origin: 'http://localhost:3000'}));
+app.use(cors({ credentials: true, origin: 'http://localhost:3000' }));
 app.use(express.json());
 
-const port = process.env.PORT || 3001;
-const DB = process.env.DB;
-
-
 const options = {
-    useMongoClient:true,
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false,
+    useCreateIndex: true,
 };
 
-mongoose.connect(DB, options, ()=>console.log(`MongoDB server is up`));
+mongoose.connect( 'mongodb://localhost:27017/authTest', options, ()=>console.log(`MongoDB server is up`));
+
+
+
+
 
 
 app.use(managerRoute);
@@ -28,9 +31,9 @@ app.use(ParticipantRoute);
 app.use(userRoute);
 
 
-app.listen(port, () => {
-  console.log(`Server is up on port ${port}`);
-    });
+app.listen(  3001, () => {
+    console.log(`Server is up on port ${3001}`);
+});
 
 
 

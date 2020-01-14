@@ -4,4 +4,7 @@
     color: #6b0000;
     transition: color 0.5s ease-out; }
 
+.page__header {
+  border: 1px solid #ebedf0; }
+
 /*# sourceMappingURL=Header.css.map */

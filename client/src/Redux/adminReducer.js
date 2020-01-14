@@ -1,18 +1,31 @@
-import {ADMIN_LOGIN} from "./types";
+import {ADMIN_LOGIN, LOG_OUT, SET_ADMIN_ERROR} from "./types";
 
 const initialState = {
-    admin: null,
-    allAdmins: null,
     isSuperAdmin: false,
-    isAdmin: false
+    isAdmin: false,
+    err: false,
 };
 
 const AdminReducer = (state = initialState, action) => {
     switch (action.type) {
-        case ADMIN_LOGIN :{
+
+        case ADMIN_LOGIN: {
             return {
                 ...state,
-                [action.payload.role]: action.payload.bool,
+               ...action.payload,
+            }
+        }
+        case LOG_OUT: {
+            return {
+                ...state,
+                isSuperAdmin: false,
+                isAdmin: false
+            }
+        }
+        case SET_ADMIN_ERROR: {
+            return {
+                ...state,
+                err: action.payload
             }
         }
         default:{

@@ -32,7 +32,7 @@ const StepMenu = () => {
             content: <AuthContainer  onForm="Third" confirmEmail={confirmEmail} />,
         },
     ];
-    console.log("state", state);
+
     return (
         <div className="steps_container">
             {typeof state === 'number' && <Steps current={state}>

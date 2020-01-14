@@ -1,17 +1,33 @@
 
 // register user/ participant / admin
 export const registerHandler=( Collection, name )=>  async (req, res) => {
+    const { email } = req.body;
 
-        [name] =  [new Collection(await req.body)];
+    let newName = name;
+        if(name==='admin'){
+                switch (email) {
+                    case "superAdmin@test.com":{
+                         req.body.isSuperAdmin = true;
+                        break
+                    }
+                    default:{
+                         req.body.isAdmin = true
+
+                    }
+                }
+
+        }
+
+        [newName] =  [new Collection(await req.body)];
 
         try {
             const data = {
-                name,
+                newName,
                 message: "created!",
                 statusCode: 0
             };
 
-            await name.save();
+            await newName.save();
 
             res.status(201).send(data);
 

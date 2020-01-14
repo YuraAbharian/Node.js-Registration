@@ -1,7 +1,11 @@
-import {APPLY, ADMIN_LOGIN, ADD_USER, GET_USER, GET_PARTICIPANT, DELETE_USER, REMOVE_USER} from "./types";
+import {APPLY, ADMIN_LOGIN, ADD_USER, GET_USER, LOG_OUT, SET_ADMIN_ERROR, GET_PARTICIPANT, DELETE_USER, REMOVE_USER, EDIT_USER} from "./types";
 import {requestHttp} from "../api/api";
+import { message  } from "antd";
+export const setNewError =(err)=> async dispatch=>{
 
+    dispatch({ type:SET_ADMIN_ERROR, payload: err  })
 
+};
 // add new participant
 // thunk
 export const ParticipantThunk = (data) => async dispatch => {
@@ -17,23 +21,36 @@ export const ParticipantThunk = (data) => async dispatch => {
     dispatch({type: APPLY, payload: newData});
 };
 // get participants thunk
-export const getParticipantThunk = (data) => async dispatch => {
+export const getParticipantThunk = () => async dispatch => {
     const res = await requestHttp.getParticipant();
     dispatch({type: GET_PARTICIPANT, payload: res.data});
 };
 
 
+//
+export const LoginAdminThunk = (data, type ) => async dispatch => {
 
-
-
-export const LoginAdminThunk = (data) => async dispatch => {
+    if(type) return dispatch({type: ADMIN_LOGIN, payload: data });
 
     const res = await requestHttp.logIn(data);
-
-    console.log("ADMIN_LOG_RES", res);
-
-    dispatch({type: ADMIN_LOGIN, payload: res});
-
+    console.log("res: ", res);
+    switch (res.data.statusCode) {
+        case 0: {
+            const { isSuperAdmin, isAdmin, _id, } =res.data.info;
+            localStorage.setItem('isSuperAdmin',isSuperAdmin );
+            localStorage.setItem('isAdmin', isAdmin );
+            localStorage.setItem('id',_id );
+            dispatch({type: SET_ADMIN_ERROR, payload: null});
+            dispatch({type: ADMIN_LOGIN, payload: res.data.info });
+            return
+        }
+        case 1 :{
+            // dispatch({ type: "SET_ERR", payload: res.data.message});
+            message.error(res.data.message);
+            return res.data.message
+        }
+        default: return
+    }
 };
 
 
@@ -43,7 +60,7 @@ export const addNewUserThunk = (data) => async dispatch => {
 };
 
 // get participants thunk
-export const getUserThunk = (data) => async dispatch => {
+export const getUserThunk = () => async dispatch => {
     const res = await requestHttp.getUser();
     dispatch({type: GET_USER, payload: res.data});
 };
@@ -58,3 +75,20 @@ export const deleteUser =(id)=>async (dispatch)=>{
     await requestHttp.deleteUser(id);
     dispatch({type: REMOVE_USER, payload: id})
 };
+
+export const UpdateUser=(obj)=>async dispatch=>{
+
+     await requestHttp.updateUser(obj);
+    dispatch({ type: EDIT_USER, payload: obj })
+
+};
+
+export const logOut=(history)=>async dispatch=>{
+
+    dispatch({ type:LOG_OUT });
+    localStorage.clear();
+    history.push("/");
+
+};
+
+

@@ -17,7 +17,7 @@ const userReducer = (state = initialState, action) => {
             }
         }
         case DELETE_USER :{
-            console.log(action.payload)
+
             return {
                 ...state, user: state.user.map(el=>{
                     if(el._id === action.payload.id){
@@ -28,16 +28,23 @@ const userReducer = (state = initialState, action) => {
             }
         }
         case EDIT_USER :{
+            // user: state.user.map(el=>{
+            //     if(el._id === action.payload._id){
+            //         return action.payload
+            //     }
+            //     return el
+            // })
             return {
-                ...state, user: state.user.filter(el=> el._id !== action.payload)
+                ...state, user: state.user.map(el=>{
+                  if(el._id === action.payload._id){
+                      console.log("true: ", { ...el, ...action.payload });
+                     return { ...el, ...action.payload }
+                  }
+                  return el
+                })
             }
         }
         case REMOVE_USER :{
-            return {
-                ...state, user: state.user.filter(el=> el._id !== action.payload)
-            }
-        }
-        case EDIT_USER :{
             return {
                 ...state, user: state.user.filter(el=> el._id !== action.payload)
             }

@@ -2,12 +2,13 @@ import mongoose  from 'mongoose';
 import validator from 'validator';
 import bcrypt from 'bcryptjs';
 import jwt from"jsonwebtoken";
+
 const newAuth = new mongoose.Schema({
         email:{
             type: String,
             unique: true,
             trim: true,
-            required: true, 
+            required: true,
             validate(value){
                 if(!validator.isEmail(value)){
                     throw new Error('Email is invalid!')
@@ -18,6 +19,14 @@ const newAuth = new mongoose.Schema({
             type: String,
             trim: true,
             required: true,
+        },
+        isAdmin: {
+            type: Boolean,
+            default: false
+        },
+        isSuperAdmin: {
+            type: Boolean,
+            default: false
         },
         tokens: [{
             token: {
@@ -36,33 +45,33 @@ newAuth.methods.toJSON =  function () {
 
     delete userPrivat.password;
     delete userPrivat.tokens;
+    delete userPrivat.email;
 
     return userPrivat
 } ;
 
-
 // autocreate new tokens
 newAuth.methods.generateAuthToken = async function () {
-    
+
     const user = this;
-    const token = jwt.sign({ _id: user._id.toString() }, process.env.SECRET, { expiresIn: '7 days' });
-    console.log('user.tokens :', user.tokens);
+    const token = jwt.sign({ _id: user._id.toString() }, "TEST", { expiresIn: '7 days' });
+
     user.tokens = [...user.tokens, {token}];
     // user.tokens = user.tokens.concat({ token });
-    await user.save(); 
+    await user.save();
     return token
 };
 
 // Schema find credentials
 newAuth.statics.findByCredentials = async (email, password)=>{
-   
-    const user = await Auth.findOne({ email }); 
-   
+
+    const user = await Auth.findOne({ email });
+
     if(!user){
         throw new Error('Unable to login')
     }
     const isMatch = await bcrypt.compare(password, user.password);
-   
+
     if(!isMatch) {
         throw new Error('Unable to login')
     }

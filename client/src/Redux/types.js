@@ -2,6 +2,8 @@ export const APPLY = "APPLY";
 export const GET_PARTICIPANT = "GET_PARTICIPANT";
 
 export const ADMIN_LOGIN = "ADMIN_LOGIN";
+export const LOG_OUT = "LOG_OUT";
+export const SET_ADMIN_ERROR = "SET_ADMIN_ERROR";
 
 export const ADD_USER = "ADD_USER";
 export const DELETE_USER = "DELETE_USER";

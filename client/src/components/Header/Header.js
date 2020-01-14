@@ -5,23 +5,30 @@ import "./Header.css"
 
 
 const Header = (props) => {
-const { history } = props;
+const { history, admin:{isAdmin, isSuperAdmin} } = props;
+
+
 const onTitleHandler=e=>{
     if(e.target.className==="ant-page-header-heading-title"){
         return history.push("/")
     }
 };
+
+
+
     return (
       <div onClick={onTitleHandler}>
           <PageHeader
-              style={{
-                  border: '1px solid rgb(235, 237, 240)',
-              }}
-              title="Title"
+              className="page__header"
+              title="Home"
               extra={[
-                  <Button onClick={()=>history.push("/apply")} key="1">Apply</Button>,
-                  <Button onClick={()=>history.push("/user")} key="2">User</Button>,
-                  <Button onClick={()=>history.push("/admin")} key="3">Admin</Button>,
+
+               (!isSuperAdmin && !isAdmin && <Button onClick={()=>history.push("/apply")} key="1">Apply</Button>),
+
+                 ( isSuperAdmin && <Button onClick={()=>history.push("/user")} key="2">User</Button>),
+
+                  (  !isSuperAdmin  &&  !isAdmin ? null : <Button onClick={()=>props.logOut(history)} key="3">LogOut</Button>)
+
               ]}
           >
           </PageHeader>

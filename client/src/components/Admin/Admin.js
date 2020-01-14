@@ -6,9 +6,9 @@ import {compose} from "redux";
 import {withRouter} from "react-router-dom";
 
 const Admin = (props) => {
+
+
     const [state, dispatch] = useReducer(setState, initialState);
-
-
 
     return (
         <div className="admin__form__container">

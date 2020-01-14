@@ -23,17 +23,16 @@ router.post("/admin", async (req, res) => {
             info: admin,
             statusCode: 0,
             isAuth: true,
-            isAdmin: email === "admin@test.com",
-            isSuperAdmin: email === "superAdmin@test.com",
         };
 
-        // create cookie
-        //                                             way!!!!
-        res.cookie('Authorization',`${ token }`, { path:'/',maxAge: 90000000 , httpOnly: true })
+      return res.cookie('Authorization',`${ token }`, { path:'http://localhost:3000/',maxAge: 90000000  })
             .send(data);
+
     } catch(e) {
+
         const data = { message: e.message, statusCode: 1 };
-        res.status(400).send(data);
+        res.status(200).send(data);
+
     }
 
 });

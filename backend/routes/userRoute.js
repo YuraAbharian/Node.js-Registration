@@ -15,8 +15,17 @@ router.post("/sortDeleteUser", deleteOrRestore(User));
 router.delete("/deleteUser/:id", async (req, res)=>{
      const {id } =req.params;
      await User.findByIdAndRemove({_id: id});
+     res.status(200).send({message:"User has been deleted"})
+});
 
-    res.status(200).send({message:"User has been deleted"})
+router.put("/update", async (req, res)=>{
+      const { obj } = req.body;
+     try {
+         await User.updateOne({  _id: obj._id }, obj);
+         res.status(200).send({message: "updated"});
+     }catch (e) {
+         res.status(400).send({message: e});
+     }
 
 });
 

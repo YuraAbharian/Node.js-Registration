@@ -4,9 +4,8 @@ import {connect} from "react-redux";
 import {deleteOrRestore, deleteUser, getParticipantThunk, getUserThunk} from "../../Redux/actions";
 
 const ContainerSideBar = (props) => {
-<<<<<<< HEAD
 
-    const {admin: {isSuperAdmin}, getParticipantThunk, getUserThunk} = props;
+    const { getParticipantThunk, getUserThunk} = props;
 
 
 
@@ -15,17 +14,9 @@ const ContainerSideBar = (props) => {
         getUserThunk();
     }, [getParticipantThunk, getUserThunk]);
 
-=======
-    const { admin: {isSuperAdmin}, getParticipantThunk, getUserThunk } = props;
-    console.log('isSuperAdmin :', isSuperAdmin);
-    useEffect(()=>{
-        getParticipantThunk();
-        getUserThunk();
-    },[getParticipantThunk, getUserThunk]);
->>>>>>> cb92cefca0c854692de1dcc6f485ca74fabc1a50
     return (
         <div>
-            <SideBar {...props}/>
+            <SideBar  {...props}/>
         </div>
     );
 };
