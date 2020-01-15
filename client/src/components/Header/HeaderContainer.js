@@ -14,15 +14,12 @@ const { LoginAdminThunk, history } = props;
        const isAdmin = typeof  Admin === "string" ? Admin !== "false": null;
        const isSuperAdmin = typeof SuperAdmin === "string" ? SuperAdmin !== "false": null;
 
-       [isSuperAdmin,isAdmin].some(el=> {
-           if(el===true){
-               history.push("/menu")
-           }
-       });
+       // [isSuperAdmin,isAdmin].some(el=> (el===true) ? history.push("/menu") : null  );
        LoginAdminThunk({id, isAdmin, isSuperAdmin}, 'relogin');
 
 
     },[LoginAdminThunk,history]);
+    // },[LoginAdminThunk,history]);
 
 
     return   <Header {...props}/>

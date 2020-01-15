@@ -41,11 +41,13 @@ class RequestHttp {
     }
 // participant
     async apply(data){
-
         return await this.transport.post("/apply", data)
     }
     async getParticipant(){
         return await this.transport.get("/getParticipant")
+    }
+    async changeStatus(id, status){
+        return await this.transport.put("/changeStatus", {id, status})
     }
 }
 

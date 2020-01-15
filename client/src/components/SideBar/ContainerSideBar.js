@@ -12,7 +12,8 @@ const ContainerSideBar = (props) => {
     useEffect(() => {
         getParticipantThunk();
         getUserThunk();
-    }, [getParticipantThunk, getUserThunk]);
+    }, []);
+    // }, [getParticipantThunk, getUserThunk]);
 
     return (
         <div>

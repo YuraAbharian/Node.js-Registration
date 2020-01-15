@@ -1,5 +1,6 @@
 export const APPLY = "APPLY";
 export const GET_PARTICIPANT = "GET_PARTICIPANT";
+export const CHANGE_STATUS = "CHANGE_STATUS";
 
 export const ADMIN_LOGIN = "ADMIN_LOGIN";
 export const LOG_OUT = "LOG_OUT";

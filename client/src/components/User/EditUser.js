@@ -6,10 +6,6 @@ import {withRouter} from "react-router-dom";
 import {fromCreator} from "../../functions";
 
 const EditUser = (props) => {
-
-
-
-
     return (
         <div className="edit__user">
             {fromCreator(props, props.dispatch, props.state, props.UpdateUser  )}
@@ -21,8 +17,3 @@ const EditUser = (props) => {
 const WrappedNormalLoginForm = Form.create({name: 'normal_login'});
 
 export default compose(WrappedNormalLoginForm, withRouter)(EditUser);
-
-//  { fromCreator(props, dispatch, state, props.addNewUserThunk )}
-
-// <UserWindow buttonTitle="Add User" ParticipantThunk={currentThunk} state={state}
-// getFieldDecorator={props.form.getFieldDecorator}/>

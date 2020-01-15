@@ -1,4 +1,4 @@
-import {APPLY, ADMIN_LOGIN, ADD_USER, GET_USER, LOG_OUT, SET_ADMIN_ERROR, GET_PARTICIPANT, DELETE_USER, REMOVE_USER, EDIT_USER} from "./types";
+import {APPLY, ADMIN_LOGIN, ADD_USER, CHANGE_STATUS, GET_USER, LOG_OUT, SET_ADMIN_ERROR, GET_PARTICIPANT, DELETE_USER, REMOVE_USER, EDIT_USER} from "./types";
 import {requestHttp} from "../api/api";
 import { message  } from "antd";
 export const setNewError =(err)=> async dispatch=>{
@@ -90,7 +90,6 @@ export const deleteUser =(id)=>async (dispatch)=>{
 export const UpdateUser=(obj)=>async dispatch=>{
 
    const res =  await requestHttp.updateUser(obj);
-    console.log("res.data.statusCode: ", res.data.statusCode);
     switch (res.data.statusCode) {
         case 0: {
             dispatch({ type: EDIT_USER, payload: obj });
@@ -104,6 +103,13 @@ export const UpdateUser=(obj)=>async dispatch=>{
     }
 
 
+};
+// changeStatus
+export const changeStatusThunk=(id, status)=> async dispatch=>{
+
+    const res =  await requestHttp.changeStatus(id, status);
+
+    dispatch({ type: CHANGE_STATUS, payload: { id, status } });
 };
 
 export const logOut=(history)=>async dispatch=>{

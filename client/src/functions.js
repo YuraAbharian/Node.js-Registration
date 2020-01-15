@@ -1,12 +1,11 @@
-
 import {Button, Form, Icon, Input,  Tag, Divider} from "antd";
-
 import React from "react";
 import FirstWindow from "./components/StepMenu/AuthWindows/FirstWindow";
 import SecondWindow from "./components/StepMenu/AuthWindows/SecondWindow";
 import AdminWindow from "./components/Admin/AdminWindow";
 import UserWindow from "./components/User/UserWindow";
 import ThirdWindows from "./components/StepMenu/AuthWindows/ThirdWindows";
+import moment from "moment";
 
 
 
@@ -80,7 +79,6 @@ export const antdInput = (getFieldDecorator, key, styles, state) => {
     switch (key) {
 
         case "Lastname" :{
-            // Val = "^A(\\w)+$";
             Val = "^[A-Z]+[a-zA-Z]*$";
             break
         }
@@ -256,16 +254,14 @@ const handleSubmit =  (e, props, Thunk, dispatch, state) => {
 
     });
 };
-
+// send participant info
 const doneHandler = (dispatch, props) => {
     dispatch({type: "RESET_ERR"});
     props.form.validateFields((err, values) => dispatch({type: "SET_VALUES", payload: values}));
     props.stateHandler()
 };
-
 // button
 const formButton = (props, styles = '', name) =>{
-
     return (
         <Button type="primary" htmlType="submit" className={`login-form-button ${styles}`}>
             {!name ? props.buttonTitle : name}
@@ -312,11 +308,7 @@ export const fromCreator = (props, dispatch, state, currentThunk) => {
     };
 
     return (<Form onSubmit={(e) => handleSubmit(e, props, currentThunk, dispatch, state )} className="login-form">
-
                             {switchCaser()}
-
-
-
         <Form.Item>
             <div className="form_bottom_navigation">
 
@@ -345,47 +337,94 @@ export const fromCreator = (props, dispatch, state, currentThunk) => {
 
 // ant table columns
 // participant
-export const newColumns = [
+export const newColumns =(sortedInfo)=>   [
     {
       title: 'Fullname',
       dataIndex: 'fullname',
       key: 'fullname',
+        sorter: (a, b) => a.fullname.localeCompare(b.fullname),
+            // a.fullname - b.fullname,
+        sortOrder: sortedInfo.columnKey === 'fullname' && sortedInfo.order,
+        ellipsis: true,
       render: text =><span>{text}</span>,
     },
     {
       title: 'Company',
       dataIndex: 'company',
       key: 'company',
+        sorter: (a, b) => a.company.localeCompare(b.company),
+            // a.company.length - b.company.length,
+        sortOrder: sortedInfo.columnKey === 'company' && sortedInfo.order,
+        ellipsis: true
     },
     {
       title: 'Position',
       dataIndex: 'position',
       key: 'position',
+        sorter: (a, b) => a.position.localeCompare(b.position),
+        // a.company.length - b.company.length,
+        sortOrder: sortedInfo.columnKey === 'position' && sortedInfo.order,
+        ellipsis: true
     },
     {
       title: 'Email',
       dataIndex: 'email',
       key: 'email',
+        sorter: (a, b) => a.email.localeCompare(b.email),
+        // a.company.length - b.company.length,
+        sortOrder: sortedInfo.columnKey === 'email' && sortedInfo.order,
+        ellipsis: true
+
     },
     {
       title: 'Country',
       dataIndex: 'country',
       key: 'country',
+        sorter: (a, b) => a.country.localeCompare(b.country),
+        // a.company.length - b.company.length,
+        sortOrder: sortedInfo.columnKey === 'country' && sortedInfo.order,
+        ellipsis: true
     },
     {
       title: 'Registration date',
       dataIndex: 'registration',
       key: 'registration',
+        sorter: (a, b) => moment((new Date(a.registration))).unix()- moment(new Date(b.registration) ).unix(),
+        sortOrder: sortedInfo.columnKey === 'registration' && sortedInfo.order,
+        ellipsis: true
+
     },
     {
       title: 'Status',
       key: 'tags',
+        filters: [
+            {
+                text: 'New',
+                value: 'New',
+            },
+            {
+                text: 'Approve',
+                value: 'Approve',
+            },
+            {
+                text: 'Decline',
+                value: 'Decline',
+            }
+            ],
       dataIndex: 'tags',
+        sorter: (a, b) =>  a.tags[0].localeCompare(b.tags[0]),
+        // ,
+
+        sortOrder: sortedInfo.columnKey === 'tags' && sortedInfo.order,
+        onFilter: (value, record) => record.tags.indexOf(value) === 0,
+        // sorter: (a, b) => a.tags.length - b.tags.length,
+        // sortDirections: ['descend'],
+        ellipsis: true,
       render: tags => (
         <span>
           {tags.map(tag => {
               let newTag = tag ? tag : 'new';
-            let color = newTag === "New" || !newTag ? 'geekblue' : tag === "Approved " ? 'green' : tag === "Declined " ? 'volcano': null;
+            let color = newTag === "New" ? 'geekblue' : tag === "Approve" ? 'green' : tag === "Decline" ? 'volcano': null;
              return (
               <Tag color={color} key={newTag}>
                 {newTag.toUpperCase()}
@@ -432,7 +471,9 @@ export const newColumnsUser = (name, func, delFunc, history)=>{
       },
     ]
 };
+
 const filterHandler=(array, bool)=>array.filter(el=>el.isDeleted === bool);
+
 export const chooseCurrentRoles =(arr, name)=>{
 
     const isTrue = name === "Participants";
@@ -465,34 +506,3 @@ export const chooseCurrentRoles =(arr, name)=>{
 };
 
 
-
-
-//{
-//props.onForm === "First" &&
-//<FirstWindow form={props.form} state={state} getFieldDecorator={props.form.getFieldDecorator}/>
-//}
-//
-//{
-//props.onForm === "Second" &&
-//<SecondWindow ParticipantThunk={currentThunk} state={state} messageSuccess={props.messageSuccess}
-//  validateFields={props.form.validateFields} form={props.form} dispatch={dispatch}
-//  getFieldDecorator={props.form.getFieldDecorator}/>}
-//{
-//props.onForm === "Third" && <ThirdWindows {...props} state={state}/>
-//}
-//
-//{
-//props.onForm === "admin" &&
-//<AdminWindow buttonTitle="Login" ParticipantThunk={currentThunk} state={state}
-//  getFieldDecorator={props.form.getFieldDecorator}/>
-//}
-//{
-//props.onForm === "user" &&
-//<UserWindow buttonTitle="Add User" ParticipantThunk={currentThunk} state={state}
-//  getFieldDecorator={props.form.getFieldDecorator}/>
-//}
-//{
-//  isEditUser &&
-//            <UserWindow buttonTitle="Edit" ParticipantThunk={currentThunk} state={state}
-//  getFieldDecorator={props.form.getFieldDecorator}/>
-//}

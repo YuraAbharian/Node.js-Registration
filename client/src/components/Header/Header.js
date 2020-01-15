@@ -10,7 +10,8 @@ const { history, admin:{isAdmin, isSuperAdmin} } = props;
 
 const onTitleHandler=e=>{
     if(e.target.className==="ant-page-header-heading-title"){
-        return history.push("/")
+        if(isAdmin || isSuperAdmin)return history.push("/menu");
+        return history.push("/");
     }
 };
 

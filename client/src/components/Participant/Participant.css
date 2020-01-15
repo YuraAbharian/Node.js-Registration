@@ -51,4 +51,31 @@
 .ant-calendar-picker {
   width: 100%; }
 
+.participantEdit {
+  width: 420px;
+  margin: 13em auto; }
+
+.divider {
+  display: flex;
+  justify-content: space-around; }
+
+.ant-divider-vertical {
+  height: 2.3em; }
+
+.approve {
+  color: white;
+  background: #00800094; }
+  .approve:hover {
+    color: white;
+    background: green;
+    border: 1px solid green; }
+
+.decline {
+  color: white;
+  background: #ff00006b; }
+  .decline:hover {
+    color: white;
+    background: #ff0000d4;
+    border: 1px solid red; }
+
 /*# sourceMappingURL=Participant.css.map */
