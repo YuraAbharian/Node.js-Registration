@@ -30,6 +30,17 @@ router.put("/update", async (req, res)=>{
 
 });
 
+router.get("/getConfig", async (req, res)=>{
+
+    res.status(200).send({
+        town:await process.env.TOWN,
+        from:await process.env.DATE_FROM,
+        to:await process.env.DATE_TO,
+        name: await  process.env.CONFERENCE_NAME,
+    })
+
+});
+
 
 
 export default router;

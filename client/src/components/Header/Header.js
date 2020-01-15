@@ -2,10 +2,9 @@ import React from 'react';
 import 'antd/dist/antd.css';
 import { PageHeader, Button } from 'antd';
 import "./Header.css"
-
-
 const Header = (props) => {
 const { history, admin:{isAdmin, isSuperAdmin} } = props;
+
 
 
 const onTitleHandler=e=>{
@@ -15,8 +14,6 @@ const onTitleHandler=e=>{
     }
 };
 
-
-
     return (
       <div onClick={onTitleHandler}>
           <PageHeader
@@ -24,7 +21,7 @@ const onTitleHandler=e=>{
               title="Home"
               extra={[
 
-               (!isSuperAdmin && !isAdmin && <Button onClick={()=>history.push("/apply")} key="1">Apply</Button>),
+               // (!isSuperAdmin && !isAdmin && <Button onClick={()=>history.push("/apply")} key="1">Apply</Button>),
 
                  ( isSuperAdmin && <Button onClick={()=>history.push("/user")} key="2">User</Button>),
 

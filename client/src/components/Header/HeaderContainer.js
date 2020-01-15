@@ -2,10 +2,10 @@ import React, { useEffect } from 'react';
 import Header from "./Header";
 import {withRouter} from "react-router-dom";
 import {connect} from "react-redux";
-import {LoginAdminThunk, logOut} from "../../Redux/actions";
+import {getConfig, LoginAdminThunk, logOut} from "../../Redux/actions";
 
 const HeaderContainer = (props) => {
-const { LoginAdminThunk, history } = props;
+const { LoginAdminThunk, history,getConfig } = props;
     useEffect(()=>{
        const id = localStorage.getItem('id');
        const Admin = localStorage.getItem('isAdmin');
@@ -13,11 +13,11 @@ const { LoginAdminThunk, history } = props;
 
        const isAdmin = typeof  Admin === "string" ? Admin !== "false": null;
        const isSuperAdmin = typeof SuperAdmin === "string" ? SuperAdmin !== "false": null;
-
+            if(isSuperAdmin || isAdmin) history.push("/menu");
        // [isSuperAdmin,isAdmin].some(el=> (el===true) ? history.push("/menu") : null  );
        LoginAdminThunk({id, isAdmin, isSuperAdmin}, 'relogin');
 
-
+        getConfig()
     },[LoginAdminThunk,history]);
     // },[LoginAdminThunk,history]);
 
@@ -28,4 +28,4 @@ const { LoginAdminThunk, history } = props;
 const mapStateToProps = state=>({
     admin: state.admin
 });
-export default withRouter(connect(mapStateToProps, {LoginAdminThunk, logOut})(HeaderContainer));
+export default withRouter(connect(mapStateToProps, {getConfig, LoginAdminThunk, logOut})(HeaderContainer));

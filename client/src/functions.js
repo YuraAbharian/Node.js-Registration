@@ -194,7 +194,7 @@ const handleSubmit =  (e, props, Thunk, dispatch, state) => {
 
                     if(typeof response !== "string"){
                        props.done()
-                    }  
+                    }
                     return
                 }
                 case "Login":{

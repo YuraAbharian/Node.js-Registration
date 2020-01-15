@@ -1,4 +1,4 @@
-import {APPLY, ADMIN_LOGIN, ADD_USER, CHANGE_STATUS, GET_USER, LOG_OUT, SET_ADMIN_ERROR, GET_PARTICIPANT, DELETE_USER, REMOVE_USER, EDIT_USER} from "./types";
+import {APPLY, ADMIN_LOGIN, ADD_USER, GET_CONFIG, CHANGE_STATUS, GET_USER, LOG_OUT, SET_ADMIN_ERROR, GET_PARTICIPANT, DELETE_USER, REMOVE_USER, EDIT_USER} from "./types";
 import {requestHttp} from "../api/api";
 import { message  } from "antd";
 
@@ -122,6 +122,13 @@ export const logOut=(history)=>async dispatch=>{
     dispatch({ type:LOG_OUT });
     localStorage.clear();
     history.push("/");
+
+};
+
+export const getConfig=()=>async dispatch=>{
+    const res = await requestHttp.getConfig();
+    dispatch({ type:GET_CONFIG, payload: res.data  });
+
 
 };
 

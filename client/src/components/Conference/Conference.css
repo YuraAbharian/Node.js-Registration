@@ -1,0 +1,22 @@
+.conference__container {
+  position: relative;
+  width: 75rem;
+  height: 25rem;
+  background: rgba(222, 222, 222, 0.5);
+  margin: 150px auto; }
+  .conference__container h2 {
+    font-size: 3rem;
+    padding: 1rem 6rem 0 6rem;
+    font-weight: bold; }
+  .conference__container p {
+    font-size: 1.5rem;
+    padding: 0.5rem 5rem 1.5rem 5rem; }
+  .conference__container button {
+    position: absolute;
+    /* right: 15px; */
+    /* margin: 0 auto; */
+    bottom: 15px;
+    right: 24rem;
+    width: 25rem; }
+
+/*# sourceMappingURL=Conference.css.map */

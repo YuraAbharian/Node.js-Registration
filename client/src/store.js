@@ -3,10 +3,12 @@ import ParticipantReducer from "./Redux/participantReducer";
 import thunk from "redux-thunk";
 import adminReducer from "./Redux/adminReducer";
 import userReducer from "./Redux/userReducer";
+import ConferenceReducer from "./Redux/congerenceReducer";
 const reducers = combineReducers({
      participant: ParticipantReducer,
      admin: adminReducer,
      user: userReducer,
+    config: ConferenceReducer
 });
 
 

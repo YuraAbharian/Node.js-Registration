@@ -49,6 +49,9 @@ class RequestHttp {
     async changeStatus(id, status){
         return await this.transport.put("/changeStatus", {id, status})
     }
+    async getConfig(){
+        return await this.transport.get("/getConfig")
+    }
 }
 
 const requestHttp = new RequestHttp(instance);
