@@ -2,6 +2,8 @@ import axios from "axios";
 
 const instance = axios.create({
     baseURL: "http://localhost:3001/",
+    withCredentials: true,
+    
 });
 
 class RequestHttp {
@@ -51,6 +53,9 @@ class RequestHttp {
     }
     async getConfig(){
         return await this.transport.get("/getConfig")
+    }
+    async verify(){
+        return await this.transport.get("/verify")
     }
 }
 

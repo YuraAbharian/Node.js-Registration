@@ -19,12 +19,7 @@ const options = {
     useCreateIndex: true,
 };
 
-mongoose.connect( 'mongodb://localhost:27017/authTest', options, ()=>console.log(`MongoDB server is up`));
-
-
-
-
-
+mongoose.connect( 'mongodb://localhost:27017/authTest', options, ()=>console.log(`MongoDB server is up`)); 
 
 app.use(managerRoute);
 app.use(ParticipantRoute);

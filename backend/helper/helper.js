@@ -12,12 +12,10 @@ export const registerHandler=( Collection, name )=>  async (req, res) => {
                     }
                     default:{
                          req.body.isAdmin = true
-
                     }
                 }
-
         }
-
+        // if(req.user.email ==="superAdmin@test.com" )
         [newName] =  [new Collection(await req.body)];
 
         try {

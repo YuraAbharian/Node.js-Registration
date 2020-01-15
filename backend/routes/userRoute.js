@@ -1,9 +1,11 @@
 import User from "../Collections/UserCollections";
 import {deleteOrRestore, getAllDatas, registerHandler} from "../helper/helper";
 import express from "express";
+import { authMiddleware } from "../middleware/authMiddleware";
 const router = new express.Router();
 // add user
-router.post("/addUser",  registerHandler(User, "user" ));
+ 
+router.post("/addUser", authMiddleware, registerHandler(User, "user" ));
 
 // get all users
 router.get("/getUser", getAllDatas(User));

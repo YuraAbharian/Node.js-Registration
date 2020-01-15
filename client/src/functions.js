@@ -210,7 +210,7 @@ const handleSubmit =  (e, props, Thunk, dispatch, state) => {
                 }
                 case "User":{
                     const response = await Thunk({...values, ...state.values});
-
+                 
                     if(typeof response === "string"){
                         dispatch({type: "RESET_VALUES"});
                     }
@@ -260,9 +260,7 @@ const doneHandler = (dispatch, props) => {
 
 };
 // button
-const formButton = (props, styles = '', name) =>{
-
-    // const clickHandler=()=> (name === "Done") ? props.done(): null;
+const formButton = (props, styles = '', name) =>{  
     return (
         <Button type="primary"  htmlType="submit" className={`login-form-button ${styles}`}>
             {!name ? props.buttonTitle : name}
@@ -314,9 +312,9 @@ export const fromCreator = (props, dispatch, state, currentThunk) => {
             <div className="form_bottom_navigation">
 
                 {
-                    isPrevious ? formButton(props, "done_button", "Done") :   props.buttonTitle === "Login" || props.buttonTitle === "User" ?
-                            formButton(props, '', null)
-                            : null
+                    isPrevious ? formButton(props, "done_button", "Done") :  props.buttonTitle === "Login"  ?
+                            formButton(props, '', null) : props.buttonTitle === "User" ?
+                            formButton(props, '', "Add User") : null
                 }
 
 

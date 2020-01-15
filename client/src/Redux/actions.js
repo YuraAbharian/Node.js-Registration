@@ -41,30 +41,30 @@ export const getParticipantThunk = () => async dispatch => {
     dispatch({type: GET_PARTICIPANT, payload: res.data});
 };
 //
-export const LoginAdminThunk = (data, type ) => async dispatch => {
+// export const LoginAdminThunk = (data, type ) => async dispatch => {
 
-    if(type) return dispatch({type: ADMIN_LOGIN, payload: data });
+//     if(type) return dispatch({type: ADMIN_LOGIN, payload: data });
 
-    const res = await requestHttp.logIn(data);
+//     const res = await requestHttp.logIn(data);
 
-    switch (res.data.statusCode) {
-        case 0: {
-            const { isSuperAdmin, isAdmin, _id, } =res.data.info;
-            localStorage.setItem('isSuperAdmin',isSuperAdmin );
-            localStorage.setItem('isAdmin', isAdmin );
-            localStorage.setItem('id',_id );
-            dispatch({type: SET_ADMIN_ERROR, payload: null});
-            dispatch({type: ADMIN_LOGIN, payload: res.data.info });
-            return
-        }
-        case 1 :{
-            // dispatch({ type: "SET_ERR", payload: res.data.message});
-            message.error(res.data.message);
-            return res.data.message
-        }
-        default: return
-    }
-};
+//     switch (res.data.statusCode) {
+//         case 0: {
+//             const { isSuperAdmin, isAdmin, _id, } =res.data.info;
+//             localStorage.setItem('isSuperAdmin',isSuperAdmin );
+//             localStorage.setItem('isAdmin', isAdmin );
+//             localStorage.setItem('id',_id );
+//             dispatch({type: SET_ADMIN_ERROR, payload: null});
+//             dispatch({type: ADMIN_LOGIN, payload: res.data.info });
+//             return
+//         }
+//         case 1 :{
+//             // dispatch({ type: "SET_ERR", payload: res.data.message});
+//             message.error(res.data.message);
+//             return res.data.message
+//         }
+//         default: return
+//     }
+// };
 export const addNewUserThunk = (data) => async dispatch => {
     const res = await requestHttp.addUser(data);
     switch (res.data.statusCode) {
@@ -117,6 +117,7 @@ export const changeStatusThunk=(id, status)=> async dispatch=>{
 
     dispatch({ type: CHANGE_STATUS, payload: { id, status } });
 };
+// logOut
 export const logOut=(history)=>async dispatch=>{
 
     dispatch({ type:LOG_OUT });
@@ -127,9 +128,29 @@ export const logOut=(history)=>async dispatch=>{
 
 export const getConfig=()=>async dispatch=>{
     const res = await requestHttp.getConfig();
-    dispatch({ type:GET_CONFIG, payload: res.data  });
-
-
+    dispatch({ type:GET_CONFIG, payload: res.data  }); 
 };
 
 
+export const newVerifyThunk=()=>async dispatch=>{
+    const res = await requestHttp.verify();
+    dispatch({type: ADMIN_LOGIN, payload: res.data.user });
+};
+
+export const LoginAdminThunk = (data, type ) => async dispatch => {
+   
+    const res = await requestHttp.logIn(data);
+    switch (res.data.statusCode) {
+        case 0: { 
+            dispatch({type: SET_ADMIN_ERROR, payload: null});
+            dispatch({type: ADMIN_LOGIN, payload: res.data.info });
+            return
+        }
+        case 1 :{
+            // dispatch({ type: "SET_ERR", payload: res.data.message});
+            message.error(res.data.message);
+            return res.data.message
+        }
+        default: return
+    }
+};

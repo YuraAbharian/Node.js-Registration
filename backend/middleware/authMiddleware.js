@@ -3,13 +3,12 @@ import Auth from "../Collections/AuthenticateCollection";
 
 
 export const authMiddleware = async (req, res, next) => {
-
-    try {
-
-        const token = req.header('Authorization');
-
+ 
+    try { 
+        
+        const token = req.headers.cookie.replace('Authorization=', '');
+        
         const decode = jwt.verify(token, process.env.SECRET);
-
         const user = await Auth.findOne({_id: decode._id, 'tokens.token': token });
         if(!user){
             throw new Error('Please authenticate first.')

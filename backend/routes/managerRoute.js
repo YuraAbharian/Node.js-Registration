@@ -1,5 +1,5 @@
 import express from 'express';
-// import authMiddleware from "../middleware/authMiddleware" ;
+import {authMiddleware} from "../middleware/authMiddleware" ;
 import Auth  from "../Collections/AuthenticateCollection";
 import {registerHandler} from "../helper/helper";
 const router = new express.Router();
@@ -7,7 +7,18 @@ const router = new express.Router();
 
 
 // register admin
-// registerHandler ("/register", Participant, "admin" );
+ 
+router.get("/verify", authMiddleware, async (req, res) => {
+  try {
+    const data = { user: req.user, statusCode: 0, isAuth: true };
+     await res.send(data);
+  } catch (e) {
+    const data = { message: e.message, statusCode: 1, isAuth: false };
+    res.status(400).send(data);
+  }
+});
+
+
 router.post("/register",registerHandler (Auth, "admin" ));
 
 // login
@@ -24,10 +35,9 @@ router.post("/admin", async (req, res) => {
             statusCode: 0,
             isAuth: true,
         };
-
-      return res.cookie('Authorization',`${ token }`, { path:'http://localhost:3000/',maxAge: 90000000  })
-            .send(data);
-
+        res.cookie('Authorization',`${ token }`, { path:'/',maxAge: 90000000 , httpOnly: true })
+        .send(data);
+         
     } catch(e) {
 
         const data = { message: e.message, statusCode: 1 };
