@@ -107,7 +107,7 @@ export const UpdateUser=(obj)=>async dispatch=>{
 // changeStatus
 export const changeStatusThunk=(id, status)=> async dispatch=>{
 
-    const res =  await requestHttp.changeStatus(id, status);
+     await requestHttp.changeStatus(id, status);
 
     dispatch({ type: CHANGE_STATUS, payload: { id, status } });
 };

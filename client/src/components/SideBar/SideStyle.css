@@ -2,19 +2,19 @@
     height: 93vh;
   }
   .content__wrapper {
-  
+
     margin: 24px 16px;
     padding: 24px;
     background: #fff;
     min-height: 280px;
-  
+
   }
-  
+
   .content__header {
     background: #fff;
     padding: 0
   }
-  
+
   .card__mapping {
     background: #ECECEC;
     padding: 30px;
@@ -28,3 +28,23 @@
   .ant-tag{
     cursor: pointer;
   }
+
+
+.approve{
+  color: white;
+  background: #00800094;
+}
+.approve:hover{
+   color: white;
+   background: green;
+   border: 1px solid green;
+ }
+.decline{
+  color: white;
+  background: #ff00006b;
+}
+.decline:hover{
+  color: white;
+  background: #ff0000d4;
+  border: 1px solid red;
+}

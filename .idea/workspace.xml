@@ -59,8 +59,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/src/functions.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="477">
-              <caret line="391" column="101" selection-start-line="391" selection-start-column="101" selection-end-line="391" selection-end-column="101" />
+            <state relative-caret-position="324">
+              <caret line="379" column="22" lean-forward="true" selection-start-line="379" selection-start-column="22" selection-end-line="379" selection-end-column="22" />
               <folding>
                 <element signature="e#1#63#0" expanded="true" />
                 <element signature="e#583#846#0" />
@@ -76,6 +76,24 @@
                 <element signature="e#8693#11282#0" />
                 <element signature="e#12518#13441#0" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/src/components/Participant/Participant.scss">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="185">
+              <caret line="89" selection-start-line="89" selection-end-line="110" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/client/src/components/SideBar/SideStyle.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="491">
+              <caret line="46" column="3" selection-start-line="46" selection-start-column="3" selection-end-line="48" selection-end-column="24" />
             </state>
           </provider>
         </entry>
@@ -117,11 +135,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/src/Redux/actions.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="329">
+              <caret line="109" column="3" selection-start-line="109" selection-start-column="3" selection-end-line="109" selection-end-column="3" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/src/components/SideBar/SideBar.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-412">
-              <caret line="10" selection-start-line="10" selection-end-line="10" />
+            <state relative-caret-position="221">
+              <caret line="100" column="34" selection-start-line="100" selection-start-column="34" selection-end-line="100" selection-end-column="34" />
               <folding>
                 <element signature="e#0#38#0" expanded="true" />
               </folding>
@@ -172,7 +199,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/backend/Collections/UsersCollections.js" />
         <option value="$PROJECT_DIR$/client/src/components/Auth/AuthContainer.js" />
         <option value="$PROJECT_DIR$/client/src/components/Admin/AdminWindow.js" />
         <option value="$PROJECT_DIR$/client/src/components/Auth/StepMenu/AuthWindows/SecondWindow.js" />
@@ -214,15 +240,16 @@
         <option value="$PROJECT_DIR$/client/src/components/Participant/Participant.scss" />
         <option value="$PROJECT_DIR$/client/src/api/api.js" />
         <option value="$PROJECT_DIR$/client/src/Redux/types.js" />
-        <option value="$PROJECT_DIR$/client/src/Redux/actions.js" />
         <option value="$PROJECT_DIR$/backend/routes/ParticipantRoute.js" />
         <option value="$PROJECT_DIR$/client/src/Redux/participantReducer.js" />
         <option value="$PROJECT_DIR$/client/src/components/Participant/EditParticipant/EditParticipantContainer.js" />
         <option value="$PROJECT_DIR$/client/src/components/Participant/EditParticipant/EditParticipant.js" />
-        <option value="$PROJECT_DIR$/client/src/functions.js" />
         <option value="$PROJECT_DIR$/client/src/components/Header/HeaderContainer.js" />
         <option value="$PROJECT_DIR$/client/src/components/Header/Header.js" />
+        <option value="$PROJECT_DIR$/client/src/Redux/actions.js" />
         <option value="$PROJECT_DIR$/client/src/components/SideBar/SideBar.js" />
+        <option value="$PROJECT_DIR$/client/src/functions.js" />
+        <option value="$PROJECT_DIR$/client/src/components/SideBar/SideStyle.css" />
       </list>
     </option>
   </component>
@@ -287,22 +314,7 @@
               <item name="client" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="Header" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Node.js-Registration" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Node.js-Registration" type="462c0819:PsiDirectoryNode" />
-              <item name="client" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
               <item name="SideBar" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Node.js-Registration" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Node.js-Registration" type="462c0819:PsiDirectoryNode" />
-              <item name="client" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Redux" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -371,12 +383,12 @@
       <workItem from="1578921557235" duration="11786000" />
       <workItem from="1578985551343" duration="15167000" />
       <workItem from="1579003681140" duration="15352000" />
-      <workItem from="1579071612637" duration="18991000" />
+      <workItem from="1579071612637" duration="20237000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="187977000" />
+    <option name="totallyTimeSpent" value="189223000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -389,8 +401,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49892008" visible="true" weight="0.27978143" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49892008" visible="true" weight="0.27978143" />
       <window_info id="Structure" order="1" sideWeight="0.5010799" side_tool="true" weight="0.15956284" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -403,7 +416,7 @@
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="TypeScript" order="9" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" sideWeight="0.4989071" visible="true" weight="0.5872845" />
+      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.4989071" visible="true" weight="0.25" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5010929" side_tool="true" weight="0.3034557" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -520,9 +533,6 @@
           <caret line="13" column="17" selection-start-line="13" selection-start-column="17" selection-end-line="13" selection-end-column="17" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/SideBar/SideStyle.css">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/client/src/components/StepMenu/StepMenu.js">
       <provider selected="true" editor-type-id="text-editor">
@@ -725,13 +735,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/Participant/Participant.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
-          <caret line="70" lean-forward="true" selection-start-line="70" selection-end-line="70" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/backend/routes/managerRoute.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
@@ -794,16 +797,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/Redux/actions.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="104" lean-forward="true" selection-start-line="104" selection-end-line="104" />
-          <folding>
-            <element signature="e#0#143#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/src/components/Participant/EditParticipant/EditParticipantContainer.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
@@ -834,28 +827,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/functions.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="477">
-          <caret line="391" column="101" selection-start-line="391" selection-start-column="101" selection-end-line="391" selection-end-column="101" />
-          <folding>
-            <element signature="e#1#63#0" expanded="true" />
-            <element signature="e#583#846#0" />
-            <element signature="e#903#1877#0" />
-            <element signature="e#1957#3440#0" />
-            <element signature="e#3613#4621#0" />
-            <element signature="e#4702#4906#0" />
-            <element signature="e#5046#5691#0" />
-            <element signature="e#5759#5896#0" />
-            <element signature="e#5976#8143#0" />
-            <element signature="e#8211#8371#0" />
-            <element signature="e#8431#8605#0" />
-            <element signature="e#8693#11282#0" />
-            <element signature="e#12518#13441#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/src/components/Header/HeaderContainer.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -876,13 +847,56 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/Redux/actions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="329">
+          <caret line="109" column="3" selection-start-line="109" selection-start-column="3" selection-end-line="109" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/client/src/components/SideBar/SideBar.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-412">
-          <caret line="10" selection-start-line="10" selection-end-line="10" />
+        <state relative-caret-position="221">
+          <caret line="100" column="34" selection-start-line="100" selection-start-column="34" selection-end-line="100" selection-end-column="34" />
           <folding>
             <element signature="e#0#38#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/functions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="379" column="22" lean-forward="true" selection-start-line="379" selection-start-column="22" selection-end-line="379" selection-end-column="22" />
+          <folding>
+            <element signature="e#1#63#0" expanded="true" />
+            <element signature="e#583#846#0" />
+            <element signature="e#903#1877#0" />
+            <element signature="e#1957#3440#0" />
+            <element signature="e#3613#4621#0" />
+            <element signature="e#4702#4906#0" />
+            <element signature="e#5046#5691#0" />
+            <element signature="e#5759#5896#0" />
+            <element signature="e#5976#8143#0" />
+            <element signature="e#8211#8371#0" />
+            <element signature="e#8431#8605#0" />
+            <element signature="e#8693#11282#0" />
+            <element signature="e#12518#13441#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/Participant/Participant.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="185">
+          <caret line="89" selection-start-line="89" selection-end-line="110" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/SideBar/SideStyle.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="491">
+          <caret line="46" column="3" selection-start-line="46" selection-start-column="3" selection-end-line="48" selection-end-column="24" />
         </state>
       </provider>
     </entry>

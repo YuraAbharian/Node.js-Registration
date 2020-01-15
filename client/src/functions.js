@@ -337,7 +337,7 @@ export const fromCreator = (props, dispatch, state, currentThunk) => {
 
 // ant table columns
 // participant
-export const newColumns =(sortedInfo)=>   [
+export const newColumns =(sortedInfo, getColumnSearchProps)=>   [
     {
       title: 'Fullname',
       dataIndex: 'fullname',
@@ -346,6 +346,7 @@ export const newColumns =(sortedInfo)=>   [
             // a.fullname - b.fullname,
         sortOrder: sortedInfo.columnKey === 'fullname' && sortedInfo.order,
         ellipsis: true,
+        ...getColumnSearchProps("fullname"),
       render: text =><span>{text}</span>,
     },
     {
@@ -355,7 +356,9 @@ export const newColumns =(sortedInfo)=>   [
         sorter: (a, b) => a.company.localeCompare(b.company),
             // a.company.length - b.company.length,
         sortOrder: sortedInfo.columnKey === 'company' && sortedInfo.order,
-        ellipsis: true
+
+        ellipsis: true,
+        ...getColumnSearchProps("company"),
     },
     {
       title: 'Position',
@@ -373,6 +376,7 @@ export const newColumns =(sortedInfo)=>   [
         sorter: (a, b) => a.email.localeCompare(b.email),
         // a.company.length - b.company.length,
         sortOrder: sortedInfo.columnKey === 'email' && sortedInfo.order,
+        ...getColumnSearchProps("email"),
         ellipsis: true
 
     },
@@ -417,8 +421,6 @@ export const newColumns =(sortedInfo)=>   [
 
         sortOrder: sortedInfo.columnKey === 'tags' && sortedInfo.order,
         onFilter: (value, record) => record.tags.indexOf(value) === 0,
-        // sorter: (a, b) => a.tags.length - b.tags.length,
-        // sortDirections: ['descend'],
         ellipsis: true,
       render: tags => (
         <span>
@@ -456,15 +458,15 @@ export const newColumnsUser = (name, func, delFunc, history)=>{
 
            return name !== "Bin" ? (
              <span>
-               <Button onClick={()=>  history.push(`/menu/editUser/${el.key}`) }>Edit</Button>
+               <Button  onClick={()=>  history.push(`/menu/editUser/${el.key}`) }>Edit</Button>
                <Divider type="vertical" />
-               <Button onClick={()=>func(el.key, true)}>Delete</Button>
+               <Button className="decline" onClick={()=>func(el.key, true)}>Delete</Button>
              </span>
            ) : (
              <span>
-               <Button onClick={()=>func(el.key, null)}>Restore</Button>
+               <Button  className="approve" onClick={()=>func(el.key, null)}>Restore</Button>
                   <Divider type="vertical" />
-                 <Button onClick={()=>delFunc(el.key)}>Delete</Button>
+                 <Button  className="decline" onClick={()=>delFunc(el.key)}>Delete</Button>
              </span>
            );
                }
