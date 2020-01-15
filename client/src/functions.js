@@ -182,21 +182,20 @@ export const onSendButtonHandler = (buttonTitle, key, values) => {
 };
 // handler submit
 const handleSubmit =  (e, props, Thunk, dispatch, state) => {
-
     const isButtonTrue = props.buttonTitle === "Next" || props.buttonTitle === "Previous";
-
     e.preventDefault();
-
     props.form.validateFields(async(err, values) => {
-
         if (!err) {
-
             dispatch({type: "SET_VALUES", payload: values});
-
             // onSendButtonHandler(props.buttonTitle, Thunk, {...values, ...state.values});
             switch (props.buttonTitle) {
                 case "Previous": {
-                    return Thunk({...values, ...state.values});
+                    const response = await Thunk({...values, ...state.values});
+
+                    if(typeof response !== "string"){
+                       props.done()
+                    }  
+                    return
                 }
                 case "Login":{
                     const response = await Thunk({...values, ...state.values},false);
@@ -235,7 +234,6 @@ const handleSubmit =  (e, props, Thunk, dispatch, state) => {
                 }
             }
 
-
             props.stateHandler && props.stateHandler(props.stepsState);
         } else if (err) {
 
@@ -258,12 +256,15 @@ const handleSubmit =  (e, props, Thunk, dispatch, state) => {
 const doneHandler = (dispatch, props) => {
     dispatch({type: "RESET_ERR"});
     props.form.validateFields((err, values) => dispatch({type: "SET_VALUES", payload: values}));
-    props.stateHandler()
+    props.stateHandler();
+
 };
 // button
 const formButton = (props, styles = '', name) =>{
+
+    // const clickHandler=()=> (name === "Done") ? props.done(): null;
     return (
-        <Button type="primary" htmlType="submit" className={`login-form-button ${styles}`}>
+        <Button type="primary"  htmlType="submit" className={`login-form-button ${styles}`}>
             {!name ? props.buttonTitle : name}
         </Button>)
 };
@@ -322,7 +323,7 @@ export const fromCreator = (props, dispatch, state, currentThunk) => {
 
                 {isPrevious &&
                 <Button type="primary" onClick={() => doneHandler(dispatch, props)} className="login-form-button">
-                    {props.buttonTitle}
+                    { props.buttonTitle}
                 </Button>}
                 {
                     isNext ? formButton(props, '', null) : null
