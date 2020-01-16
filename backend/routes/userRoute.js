@@ -16,12 +16,14 @@ router.post("/sortDeleteUser",authMiddleware, deleteOrRestore(User));
 // remove user from collection!
 router.delete("/deleteUser/:id",authMiddleware, async (req, res)=>{
      const {id } =req.params;
+    if(req.user.email !=="superAdmin@test.com" ) throw new Error("Only Super Admin can work with USERS!")
      await User.findByIdAndRemove({_id: id});
      res.status(200).send({message:"User has been deleted"})
 });
 
 router.put("/update",authMiddleware, async (req, res)=>{
       const { obj } = req.body;
+    if( req.user.email !=="superAdmin@test.com" ) throw new Error("Only Super Admin can work with USERS!")
 
      try {
          await User.updateOne({  _id: obj._id }, obj);
@@ -33,13 +35,13 @@ router.put("/update",authMiddleware, async (req, res)=>{
 
 });
 
-router.get("/getConfig", async (req, res)=>{
+router.get("/getConfig",  (req, res)=>{
 
     res.status(200).send({
-        town:await process.env.TOWN,
-        from:await process.env.DATE_FROM,
-        to:await process.env.DATE_TO,
-        name: await  process.env.CONFERENCE_NAME,
+        town: process.env.TOWN,
+        from: process.env.DATE_FROM,
+        to: process.env.DATE_TO,
+        name:   process.env.CONFERENCE_NAME,
     })
 
 });

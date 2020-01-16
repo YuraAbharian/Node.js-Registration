@@ -1,4 +1,3 @@
-import React from 'react';
 import {GET_CONFIG} from "./types";
 
 const initialState = {

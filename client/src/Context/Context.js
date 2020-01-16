@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, Form, Icon, Input, Tag, message, Divider} from "antd";
+import {Button, Form, Icon,DatePicker, Input, Tag, message, Divider, Select} from "antd";
 import FirstWindow from "../components/StepMenu/AuthWindows/FirstWindow";
 import SecondWindow from "../components/StepMenu/AuthWindows/SecondWindow";
 import AdminWindow from "../components/Admin/AdminWindow";
@@ -11,6 +11,8 @@ import moment from "moment";
 export const WidgetContext = React.createContext();
 
 const Context = (props) => {
+    const {Option} = Select;
+    const {RangePicker} = DatePicker;
     // isTrue
     const isTrueHandler = (state, name) => state.errors[name] && state.errors[name].errors.length > 0;
 // state
@@ -77,7 +79,7 @@ const Context = (props) => {
 
     // inputs
     const antdInput = (getFieldDecorator, key, styles, state) => {
-        const inputType = key === "Password" ? "password" : key === "Email" ? "email" : "text";
+        const inputType =   key === "Email" ? "email" : "text";
         const emailValid = key === "Email" ? "email" : null;
         const currState = state.values && state.values[key] ? state.values[key] : '';
         // const  Validation = key === "Email" ? "/^([\\w.%+-]+)@([\\w-]+\\.)+([\\w]{3,})$/i" : key === "Lastname" || key === "Username" ? "/^[A-Z][a-z0-9_-]{3,19}$/": "";
@@ -101,7 +103,16 @@ const Context = (props) => {
         // if(state.values && !state.values.Email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{3,})$/i)){
         //    return
         // }
-
+        let Component = key ==="Password" ?  <Input.Password
+            autoComplete="new-password"
+            placeholder={[key.toLowerCase()]}
+        /> : <Input
+               autoComplete="new-password"
+                type={inputType}
+           prefix={<Icon type={key === "Email" ? "google" : "user"}
+                           style={{color: 'rgba(0,0,0,.25)'}}/>}
+             placeholder={[key.toLowerCase()]}
+              />
         return (<Form.Item style={styles}>
             {getFieldDecorator([key], {
                 initialValue: currState,
@@ -110,13 +121,16 @@ const Context = (props) => {
                     type: emailValid, message: `The input is not valid ${key}`,
                 }, {required: true, message: `Please input your ${key}!`}]
             })(
-                <Input
-                    autoComplete="new-password"
-                    type={inputType}
-                    prefix={<Icon type={key === "Email" ? "google" : key === "Password" ? "eye-invisible" : "user"}
-                                  style={{color: 'rgba(0,0,0,.25)'}}/>}
-                    placeholder={[key.toLowerCase()]}
-                />,
+              //  <Input
+             //       autoComplete="new-password"
+             //       type={inputType}
+              //      prefix={<Icon type={key === "Email" ? "google" : key === "Password" ? "eye-invisible" : "user"}
+              //                    style={{color: 'rgba(0,0,0,.25)'}}/>}
+              //      placeholder={[key.toLowerCase()]}
+             //   />,
+
+                Component
+               ,
             )}
         </Form.Item>)
     };
@@ -128,7 +142,7 @@ const Context = (props) => {
             initialValue: initVal,
             rules: [{required: true, message: `Please choose your ${holder}!`}]
         })(
-            <Component
+            <Select
                 showSearch={true}
                 className={cn("", {"has-error": isTrue})}
                 onChange={() =>
@@ -145,12 +159,12 @@ const Context = (props) => {
             >
                 {countryArr.map(
                     (el, i) => (
-                        <ComponentTwo key={i} value={el.label.toLowerCase()}>
+                        <Option key={i} value={el.label.toLowerCase()}>
                             {el.label}
-                        </ComponentTwo>
+                        </Option>
                     )
                 )}
-            </Component>
+            </Select>
         );
 
 
@@ -163,14 +177,13 @@ const Context = (props) => {
         </span>
         ) : null;
     };
-    const Pickers = (getFieldDecorator, name, isTrue, state, dispatch, cn, Component, moment, dateFormat, oldStyle = '', config) => {
+    const Pickers = (getFieldDecorator, name, isTrue, state, dispatch, cn, Components, moment, dateFormat, oldStyle = '', config) => {
 
         const disabledDates = (day) => {
-
-            console.log("1: ", moment(config.from));
             return name === "Birthdate" ? day.isAfter(moment()) :
                 day.isBefore(moment(config.from)) || day.isAfter(moment(config.to).add(1, 'day'))
         };
+        let Component = Components === "RangePicker" ? RangePicker: DatePicker ;
 
         return (getFieldDecorator([name], {
             initialValue: state.values[name] && state.values[name],

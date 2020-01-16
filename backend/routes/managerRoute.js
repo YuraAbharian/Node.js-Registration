@@ -51,7 +51,7 @@ router.post("/admin", async (req, res) => {
 router.delete('/logout', authMiddleware, (req, res)=>{
 
     req.user.tokens = req.user.tokens.filter(token=>  token.token !== req.token );
-    console.log(" req.user.tokens: ",  req.user.tokens);
+
     req.user.save();
     res.clearCookie("Authorization");
     const data = {message: 'You are logged out', isAuth: false};

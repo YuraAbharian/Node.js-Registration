@@ -15,7 +15,7 @@ export const registerHandler=( Collection, name )=>  async (req, res) => {
                     }
                 }
         }
-        // if(req.user.email ==="superAdmin@test.com" )
+        // if(name ==="user" && req.user.email !=="superAdmin@test.com" ) throw new Error("Only Super Admin can work with USERS!")
         [newName] =  [new Collection(await req.body)];
 
         try {
