@@ -1,4 +1,4 @@
-import React from 'react';
+import React  from 'react';
 import 'antd/dist/antd.css';
 import { PageHeader, Button } from 'antd';
 import "./Header.css"
@@ -6,14 +6,16 @@ const Header = (props) => {
 const { history, admin:{isAdmin, isSuperAdmin} } = props;
 
 
-
 const onTitleHandler=e=>{
+
     if(e.target.className==="ant-page-header-heading-title"){
         if(isAdmin || isSuperAdmin)return history.push("/menu");
         return history.push("/");
     }
 };
+const isTrue=()=>{
 
+}
     return (
       <div onClick={onTitleHandler}>
           <PageHeader

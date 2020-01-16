@@ -1,4 +1,5 @@
-import {Button, Form, Icon, Input,  Tag, Divider} from "antd";
+import {Button, Form, Icon, Input,  Tag, message,Divider} from "antd";
+
 import React from "react";
 import FirstWindow from "./components/StepMenu/AuthWindows/FirstWindow";
 import SecondWindow from "./components/StepMenu/AuthWindows/SecondWindow";
@@ -13,6 +14,7 @@ import moment from "moment";
 export const isTrueHandler = (state, name) => state.errors[name] && state.errors[name].errors.length > 0;
 // state
 export const initialState = {
+
     errors: {
         Birthdate: {
             errors: []
@@ -38,6 +40,7 @@ export const setState = (state, action) => {
                 ...state, errors: action.payload ? {...state.errors, ...action.payload} : state
             }
         }
+
         case "RESET_ERR": {
 
             return {
@@ -92,9 +95,9 @@ export const antdInput = (getFieldDecorator, key, styles, state) => {
         }
 
     }
-    if(state.values && !state.values.Email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{3,})$/i)){
-       return
-    }
+    // if(state.values && !state.values.Email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{3,})$/i)){
+    //    return
+    // }
 
     return (<Form.Item style={styles}>
         {getFieldDecorator([key], {
@@ -158,9 +161,14 @@ export const showError = (isTrue, state, cn, name, oldStyle = "") => {
     ) : null;
 };
 // pickers
-export const Pickers = (getFieldDecorator, name, isTrue, state, dispatch, cn, Component, moment, dateFormat, oldStyle = '') => {
-    const disabledDates = (day) => name === "Birthdate" ? day.isAfter(moment()) :
-        day < moment().add(0, "month") || day.isAfter(moment().add(1, "months"));
+export const Pickers = (getFieldDecorator, name, isTrue, state, dispatch, cn, Component, moment, dateFormat, oldStyle = '', config) => {
+
+    const disabledDates = (day) => {
+
+        console.log("1: ", moment(config.from));
+       return  name === "Birthdate" ? day.isAfter(moment()) :
+            day.isBefore(moment(config.from)) || day.isAfter(moment(config.to).add(1, 'day'))
+    };
 
     return (getFieldDecorator([name], {
         initialValue: state.values[name] && state.values[name],
@@ -181,7 +189,7 @@ export const onSendButtonHandler = (buttonTitle, key, values) => {
     return (buttonTitle === "Previous" ? key(val) : buttonTitle === "Login" ? key(val) : key);
 };
 // handler submit
-const handleSubmit =  (e, props, Thunk, dispatch, state) => {
+const handleSubmit =  (e, props, Thunk, dispatch, state, selectedAreaThunk) => {
     const isButtonTrue = props.buttonTitle === "Next" || props.buttonTitle === "Previous";
     e.preventDefault();
     props.form.validateFields(async(err, values) => {
@@ -210,21 +218,33 @@ const handleSubmit =  (e, props, Thunk, dispatch, state) => {
                 }
                 case "User":{
                     const response = await Thunk({...values, ...state.values});
-                 
+
                     if(typeof response === "string"){
                         dispatch({type: "RESET_VALUES"});
+                    } else {
+                        message.success("User has been added");
+                        selectedAreaThunk(1);
+                        props.history.push("/menu")
                     }
 
                     return
                 }
 
                 case "Edit":{
+
                     const toLowerCase = Object.keys(values).reduce((obj, k) => (obj[k.toLowerCase()] = values[k], obj), {});
-                    const response = await Thunk({...toLowerCase, _id:state.values._id});
+                    // const isIdTrue = state.values._id && state.values._id;
+                    const response = state.values && await Thunk({...toLowerCase, _id:state.values._id });
 
                     if(typeof response === "string"){
-                        dispatch({type: "RESET_VALUES"});
-                    }
+
+                        // dispatch({type: "RESET_VALUES"});
+                    }  else if( typeof response !== "string"  ){
+
+                         selectedAreaThunk(1);
+                         message.success("User information updated");
+                         props.history.push("/menu")
+                        }
 
                     return
 
@@ -260,7 +280,7 @@ const doneHandler = (dispatch, props) => {
 
 };
 // button
-const formButton = (props, styles = '', name) =>{  
+const formButton = (props, styles = '', name) =>{
     return (
         <Button type="primary"  htmlType="submit" className={`login-form-button ${styles}`}>
             {!name ? props.buttonTitle : name}
@@ -268,7 +288,7 @@ const formButton = (props, styles = '', name) =>{
 };
 
 // form creator
-export const fromCreator = (props, dispatch, state, currentThunk) => {
+export const fromCreator = (props, dispatch, state, currentThunk, selectedAreaThunk) => {
 
     const isPrevious = props.buttonTitle === "Previous";
     const isNext = props.buttonTitle === "Next";
@@ -277,10 +297,11 @@ export const fromCreator = (props, dispatch, state, currentThunk) => {
     const switchCaser = () => {
         switch (props.onForm) {
             case "First":{
+
                 return <FirstWindow form={props.form} state={state} getFieldDecorator={props.form.getFieldDecorator}/>
             }
             case "Second":{
-                return <SecondWindow ParticipantThunk={currentThunk} state={state} messageSuccess={props.messageSuccess}
+                return <SecondWindow config={props.config} ParticipantThunk={currentThunk} state={state} messageSuccess={props.messageSuccess}
                                      validateFields={props.form.validateFields} form={props.form} dispatch={dispatch}
                                      getFieldDecorator={props.form.getFieldDecorator}/>
             }
@@ -306,7 +327,7 @@ export const fromCreator = (props, dispatch, state, currentThunk) => {
         }
     };
 
-    return (<Form onSubmit={(e) => handleSubmit(e, props, currentThunk, dispatch, state )} className="login-form">
+    return (<Form onSubmit={(e) => handleSubmit(e, props, currentThunk, dispatch, state,selectedAreaThunk )} className="login-form">
                             {switchCaser()}
         <Form.Item>
             <div className="form_bottom_navigation">

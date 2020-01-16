@@ -1,7 +1,7 @@
  import React, {useEffect} from 'react';
  import { connect } from "react-redux";
  import EditParticipant from "./EditParticipant";
- import {changeStatusThunk, getParticipantThunk} from "../../../Redux/actions";
+ import {changeStatusThunk, getParticipantThunk, selectedAreaThunk} from "../../../Redux/actions";
  import {withRouter} from "react-router-dom";
  import {compose} from "redux";
 
@@ -24,7 +24,7 @@ const mapStateToProps= state =>({
     participant: state.participant,
 });
 
-export default compose(connect(mapStateToProps, {getParticipantThunk, changeStatusThunk}), withRouter)(EditParticipantContainer);
+export default compose(connect(mapStateToProps, {getParticipantThunk, selectedAreaThunk, changeStatusThunk}), withRouter)(EditParticipantContainer);
 
 
 

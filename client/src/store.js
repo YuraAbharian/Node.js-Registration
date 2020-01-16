@@ -3,7 +3,7 @@ import ParticipantReducer from "./Redux/participantReducer";
 import thunk from "redux-thunk";
 import adminReducer from "./Redux/adminReducer";
 import userReducer from "./Redux/userReducer";
-import ConferenceReducer from "./Redux/congerenceReducer";
+import ConferenceReducer from "./Redux/conferenceReducer";
 const reducers = combineReducers({
      participant: ParticipantReducer,
      admin: adminReducer,

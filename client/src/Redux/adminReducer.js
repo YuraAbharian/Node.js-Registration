@@ -1,9 +1,10 @@
-import {ADMIN_LOGIN, LOG_OUT, SET_ADMIN_ERROR} from "./types";
+import {ADMIN_LOGIN, LOG_OUT, SET_ADMIN_ERROR, SET_SELECTED_AREA} from "./types";
 
 const initialState = {
     isSuperAdmin: false,
     isAdmin: false,
     err: false,
+    selectedArea: null,
 };
 
 const AdminReducer = (state = initialState, action) => {
@@ -16,6 +17,7 @@ const AdminReducer = (state = initialState, action) => {
             }
         }
         case LOG_OUT: {
+
             return {
                 ...state,
                 isSuperAdmin: false,
@@ -26,6 +28,12 @@ const AdminReducer = (state = initialState, action) => {
             return {
                 ...state,
                 err: action.payload
+            }
+        }
+        case SET_SELECTED_AREA: {
+            return {
+                ...state,
+                selectedArea: action.payload
             }
         }
         default:{

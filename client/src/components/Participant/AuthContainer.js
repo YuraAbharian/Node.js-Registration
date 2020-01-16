@@ -5,6 +5,9 @@ import {ParticipantThunk} from "../../Redux/actions";
 import {compose} from "redux";
 import {withRouter} from "react-router-dom";
 
-const AuthContainer = (props) => <Participant {...props}/>;
+const AuthContainer = (props) => <Participant   {...props}/>;
 
-export default compose(connect(null, { ParticipantThunk }), withRouter)(AuthContainer);
+const mapStateToProps =state =>({
+    config: state.config,
+})
+export default compose(connect(mapStateToProps, { ParticipantThunk }), withRouter)(AuthContainer);

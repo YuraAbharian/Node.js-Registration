@@ -7,14 +7,14 @@ const router = new express.Router();
 
 
 // register admin
- 
+
 router.get("/verify", authMiddleware, async (req, res) => {
   try {
     const data = { user: req.user, statusCode: 0, isAuth: true };
      await res.send(data);
   } catch (e) {
     const data = { message: e.message, statusCode: 1, isAuth: false };
-    res.status(400).send(data);
+    res.status(200).send(data);
   }
 });
 
@@ -37,7 +37,7 @@ router.post("/admin", async (req, res) => {
         };
         res.cookie('Authorization',`${ token }`, { path:'/',maxAge: 90000000 , httpOnly: true })
         .send(data);
-         
+
     } catch(e) {
 
         const data = { message: e.message, statusCode: 1 };
@@ -45,6 +45,17 @@ router.post("/admin", async (req, res) => {
 
     }
 
+});
+
+
+router.delete('/logout', authMiddleware, (req, res)=>{
+
+    req.user.tokens = req.user.tokens.filter(token=>  token.token !== req.token );
+    console.log(" req.user.tokens: ",  req.user.tokens);
+    req.user.save();
+    res.clearCookie("Authorization");
+    const data = {message: 'You are logged out', isAuth: false};
+    res.status(200).send(data)
 });
 
 export default router;

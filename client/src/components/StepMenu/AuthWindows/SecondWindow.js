@@ -23,14 +23,14 @@ const SecondWindow = (props) => {
         marginBottom: 0,
         height: "56px"
     };
-
+    console.log("props: ", props);
     return (
         <div>
             <div className="form_container_header">
                 <h1>Profile</h1>
             </div>
             <div className="RangePicker">
-                { Pickers(getFieldDecorator, "RangePicker", isRangePicker, state, dispatch, cn, RangePicker,moment, dateFormat ) }
+                { Pickers(getFieldDecorator, "RangePicker", isRangePicker, state, dispatch, cn, RangePicker,moment, dateFormat, '', props.config ) }
                 { showError(isRangePicker, state, cn, "RangePicker", '') }
             </div>
                 { antdInput(getFieldDecorator, 'Company', styles, state) }
@@ -44,7 +44,7 @@ const SecondWindow = (props) => {
                 { showError(isGender, state, cn, "Gender", '') }
             </div>
             <div className="Birthdate">
-                { Pickers(getFieldDecorator, "Birthdate", isBirthdate, state, dispatch, cn, DatePicker, moment, dateFormat, 'date_picker_width' )}
+                { Pickers(getFieldDecorator, "Birthdate", isBirthdate, state, dispatch, cn, DatePicker, moment, dateFormat, 'date_picker_width' , props.config)}
                 { showError(isBirthdate, state, cn, "Birthdate", '') }
             </div>
                 <div className="Country">

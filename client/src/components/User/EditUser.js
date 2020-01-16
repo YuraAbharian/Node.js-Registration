@@ -8,7 +8,7 @@ import {fromCreator} from "../../functions";
 const EditUser = (props) => {
     return (
         <div className="edit__user">
-            {fromCreator(props, props.dispatch, props.state, props.UpdateUser  )}
+            {fromCreator(props, props.dispatch, props.state, props.UpdateUser , props.selectedAreaThunk )}
         </div>
     );
 };

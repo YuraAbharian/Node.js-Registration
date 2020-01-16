@@ -1,7 +1,7 @@
 import {ADD_USER, DELETE_USER, GET_USER, EDIT_USER, REMOVE_USER} from "./types";
 
 const initialState = {
-    user:[]
+    user:[],
 };
 
 const userReducer = (state = initialState, action) => {

@@ -2,7 +2,7 @@ import React, {useEffect, useReducer} from 'react';
 import EditUser from "./EditUser";
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
-import {getParticipantThunk, getUserThunk, UpdateUser} from "../../Redux/actions";
+import {getParticipantThunk, getUserThunk, selectedAreaThunk, UpdateUser} from "../../Redux/actions";
 import {initialState, setState} from "../../functions";
 
 const EditUserContainer = (props) =>{
@@ -37,5 +37,5 @@ const mapStateToProps= state =>({
     user: state.user.user,
 });
 
-export default withRouter(connect(mapStateToProps, {getParticipantThunk, getUserThunk, UpdateUser})(EditUserContainer));
+export default withRouter(connect(mapStateToProps, {selectedAreaThunk, getParticipantThunk, getUserThunk, UpdateUser})(EditUserContainer));
 

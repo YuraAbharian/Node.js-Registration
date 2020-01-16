@@ -57,7 +57,7 @@ export const deleteOrRestore =(Collection)=>async (req, res)=>{
         obj.save();
         res.status(200).send(obj)
     } catch (e) {
-        res.status(500).send("Unable to delete")
+        res.status(200).send("Unable to delete")
     }
 
 };

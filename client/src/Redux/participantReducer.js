@@ -1,7 +1,8 @@
 import {APPLY, GET_PARTICIPANT, CHANGE_STATUS} from "./types";
 
 const initialState = {
-    participants:[]
+    participants:[],
+    selectedArea: null
 };
 
 const ParticipantReducer = (state = initialState, action) => {

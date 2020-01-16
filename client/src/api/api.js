@@ -3,7 +3,7 @@ import axios from "axios";
 const instance = axios.create({
     baseURL: "http://localhost:3001/",
     withCredentials: true,
-    
+
 });
 
 class RequestHttp {
@@ -56,6 +56,9 @@ class RequestHttp {
     }
     async verify(){
         return await this.transport.get("/verify")
+    }
+    async logOut(){
+        return await this.transport.delete("/logout")
     }
 }
 

@@ -10,7 +10,7 @@ const User = (props) => {
 
     return (
         <div className="user__form__container">
-            { fromCreator(props, dispatch, state, props.addNewUserThunk )}
+            { fromCreator(props, dispatch, state, props.addNewUserThunk, props.selectedAreaThunk )}
         </div>
     );
 };
