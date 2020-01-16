@@ -13,7 +13,6 @@ const EditParticipant = (props) => {
     };
 
 const onClickHandler=()=>{
-
     selectedAreaThunk(2);
     history.push("/menu");
 };

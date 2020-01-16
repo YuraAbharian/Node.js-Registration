@@ -5,6 +5,7 @@ import {connect} from "react-redux";
 import {getConfig, newVerifyThunk, logOut} from "../../Redux/actions";
 
 const HeaderContainer = (props) => {
+
 const { newVerifyThunk, admin:{isSuperAdmin, isAdmin }, history , getConfig } = props;
     useEffect(()=>{
 

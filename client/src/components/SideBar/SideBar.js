@@ -1,15 +1,18 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import "./SideStyle.css";
 import {Layout, Menu, Icon, Table, Input, Button} from 'antd';
-import {chooseCurrentRoles, newColumns, newColumnsUser} from '../../functions';
+// import {chooseCurrentRoles, newColumns, newColumnsUser} from '../../functions';
 import {withRouter} from "react-router-dom";
 import Highlighter from 'react-highlight-words';
+import {WidgetContext} from "../../Context/Context";
 
 const {Sider, Content} = Layout;
 
 const SideBar = (props) => {
     const {participant: {participants}, admin: {selectedArea, isSuperAdmin}, user: {user}, deleteOrRestore, deleteUser, history} = props;
 
+
+    const { chooseCurrentRoles, newColumns, newColumnsUser } = useContext(WidgetContext);
 
     const [state, setState] = useState({
         collapsed: true,

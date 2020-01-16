@@ -1,11 +1,14 @@
-import React, {useReducer} from 'react';
-import {fromCreator, initialState, setState} from "../../functions";
+import React, {useContext, useReducer} from 'react';
+// import {fromCreator, initialState, setState} from "../../functions";
 import {Form} from "antd";
 import "./User.css";
 import {compose} from "redux";
 import {withRouter} from "react-router-dom";
+import {WidgetContext} from "../../Context/Context";
 
 const User = (props) => {
+
+    const { initialState, setState, fromCreator } = useContext(WidgetContext);
     const [state, dispatch] = useReducer(setState, initialState);
 
     return (

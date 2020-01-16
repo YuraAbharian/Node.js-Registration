@@ -1,12 +1,14 @@
-import React, {useEffect, useReducer} from 'react';
+import React, {useContext, useEffect, useReducer} from 'react';
 import EditUser from "./EditUser";
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
 import {getParticipantThunk, getUserThunk, selectedAreaThunk, UpdateUser} from "../../Redux/actions";
-import {initialState, setState} from "../../functions";
+// import {initialState, setState} from "../../functions";
+import {WidgetContext} from "../../Context/Context";
 
 const EditUserContainer = (props) =>{
 
+    const { initialState, setState} = useContext(WidgetContext);
     const {getUserThunk,getParticipantThunk, match:{params:{id}}, user } = props;
 
     const [state, dispatch] = useReducer(setState, initialState);

@@ -11,11 +11,12 @@ import ContainerSideBar from "./components/SideBar/ContainerSideBar";
 import EditUserContainer from "./components/User/EditUserContainer";
 import EditParticipantContainer from "./components/Participant/EditParticipant/EditParticipantContainer";
 import ConferenceContainer from "./components/Conference/ConferenceContainer";
+import Context from "./Context/Context";
 
 const  App =()=> {
     return (
         <BrowserRouter>
-
+            <Context>
                 <Provider store={store}>
 
                     <div>
@@ -33,7 +34,7 @@ const  App =()=> {
                     </div>
 
                 </Provider>
-
+            </Context>
         </BrowserRouter>
 
     );

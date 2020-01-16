@@ -13,9 +13,7 @@ const onTitleHandler=e=>{
         return history.push("/");
     }
 };
-const isTrue=()=>{
 
-}
     return (
       <div onClick={onTitleHandler}>
           <PageHeader

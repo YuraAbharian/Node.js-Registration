@@ -1,11 +1,13 @@
-import React from 'react';
-import {antdInput} from "../../../functions";
+import React, {useContext} from 'react';
+// import {antdInput} from "../../../functions";
+import {WidgetContext} from "../../../Context/Context";
 
 
 const FirstWindow = (props) => {
 
     const {getFieldDecorator, state} = props;
 
+    const { antdInput } = useContext(WidgetContext);
     return (
         <div>
             <div className="form_container_header" >

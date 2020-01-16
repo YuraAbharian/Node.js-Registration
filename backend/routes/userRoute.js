@@ -8,19 +8,19 @@ const router = new express.Router();
 router.post("/addUser", authMiddleware, registerHandler(User, "user" ));
 
 // get all users
-router.get("/getUser", getAllDatas(User));
+router.get("/getUser",authMiddleware, getAllDatas(User));
 
 // soft delete/ move to trash/ remove user with a possibility to restore
-router.post("/sortDeleteUser", deleteOrRestore(User));
+router.post("/sortDeleteUser",authMiddleware, deleteOrRestore(User));
 
 // remove user from collection!
-router.delete("/deleteUser/:id", async (req, res)=>{
+router.delete("/deleteUser/:id",authMiddleware, async (req, res)=>{
      const {id } =req.params;
      await User.findByIdAndRemove({_id: id});
      res.status(200).send({message:"User has been deleted"})
 });
 
-router.put("/update", async (req, res)=>{
+router.put("/update",authMiddleware, async (req, res)=>{
       const { obj } = req.body;
 
      try {

@@ -1,12 +1,13 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {DatePicker, Select} from 'antd';
 import moment from "moment";
-import {antdInput, selectorHandler, showError, Pickers, isTrueHandler} from "../../../functions";
+// import {antdInput, selectorHandler, showError, Pickers, isTrueHandler} from "../../../functions";
 import cn from "classnames";
 import countryList from 'react-select-country-list'
+import {WidgetContext} from "../../../Context/Context";
 
 const SecondWindow = (props) => {
-
+    const { antdInput, selectorHandler, showError, Pickers, isTrueHandler } = useContext(WidgetContext);
     const {RangePicker} = DatePicker;
     const {getFieldDecorator, state, dispatch} = props;
     const isBirthdate =  isTrueHandler(state, "Birthdate");

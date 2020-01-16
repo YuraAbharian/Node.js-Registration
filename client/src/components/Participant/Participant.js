@@ -1,14 +1,17 @@
-import React, {useReducer} from 'react';
+import React, {useContext, useReducer} from 'react';
 import "./Participant.css";
 import {Form} from "antd";
 import {withRouter} from "react-router-dom";
 import {compose} from "redux";
-import {fromCreator, initialState, setState} from "../../functions";
+// import {fromCreator, initialState, setState} from "../../functions";
+import {WidgetContext} from "../../Context/Context";
 
 
 const Participant = (props) => {
 
 
+
+    const { initialState, setState, fromCreator } = useContext(WidgetContext);
 
     const [state, dispatch] = useReducer(setState, initialState);
 
