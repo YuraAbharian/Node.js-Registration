@@ -1,6 +1,6 @@
 import express from 'express';
 import  Participant  from "../Collections/ParticipantsCollections";
-import {getAllDatas, registerHandler} from "../helper/helper";
+import {getAllDatas, mailSender, registerHandler} from "../helper/helper";
 const router = new express.Router();
 
 
@@ -14,7 +14,9 @@ router.put("/changeStatus",async (req, res)=>{
 
     const participant = await Participant.findByIdAndUpdate({  _id: id });
 
+
     participant.Status = status;
+    mailSender(status, participant);
     participant.save();
     res.status(200).send(participant);
 

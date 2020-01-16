@@ -56,11 +56,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/client/src/components/Participant/EditParticipant/EditParticipant.js">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/src/components/StepMenu/AuthWindows/ThirdWindows.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="21" column="43" selection-start-line="21" selection-start-column="43" selection-end-line="21" selection-end-column="43" />
+            <state relative-caret-position="85">
+              <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -68,14 +68,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/src/functions.js">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/backend/helper/helper.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="112" column="16" lean-forward="true" selection-start-line="112" selection-start-column="16" selection-end-line="113" selection-end-column="67" />
-              <folding>
-                <element signature="e#0#70#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="539">
+              <caret line="66" column="5" selection-start-line="66" selection-start-column="5" selection-end-line="66" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/src/components/StepMenu/StepMenu.scss">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="8" selection-end-line="8" />
             </state>
           </provider>
         </entry>
@@ -118,8 +124,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/client/src/components/Auth/StepMenu/AuthWindows/ThirdWindows.js" />
-        <option value="$PROJECT_DIR$/client/src/components/SideBar/SiderDemo.scss" />
         <option value="$PROJECT_DIR$/backend/Collections/ParticipantsCollections.js" />
         <option value="$PROJECT_DIR$/backend/Collections/UserCollections.js" />
         <option value="$PROJECT_DIR$/client/src/components/User/UserWindow.js" />
@@ -134,17 +138,14 @@
         <option value="$PROJECT_DIR$/client/src/components/Header/Header.scss" />
         <option value="$PROJECT_DIR$/client/src/components/Admin/Admin.js" />
         <option value="$PROJECT_DIR$/client/src/components/Participant/Participant.scss" />
-        <option value="$PROJECT_DIR$/backend/routes/ParticipantRoute.js" />
         <option value="$PROJECT_DIR$/client/src/components/SideBar/SideStyle.css" />
         <option value="$PROJECT_DIR$/client/src/.env" />
-        <option value="$PROJECT_DIR$/backend/routes/userRoute.js" />
         <option value="$PROJECT_DIR$/client/src/store.js" />
         <option value="$PROJECT_DIR$/client/src/Redux/congerenceReducer.js" />
         <option value="$PROJECT_DIR$/client/src/App.js" />
         <option value="$PROJECT_DIR$/client/src/components/Conference/ConferenceContainer.js" />
         <option value="$PROJECT_DIR$/client/src/components/Conference/Conference.js" />
         <option value="$PROJECT_DIR$/client/src/components/Conference/Conference.scss" />
-        <option value="$PROJECT_DIR$/backend/helper/helper.js" />
         <option value="$PROJECT_DIR$/backend/middleware/authMiddleware.js" />
         <option value="$PROJECT_DIR$/client/src/components/StepMenu/AuthWindows/FirstWindow.js" />
         <option value="$PROJECT_DIR$/client/src/Redux/participantReducer.js" />
@@ -163,14 +164,22 @@
         <option value="$PROJECT_DIR$/client/src/Redux/actions.js" />
         <option value="$PROJECT_DIR$/client/src/components/StepMenu/StepMenu.js" />
         <option value="$PROJECT_DIR$/client/src/components/Participant/AuthContainer.js" />
-        <option value="$PROJECT_DIR$/backend/.env" />
         <option value="$PROJECT_DIR$/client/src/components/StepMenu/AuthWindows/SecondWindow.js" />
         <option value="$PROJECT_DIR$/client/src/functions.js" />
         <option value="$PROJECT_DIR$/client/src/components/User/User.js" />
         <option value="$PROJECT_DIR$/client/src/components/User/UserContainer.js" />
         <option value="$PROJECT_DIR$/client/src/components/Participant/EditParticipant/EditParticipant.js" />
+        <option value="$PROJECT_DIR$/backend/.env" />
+        <option value="$PROJECT_DIR$/backend/routes/userRoute.js" />
+        <option value="$PROJECT_DIR$/backend/routes/ParticipantRoute.js" />
+        <option value="$PROJECT_DIR$/client/src/components/StepMenu/StepMenu.scss" />
+        <option value="$PROJECT_DIR$/client/src/components/StepMenu/AuthWindows/ThirdWindows.js" />
+        <option value="$PROJECT_DIR$/backend/helper/helper.js" />
       </list>
     </option>
+  </component>
+  <component name="PackageJsonUpdateNotifier">
+    <dismissed value="$PROJECT_DIR$/backend/package.json" />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-29" />
@@ -201,7 +210,7 @@
               <item name="Node.js-Registration" type="b2602c69:ProjectViewProjectNode" />
               <item name="Node.js-Registration" type="462c0819:PsiDirectoryNode" />
               <item name="backend" type="462c0819:PsiDirectoryNode" />
-              <item name="routes" type="462c0819:PsiDirectoryNode" />
+              <item name="helper" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Node.js-Registration" type="b2602c69:ProjectViewProjectNode" />
@@ -276,6 +285,15 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
               <item name="StepMenu" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Node.js-Registration" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Node.js-Registration" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="StepMenu" type="462c0819:PsiDirectoryNode" />
+              <item name="AuthWindows" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Node.js-Registration" type="b2602c69:ProjectViewProjectNode" />
@@ -359,12 +377,12 @@
       <workItem from="1578985551343" duration="15167000" />
       <workItem from="1579003681140" duration="15352000" />
       <workItem from="1579071612637" duration="27891000" />
-      <workItem from="1579158381857" duration="16742000" />
+      <workItem from="1579158381857" duration="20475000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="213619000" />
+    <option name="totallyTimeSpent" value="217352000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -379,7 +397,7 @@
     <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49892008" visible="true" weight="0.27978143" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49892008" visible="true" weight="0.27978143" />
       <window_info id="Structure" order="1" sideWeight="0.5010799" side_tool="true" weight="0.15956284" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -392,7 +410,7 @@
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="TypeScript" order="9" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" sideWeight="0.4989071" visible="true" weight="0.25" />
+      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.4989071" weight="0.25" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5010929" side_tool="true" weight="0.3034557" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -473,23 +491,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/client/src/components/User/User.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="17" selection-start-line="13" selection-start-column="17" selection-end-line="13" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backend/Collections/ParticipantsCollections.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="419">
-          <caret line="58" column="13" selection-start-line="58" selection-start-column="3" selection-end-line="58" selection-end-column="13" />
-          <folding>
-            <element signature="e#0#33#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/backend/Collections/UserCollections.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="544">
@@ -522,16 +523,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
           <caret line="3" column="18" selection-start-line="3" selection-start-column="18" selection-end-line="3" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backend/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="11" column="70" selection-start-line="11" selection-start-column="70" selection-end-line="11" selection-end-column="70" />
-          <folding>
-            <element signature="e#0#30#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -636,33 +627,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/backend/helper/helper.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="882">
-          <caret line="59" column="22" selection-start-line="59" selection-start-column="22" selection-end-line="59" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backend/routes/ParticipantRoute.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="60" lean-forward="true" selection-start-line="14" selection-start-column="60" selection-end-line="14" selection-end-column="60" />
-          <folding>
-            <element signature="e#0#30#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backend/routes/userRoute.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="32" column="3" lean-forward="true" selection-start-line="32" selection-start-column="3" selection-end-line="32" selection-end-column="3" />
-          <folding>
-            <element signature="e#0#50#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/src/components/Conference/ConferenceContainer.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
@@ -694,26 +658,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="4" column="3" selection-start-line="4" selection-start-column="3" selection-end-line="4" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/User/EditUserContainer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
-          <caret line="39" column="67" lean-forward="true" selection-start-line="39" selection-start-column="67" selection-end-line="39" selection-end-column="67" />
-          <folding>
-            <element signature="e#0#51#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/Participant/EditParticipant/EditParticipantContainer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="24" column="3" lean-forward="true" selection-start-line="24" selection-start-column="3" selection-end-line="24" selection-end-column="3" />
-          <folding>
-            <element signature="e#1#40#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -851,13 +795,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/backend/.env">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/src/components/User/EditUser.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
@@ -901,20 +838,98 @@
     <entry file="file://$PROJECT_DIR$/client/src/functions.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
-          <caret line="112" column="16" lean-forward="true" selection-start-line="112" selection-start-column="16" selection-end-line="113" selection-end-column="67" />
+          <caret line="112" column="16" selection-start-line="112" selection-start-column="16" selection-end-line="113" selection-end-column="67" />
           <folding>
             <element signature="e#0#70#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/User/EditUserContainer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="578">
+          <caret line="39" column="69" selection-start-line="39" selection-start-column="52" selection-end-line="39" selection-end-column="69" />
+          <folding>
+            <element signature="e#0#51#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="32" lean-forward="true" selection-start-line="1" selection-start-column="32" selection-end-line="1" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/routes/userRoute.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="355">
+          <caret line="26" column="55" selection-start-line="26" selection-start-column="55" selection-end-line="26" selection-end-column="55" />
+          <folding>
+            <element signature="e#0#50#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/routes/ParticipantRoute.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="5" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
+          <folding>
+            <element signature="e#0#30#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/.env">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="32" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/Participant/EditParticipant/EditParticipantContainer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="26" column="113" selection-start-line="26" selection-start-column="113" selection-end-line="26" selection-end-column="113" />
+          <folding>
+            <element signature="e#1#40#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/client/src/components/Participant/EditParticipant/EditParticipant.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="21" column="43" selection-start-line="21" selection-start-column="43" selection-end-line="21" selection-end-column="43" />
+        <state relative-caret-position="238">
+          <caret line="14" column="22" selection-start-line="14" selection-start-column="22" selection-end-line="14" selection-end-column="22" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/StepMenu/StepMenu.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" selection-end-line="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/StepMenu/AuthWindows/ThirdWindows.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/helper/helper.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="539">
+          <caret line="66" column="5" selection-start-line="66" selection-start-column="5" selection-end-line="66" selection-end-column="5" />
         </state>
       </provider>
     </entry>

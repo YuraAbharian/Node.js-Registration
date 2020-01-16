@@ -1,10 +1,10 @@
 import User from "../Collections/UserCollections";
-import {deleteOrRestore, getAllDatas, registerHandler} from "../helper/helper";
+import {deleteOrRestore, getAllDatas, mailSender, registerHandler} from "../helper/helper";
 import express from "express";
 import { authMiddleware } from "../middleware/authMiddleware";
 const router = new express.Router();
 // add user
- 
+
 router.post("/addUser", authMiddleware, registerHandler(User, "user" ));
 
 // get all users
@@ -22,6 +22,7 @@ router.delete("/deleteUser/:id", async (req, res)=>{
 
 router.put("/update", async (req, res)=>{
       const { obj } = req.body;
+
      try {
          await User.updateOne({  _id: obj._id }, obj);
          res.status(200).send({message: "updated"});

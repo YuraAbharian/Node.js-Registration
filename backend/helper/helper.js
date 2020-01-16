@@ -1,4 +1,4 @@
-
+import sgMail from '@sendgrid/mail';
 // register user/ participant / admin
 export const registerHandler=( Collection, name )=>  async (req, res) => {
     const { email } = req.body;
@@ -60,4 +60,20 @@ export const deleteOrRestore =(Collection)=>async (req, res)=>{
         res.status(200).send("Unable to delete")
     }
 
+};
+
+
+export const mailSender=(key, obj) =>{
+
+    sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+
+    const msg = {
+        to: obj.Email,
+        from: 'cook55@yandex.ru',
+        subject: 'JAVASCRIPT FEST',
+        text:  key === "Approve" ? `Dear ${obj.Username + ' ' +obj.Lastname} your ticket has been Approved. See you at conference! Best regards`: `Dear ${obj.Lastname + ' ' +obj.Lastname} sorry but we Decline your ticket.  Best regards`,
+        // html:key === "Approve" ? '<strong>Welcome to the conference in Kiev</strong>' : '<strong>We hope to see you there next time</strong>',
+    };
+
+    sgMail.send(msg);
 };
