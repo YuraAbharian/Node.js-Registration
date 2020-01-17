@@ -16,8 +16,8 @@ const EditUserContainer = (props) =>{
      const currUser = user.length > 0 && user.find(el=> el._id === id);
 
     useEffect(() => {
-        getParticipantThunk();
-        getUserThunk();
+        // getParticipantThunk();
+        // getUserThunk();
         user.length > 0 && dispatch({
             type: "SET_VALUES",
             payload: {

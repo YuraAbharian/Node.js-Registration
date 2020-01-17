@@ -301,7 +301,8 @@ const Context = (props) => {
             </Button>)
     };
     // form creator
-    const fromCreator = (props, dispatch, state, currentThunk, selectedAreaThunk) => {
+    const fromCreator = (props, dispatch, state, currentThunk, selectedAreaThunk , modify,headerModify) => {
+        console.log("headerModify: ", headerModify);
 
         const isPrevious = props.buttonTitle === "Previous";
         const isNext = props.buttonTitle === "Next";
@@ -330,11 +331,11 @@ const Context = (props) => {
                 }
                 case "user": {
 
-                    return <UserWindow buttonTitle="Add User" ParticipantThunk={currentThunk} state={state}
+                    return <UserWindow headerModify={headerModify} buttonTitle="Add User" ParticipantThunk={currentThunk} state={state}
                                        getFieldDecorator={props.form.getFieldDecorator}/>
                 }
                 case "editUser": {
-                    return <UserWindow buttonTitle="Edit" ParticipantThunk={currentThunk} state={state}
+                    return <UserWindow headerModify={headerModify} buttonTitle="Edit" ParticipantThunk={currentThunk} state={state}
                                        getFieldDecorator={props.form.getFieldDecorator}/>
                 }
                 default: {
@@ -344,7 +345,7 @@ const Context = (props) => {
         };
 
         return (<Form onSubmit={(e) => handleSubmit(e, props, currentThunk, dispatch, state, selectedAreaThunk)}
-                      className="login-form">
+                      className={`login-form ${ modify }` }>
             {switchCaser()}
             <Form.Item>
                 <div className="form_bottom_navigation">
@@ -535,8 +536,36 @@ const Context = (props) => {
             }
         });
     };
+
+    const onClickHandler=(props, num)=>{
+        props.selectedAreaThunk(num);
+        props.history.push("/menu");
+    };
+
+    const onEscapePress=(Callback, Effect, props, num)=>{
+        // onClickHandler(props)
+
+        const escFunction = Callback((event) => {
+                if(event.keyCode === 27) {
+                    onClickHandler(props, num)
+                }
+          }, []);
+
+          Effect(() => {
+            document.addEventListener("keydown", escFunction, false);
+
+            return () => {
+              document.removeEventListener("keydown", escFunction, false);
+            };
+          }, []);
+    }
+
+
+
     return (
         <WidgetContext.Provider value={{
+            onClickHandler,
+            onEscapePress,
             chooseCurrentRoles,
             newColumns,
             newColumnsUser,

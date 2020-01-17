@@ -1,15 +1,36 @@
-.user__form__container{
-  display: flex;
+.user__form__container {
+  //display: flex;
   margin: 17em auto;
   position: relative;
-  min-width: 25%;
-  max-width: 50%;
+  //min-width: 25%;
+  max-width: 30%;
 }
 
-.edit__user{
-  display: flex;
+.edit__user {
   margin: 17em auto;
   position: relative;
-  min-width: 25%;
-  max-width: 50%;
+  /* min-width: 25%; */
+  max-width: 30%;
 }
+
+//.edit__user___wrapper{
+//  border: 1px solid black;
+//}
+.formModify{
+  width: 90%;
+
+}
+
+.headerModify{
+  h1{
+    padding-bottom: 0.5em;
+  }
+}
+
+// .edit {
+//   padding: 0;
+
+//   min-width: 25%;
+//   /* max-width: 25%; */
+//   width: 25% !important;
+// }

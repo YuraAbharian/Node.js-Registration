@@ -3,14 +3,14 @@ import React, {useContext} from 'react';
 import {WidgetContext} from "../../Context/Context";
 
 const UserWindow = (props) => {
-    const {getFieldDecorator, state} = props;
+    const {getFieldDecorator, state, headerModify} = props;
 
     const {antdInput} = useContext(WidgetContext);
 
     return (
         <div>
 
-            <div className="form_container_header">
+            <div className={`form_container_header ${headerModify}`}>
                 <h1>User</h1>
             </div>
 

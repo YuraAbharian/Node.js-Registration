@@ -1,15 +1,18 @@
 .user__form__container {
-  display: flex;
   margin: 17em auto;
   position: relative;
-  min-width: 25%;
-  max-width: 50%; }
+  max-width: 30%; }
 
 .edit__user {
-  display: flex;
   margin: 17em auto;
   position: relative;
-  min-width: 25%;
-  max-width: 50%; }
+  /* min-width: 25%; */
+  max-width: 30%; }
+
+.formModify {
+  width: 90%; }
+
+.headerModify h1 {
+  padding-bottom: 0.5em; }
 
 /*# sourceMappingURL=User.css.map */

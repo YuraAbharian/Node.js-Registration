@@ -1,5 +1,5 @@
-import React, {useContext} from 'react';
-import { Form} from "antd";
+import React, {useContext, useCallback, useEffect} from 'react';
+import { Form, Card, Icon} from "antd";
 import "./User.css";
 import {compose} from "redux";
 import {withRouter} from "react-router-dom";
@@ -8,10 +8,23 @@ import {WidgetContext} from "../../Context/Context";
 
 const EditUser = (props) => {
 
-    const { fromCreator } = useContext(WidgetContext);
+    const { fromCreator, onEscapePress, onClickHandler } = useContext(WidgetContext);
+
+    onEscapePress(useCallback,useEffect, props, 1 );
+
+
     return (
         <div className="edit__user">
-            {fromCreator(props, props.dispatch, props.state, props.UpdateUser , props.selectedAreaThunk )}
+
+            <Card className="edit__user___wrapper"
+                  extra={<Icon onClick={()=>onClickHandler(props, 1)} type={"close"}
+                               style={{color: 'rgba(0,0,0,.25)'}}/>}
+            >
+    {fromCreator(props, props.dispatch, props.state, props.UpdateUser , props.selectedAreaThunk, "formModify", "headerModify" )}
+
+
+
+</Card>
         </div>
     );
 };

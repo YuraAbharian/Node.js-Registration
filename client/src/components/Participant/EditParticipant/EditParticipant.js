@@ -1,25 +1,27 @@
-import React from 'react';
+import React, { useEffect, useCallback, useContext } from 'react';
 import {Button, Card, Divider, Icon} from "antd";
 import "../Participant.css";
 import moment from "moment"
+import { WidgetContext } from '../../../Context/Context';
 
 
-const EditParticipant = (props) => {
+const EditParticipant = (props) => { 
 
     const {currParticipant, changeStatusThunk,selectedAreaThunk, history} = props;
+     
+    const { onEscapePress, onClickHandler } = useContext(WidgetContext);
+    onEscapePress(useCallback, useEffect, props, 2) 
+
 
     const toUpCase = (el) => {
         return el[0].toUpperCase() + el.slice(1);
     };
 
-const onClickHandler=()=>{
-    selectedAreaThunk(2);
-    history.push("/menu");
-};
+
     return currParticipant ? (
         <div>
             <Card title={currParticipant.Username + ' ' + currParticipant.Lastname} className="participantEdit"
-                  extra={<Icon onClick={()=>onClickHandler()} type={"close"}
+                  extra={<Icon onClick={()=>onClickHandler(props, 2)} type={"close"}
                                style={{color: 'rgba(0,0,0,.25)'}}/>}
             >
                 <p>{`Company:  ${toUpCase(currParticipant.Company)}`}</p>

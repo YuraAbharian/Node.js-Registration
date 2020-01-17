@@ -10,7 +10,7 @@
      const id =  match.params.id;
 
      useEffect(()=>{
-         getParticipantThunk()
+        //  getParticipantThunk()
      },[]);
 
 
