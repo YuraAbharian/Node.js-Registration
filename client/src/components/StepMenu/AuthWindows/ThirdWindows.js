@@ -6,11 +6,15 @@ const ThirdWindows = (props) => {
 
     return (
         <div className="third__window">
-            <span>  Dear,<span className="names">{`  ${Username}`}</span>   <span className="names">{`${Lastname}`}</span>. We'd sent a message on your email  <span className="names emails">{` ${ Email }`}</span>.
-             Please confirm your email by following the link in the message. </span>
+            <span>  Dear,<span className="names">{`  ${Username}`}</span>
+                <span className="names">{`   ${   Lastname}`}</span>. After our admins will check your form, we  would send you a message on you email:
+                <span className="names emails">{` ${ Email }`}</span>.
+            </span>
             <NavLink to="/"> Back to main page </NavLink>
         </div>
     );
 };
 
 export default ThirdWindows;
+
+// Dear Andrew after our admins will check the form, we  would send you a message on you email.

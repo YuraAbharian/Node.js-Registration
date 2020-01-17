@@ -37,7 +37,7 @@ const userReducer = (state = initialState, action) => {
             return {
                 ...state, user: state.user.map(el=>{
                   if(el._id === action.payload._id){
-                      console.log("true: ", { ...el, ...action.payload });
+                      // console.log("true: ", { ...el, ...action.payload });
                      return { ...el, ...action.payload }
                   }
                   return el

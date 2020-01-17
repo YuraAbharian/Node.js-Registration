@@ -5,12 +5,12 @@ import moment from "moment"
 import { WidgetContext } from '../../../Context/Context';
 
 
-const EditParticipant = (props) => { 
+const EditParticipant = (props) => {
 
-    const {currParticipant, changeStatusThunk,selectedAreaThunk, history} = props;
-     
+    const {currParticipant, changeStatusThunk} = props;
+
     const { onEscapePress, onClickHandler } = useContext(WidgetContext);
-    onEscapePress(useCallback, useEffect, props, 2) 
+    onEscapePress(useCallback, useEffect, props, 2);
 
 
     const toUpCase = (el) => {

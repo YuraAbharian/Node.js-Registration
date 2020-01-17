@@ -6,7 +6,7 @@
  import {compose} from "redux";
 
  const EditParticipantContainer = (props) => {
-     const {getParticipantThunk, participant:{ participants }, match} = props;
+     const { participant:{ participants }, match} = props;
      const id =  match.params.id;
 
      useEffect(()=>{

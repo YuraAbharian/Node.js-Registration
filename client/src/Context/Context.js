@@ -6,6 +6,7 @@ import AdminWindow from "../components/Admin/AdminWindow";
 import UserWindow from "../components/User/UserWindow";
 import ThirdWindows from "../components/StepMenu/AuthWindows/ThirdWindows";
 import moment from "moment";
+import Highlighter from "react-highlight-words";
 
 
 export const WidgetContext = React.createContext();
@@ -542,7 +543,7 @@ const Context = (props) => {
     };
 
     const onEscapePress=(Callback, Effect, props, num)=>{
-        // onClickHandler(props)
+
 
         const escFunction = Callback((event) => {
                 if(event.keyCode === 27) {
@@ -557,12 +558,69 @@ const Context = (props) => {
               document.removeEventListener("keydown", escFunction, false);
             };
           }, []);
-    }
+    };
+ // column search func
+    const columnsSearchProps =(handleReset, handleSearch, state )=>{
 
+        let searchInput;
 
+        const getColumnSearchProps = dataIndex => ({
+            filterDropdown: ({setSelectedKeys, selectedKeys, confirm, clearFilters}) => (
+                <div style={{padding: 8}}>
+                    <Input
+                        ref={node => {
+                            searchInput = node;
+                        }}
+                        placeholder={`Search ${dataIndex}`}
+                        value={selectedKeys[0]}
+                        onChange={e => setSelectedKeys(e.target.value ? [e.target.value] : [])}
+                        onPressEnter={() => handleSearch(selectedKeys, confirm, dataIndex)}
+                        style={{width: 188, marginBottom: 8, display: 'block'}}
+                    />
+                    <Button
+                        type="primary"
+                        onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
+                        icon="search"
+                        size="small"
+                        style={{width: 90, marginRight: 8}}
+                    >
+                        Search
+                    </Button>
+                    <Button onClick={() => handleReset(clearFilters)} size="small" style={{width: 90}}>
+                        Reset
+                    </Button>
+                </div>
+            ),
+            filterIcon: filtered => (
+                <Icon type="search" style={{color: filtered ? '#1890ff' : undefined}}/>
+            ),
+            onFilter: (value, record) =>
+                record[dataIndex]
+                    .toString()
+                    .toLowerCase()
+                    .includes(value.toLowerCase()),
+            onFilterDropdownVisibleChange: visible => {
+                if (visible) {
+                    setTimeout(() => searchInput.select());
+                }
+            },
+            render: text =>
+                state.searchedColumn === dataIndex ? (
+                    <Highlighter
+                        highlightStyle={{backgroundColor: '#ffc069', padding: 0}}
+                        searchWords={[state.searchText]}
+                        autoEscape
+                        textToHighlight={text.toString()}
+                    />
+                ) : (
+                    text
+                ),
+        });
+    };
 
     return (
         <WidgetContext.Provider value={{
+            columnsSearchProps,
             onClickHandler,
             onEscapePress,
             chooseCurrentRoles,
