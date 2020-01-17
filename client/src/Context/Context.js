@@ -83,27 +83,7 @@ const Context = (props) => {
         const inputType =   key === "Email" ? "email" : "text";
         const emailValid = key === "Email" ? "email" : null;
         const currState = state.values && state.values[key] ? state.values[key] : '';
-        // const  Validation = key === "Email" ? "/^([\\w.%+-]+)@([\\w-]+\\.)+([\\w]{3,})$/i" : key === "Lastname" || key === "Username" ? "/^[A-Z][a-z0-9_-]{3,19}$/": "";
-        // let Val;
-        // switch (key) {
-        //
-        //     case "Lastname" : {
-        //         Val = "^[A-Z]+[a-zA-Z]*$";
-        //         break
-        //     }
-        //     case "Username" : {
-        //         Val = "^[A-Z]+[a-zA-Z]*$";
-        //         break
-        //     }
-        //
-        //     default : {
-        //         Val = '';
-        //     }
-        //
-        // }
-        // if(state.values && !state.values.Email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{3,})$/i)){
-        //    return
-        // }
+
         let Component = key ==="Password" ?  <Input.Password
             autoComplete="new-password"
             placeholder={[key.toLowerCase()]}
@@ -563,67 +543,68 @@ const Context = (props) => {
           }, []);
     };
  // column search func
-    const columnsSearchProps =(handleReset, handleSearch, state )=>{
-
-        let searchInput;
-
-        const getColumnSearchProps = dataIndex => ({
-            filterDropdown: ({setSelectedKeys, selectedKeys, confirm, clearFilters}) => (
-                <div style={{padding: 8}}>
-                    <Input
-                        ref={node => {
-                            searchInput = node;
-                        }}
-                        placeholder={`Search ${dataIndex}`}
-                        value={selectedKeys[0]}
-                        onChange={e => setSelectedKeys(e.target.value ? [e.target.value] : [])}
-                        onPressEnter={() => handleSearch(selectedKeys, confirm, dataIndex)}
-                        style={{width: 188, marginBottom: 8, display: 'block'}}
-                    />
-                    <Button
-                        type="primary"
-                        onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
-                        icon="search"
-                        size="small"
-                        style={{width: 90, marginRight: 8}}
-                    >
-                        Search
-                    </Button>
-                    <Button onClick={() => handleReset(clearFilters)} size="small" style={{width: 90}}>
-                        Reset
-                    </Button>
-                </div>
-            ),
-            filterIcon: filtered => (
-                <Icon type="search" style={{color: filtered ? '#1890ff' : undefined}}/>
-            ),
-            onFilter: (value, record) =>
-                record[dataIndex]
-                    .toString()
-                    .toLowerCase()
-                    .includes(value.toLowerCase()),
-            onFilterDropdownVisibleChange: visible => {
-                if (visible) {
-                    setTimeout(() => searchInput.select());
-                }
-            },
-            render: text =>
-                state.searchedColumn === dataIndex ? (
-                    <Highlighter
-                        highlightStyle={{backgroundColor: '#ffc069', padding: 0}}
-                        searchWords={[state.searchText]}
-                        autoEscape
-                        textToHighlight={text.toString()}
-                    />
-                ) : (
-                    text
-                ),
-        });
-    };
+ //    let searchInput;
+ //    const columnsSearchProps =(handleReset, handleSearch, state )=>{
+ //
+ //
+ //
+ //        const getColumnSearchProps = (dataIndex) => ({
+ //            filterDropdown: ({setSelectedKeys, selectedKeys, confirm, clearFilters}) => (
+ //                <div style={{padding: 8}}>
+ //                    <Input
+ //                        ref={node => {
+ //                            searchInput = node;
+ //                        }}
+ //                        placeholder={`Search ${dataIndex}`}
+ //                        value={selectedKeys[0]}
+ //                        onChange={e => setSelectedKeys(e.target.value ? [e.target.value] : [])}
+ //                        onPressEnter={() => handleSearch(selectedKeys, confirm, dataIndex)}
+ //                        style={{width: 188, marginBottom: 8, display: 'block'}}
+ //                    />
+ //                    <Button
+ //                        type="primary"
+ //                        onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
+ //                        icon="search"
+ //                        size="small"
+ //                        style={{width: 90, marginRight: 8}}
+ //                    >
+ //                        Search
+ //                    </Button>
+ //                    <Button onClick={() => handleReset(clearFilters)} size="small" style={{width: 90}}>
+ //                        Reset
+ //                    </Button>
+ //                </div>
+ //            ),
+ //            filterIcon: filtered => (
+ //                <Icon type="search" style={{color: filtered ? '#1890ff' : undefined}}/>
+ //            ),
+ //            onFilter: (value, record) =>
+ //                record[dataIndex]
+ //                    .toString()
+ //                    .toLowerCase()
+ //                    .includes(value.toLowerCase()),
+ //            onFilterDropdownVisibleChange: visible => {
+ //                if (visible) {
+ //                    setTimeout(() => searchInput.select());
+ //                }
+ //            },
+ //            render: text =>
+ //                state.searchedColumn === dataIndex ? (
+ //                    <Highlighter
+ //                        highlightStyle={{backgroundColor: '#ffc069', padding: 0}}
+ //                        searchWords={[state.searchText]}
+ //                        autoEscape
+ //                        textToHighlight={text.toString()}
+ //                    />
+ //                ) : (
+ //                    text
+ //                ),
+ //        });
+ //    };
 
     return (
         <WidgetContext.Provider value={{
-            columnsSearchProps,
+            // columnsSearchProps,
             onClickHandler,
             onEscapePress,
             chooseCurrentRoles,
