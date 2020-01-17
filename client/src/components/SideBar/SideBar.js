@@ -15,7 +15,7 @@ const SideBar = (props) => {
     const { chooseCurrentRoles, newColumns, newColumnsUser, columnsSearchProps } = useContext(WidgetContext);
 
     const [state, setState] = useState({
-        collapsed: true,
+        collapsed: false,
         show: '',
         filteredInfo: null,
         sortedInfo: null,
