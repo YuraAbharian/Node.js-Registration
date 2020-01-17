@@ -302,7 +302,6 @@ const Context = (props) => {
     };
     // form creator
     const fromCreator = (props, dispatch, state, currentThunk, selectedAreaThunk , modify,headerModify) => {
-        console.log("headerModify: ", headerModify);
 
         const isPrevious = props.buttonTitle === "Previous";
         const isNext = props.buttonTitle === "Next";
