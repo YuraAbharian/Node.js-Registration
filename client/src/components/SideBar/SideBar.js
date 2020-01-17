@@ -2,9 +2,11 @@ import React, {useState, useEffect, useContext} from 'react';
 import "./SideStyle.css";
 import {Layout, Menu, Icon, Table } from 'antd';
 // import {chooseCurrentRoles, newColumns, newColumnsUser} from '../../functions';
-import {withRouter} from "react-router-dom";
+import {Route, withRouter} from "react-router-dom";
 // import Highlighter from 'react-highlight-words';
 import {WidgetContext} from "../../Context/Context";
+import EditUserContainer from "../User/EditUserContainer";
+import EditParticipantContainer from "../Participant/EditParticipant/EditParticipantContainer";
 
 const {Sider, Content} = Layout;
 
@@ -108,7 +110,8 @@ const SideBar = (props) => {
             <Layout>
 
                 <Content className="content__wrapper">
-
+                    <Route exact path='/menu/editUser/:id' render={() => <EditUserContainer/>}/>
+                    <Route exact path='/menu/applyParticipant/:id' render={() => <EditParticipantContainer/>}/>
                     {state.show && <Table
                         onChange={handleChange}
                         onRow={(record) => {

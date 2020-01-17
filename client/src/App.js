@@ -27,9 +27,7 @@ const  App =()=> {
                               <Route exact path='/' render={() => <ConferenceContainer/>}/>
                               <Route exact path='/admin' render={() => <AdminContainer/>}/>
                               <Route exact path='/user' render={() => <UserContainer/>}/>
-                              <Route exact path='/menu' render={() => <ContainerSideBar/>}/>
-                              <Route exact path='/menu/editUser/:id' render={() => <EditUserContainer/>}/>
-                              <Route exact path='/menu/applyParticipant/:id' render={() => <EditParticipantContainer/>}/>
+                              <Route path='/menu' render={() => <ContainerSideBar/>}/>
 
                     </div>
 

@@ -84,43 +84,46 @@ const Context = (props) => {
         const emailValid = key === "Email" ? "email" : null;
         const currState = state.values && state.values[key] ? state.values[key] : '';
         // const  Validation = key === "Email" ? "/^([\\w.%+-]+)@([\\w-]+\\.)+([\\w]{3,})$/i" : key === "Lastname" || key === "Username" ? "/^[A-Z][a-z0-9_-]{3,19}$/": "";
-        let Val;
-        switch (key) {
-
-            case "Lastname" : {
-                Val = "^[A-Z]+[a-zA-Z]*$";
-                break
-            }
-            case "Username" : {
-                Val = "^[A-Z]+[a-zA-Z]*$";
-                break
-            }
-
-            default : {
-                Val = '';
-            }
-
-        }
+        // let Val;
+        // switch (key) {
+        //
+        //     case "Lastname" : {
+        //         Val = "^[A-Z]+[a-zA-Z]*$";
+        //         break
+        //     }
+        //     case "Username" : {
+        //         Val = "^[A-Z]+[a-zA-Z]*$";
+        //         break
+        //     }
+        //
+        //     default : {
+        //         Val = '';
+        //     }
+        //
+        // }
         // if(state.values && !state.values.Email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{3,})$/i)){
         //    return
         // }
         let Component = key ==="Password" ?  <Input.Password
             autoComplete="new-password"
             placeholder={[key.toLowerCase()]}
+            maxLength={21}
         /> : <Input
                autoComplete="new-password"
                 type={inputType}
            prefix={<Icon type={key === "Email" ? "google" : "user"}
                            style={{color: 'rgba(0,0,0,.25)'}}/>}
              placeholder={[key.toLowerCase()]}
-              />
+
+              />;
         return (<Form.Item style={styles}>
             {getFieldDecorator([key], {
                 initialValue: currState,
                 rules: [{
-                    pattern: Val,
-                    type: emailValid, message: `The input is not valid ${key}`,
-                }, {required: true, message: `Please input your ${key}!`}]
+                    // pattern: Val,
+                    type: emailValid, message: `The email is not valid. "example@test.com".`,
+                }, {required: true,  message: `Please input your ${key}!`}, { max: 20, message: `Max length of ${key.toLocaleLowerCase()} is 20 characters!`}
+                ]
             })(
               //  <Input
              //       autoComplete="new-password"
