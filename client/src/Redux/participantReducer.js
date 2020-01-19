@@ -21,11 +21,11 @@ const ParticipantReducer = (state = initialState, action) => {
 
             return {
                 ...state, participants: state.participants.map(obj=>{
-                    if(obj._id===action.payload.id){
+                    if(obj._id === action.payload.obj._id){
 
-                        const newParticipant = { ...obj };
+                        const newParticipant = { ...action.payload.obj };
+
                         newParticipant.Status = action.payload.status;
-
                         return newParticipant;
                     }
                     return obj

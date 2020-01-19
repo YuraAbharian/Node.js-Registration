@@ -48,8 +48,8 @@ class RequestHttp {
     async getParticipant(){
         return await this.transport.get("/getParticipant")
     }
-    async changeStatus(id, status){
-        return await this.transport.put("/changeStatus", {id, status})
+    async changeStatus(obj, status){
+        return await this.transport.put("/changeStatus", {obj, status})
     }
     async getConfig(){
         return await this.transport.get("/getConfig")

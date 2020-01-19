@@ -1,6 +1,6 @@
 import React, {useCallback, useEffect,useContext, useReducer} from 'react';
 // import {fromCreator, initialState, setState} from "../../functions";
-import {Card, Form, Icon} from "antd";
+import {Card, Form, Icon, Modal} from "antd";
 import "./User.css";
 import {compose} from "redux";
 import {withRouter} from "react-router-dom";
@@ -10,18 +10,35 @@ const User = (props) => {
 
     const { initialState, setState, fromCreator, onEscapePress, onClickHandler } = useContext(WidgetContext);
     const [state, dispatch] = useReducer(setState, initialState);
-
-    onEscapePress(useCallback, useEffect, props, 1)
+    console.log('state: ', state);
+    onEscapePress(useCallback, useEffect, props, 1);
     return (
-        <div className="user__form__container">
 
-            <Card className="edit__user___wrapper"
-                  extra={<Icon onClick={()=>onClickHandler(props, 1)} type={"close"}
-                               style={{color: 'rgba(0,0,0,.25)'}}/>}
-            >
+        <div  >
+
+
+    <Modal
+        key={"add__user"}
+        visible={props.store.visible}
+        // title="Title"
+        title={"Add User"} className="add__user"
+        // onOk={this.handleOk}
+        footer={null}
+        onCancel={() => {
+            onClickHandler(props, 1);
+            props.setState({
+                ...props.store,
+                show: "Add User",
+                visible: false,
+            });
+            props.history.push("/menu")
+        }}
+
+    >
             { fromCreator(props, dispatch, state, props.addNewUserThunk, props.selectedAreaThunk, "formModify", "headerModify" )}
-            </Card>
-        </div>
+    </Modal>
+
+       </div>
     );
 };
 

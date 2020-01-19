@@ -101,6 +101,7 @@ export const deleteUser = (id) => async (dispatch) => {
 export const UpdateUser = (obj) => async dispatch => {
 
     const res = await requestHttp.updateUser(obj);
+
     switch (res.data.statusCode) {
         case 0: {
             dispatch({type: EDIT_USER, payload: obj});
@@ -117,16 +118,13 @@ export const UpdateUser = (obj) => async dispatch => {
 
 };
 // changeStatus
-export const changeStatusThunk = (id, status) => async dispatch => {
+export const changeStatusThunk = (obj, status) => async dispatch => {
 
-    await requestHttp.changeStatus(id, status);
-
-    dispatch({type: CHANGE_STATUS, payload: {id, status}});
+    await requestHttp.changeStatus(obj, status);
+    dispatch({type: CHANGE_STATUS, payload: {obj, status}});
 };
 // logOut
 export const logOut = (history) => async dispatch => {
-
-
     await requestHttp.logOut();
     dispatch({type: LOG_OUT});
     history.push("/");

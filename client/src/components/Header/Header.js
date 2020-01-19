@@ -23,7 +23,7 @@ const onTitleHandler=e=>{
 
                // (!isSuperAdmin && !isAdmin && <Button onClick={()=>history.push("/apply")} key="1">Apply</Button>),
 
-                 ( isSuperAdmin && <Button onClick={()=>history.push("/user")} key="2">Add User</Button>),
+                 // ( isSuperAdmin && <Button onClick={()=>history.push("/user")} key="2">Add User</Button>),
 
                   (  !isSuperAdmin  &&  !isAdmin ? null : <Button onClick={()=>props.logOut(history)} key="3">LogOut</Button>)
 

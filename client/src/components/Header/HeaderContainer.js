@@ -12,9 +12,9 @@ const { newVerifyThunk, admin:{isSuperAdmin, isAdmin }, history , getConfig } = 
         newVerifyThunk();
         getConfig();
 
-   if( isSuperAdmin || isAdmin ){
-            history.push("/menu")
-        }
+   // if( isSuperAdmin || isAdmin ){
+   //          // history.push("/menu")
+   //      }
 
     },[isSuperAdmin,isAdmin ]);
     // },[LoginAdminThunk,history]);

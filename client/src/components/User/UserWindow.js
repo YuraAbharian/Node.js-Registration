@@ -11,7 +11,7 @@ const UserWindow = (props) => {
         <div>
 
             <div className={`form_container_header ${headerModify}`}>
-                <h1>User</h1>
+                {/*<h1>User</h1>*/}
             </div>
 
             {antdInput(getFieldDecorator, 'Username', '', state)}

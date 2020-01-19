@@ -1,46 +1,52 @@
 import React, { useEffect, useCallback, useContext } from 'react';
-import {Button, Card, Divider, Icon} from "antd";
+import {    Form, Modal} from "antd";
 import "../Participant.css";
-import moment from "moment"
+// import moment from "moment"
 import { WidgetContext } from '../../../Context/Context';
+import {compose} from "redux";
+import {withRouter} from "react-router-dom";
 
 
 const EditParticipant = (props) => {
 
-    const {currParticipant, changeStatusThunk} = props;
+    const {currParticipant, setState,store} = props;
 
-    const { onEscapePress, onClickHandler } = useContext(WidgetContext);
+    const { onEscapePress, onClickHandler,fromCreator} = useContext(WidgetContext);
+
     onEscapePress(useCallback, useEffect, props, 2);
 
-
-    const toUpCase = (el) => {
-        return el[0].toUpperCase() + el.slice(1);
-    };
+    // const toUpCase = (el) => {
+    //     return el[0].toUpperCase() + el.slice(1);
+    // };
 
 
     return currParticipant ? (
-        <div>
-            <Card title={currParticipant.Username + ' ' + currParticipant.Lastname} className="participantEdit"
-                  extra={<Icon onClick={()=>onClickHandler(props, 2)} type={"close"}
-                               style={{color: 'rgba(0,0,0,.25)'}}/>}
+        <div >
+            <Modal
+                key={currParticipant._id}
+                visible={store.visible}
+                // title="Title"
+                title={currParticipant.Username + ' ' + currParticipant.Lastname} className="participantEdit"
+                // onOk={this.handleOk}
+                footer={null}
+                onCancel={() => {
+
+                    onClickHandler(props, 2);
+                    setState({
+                        ...store,
+                        show: "Participants",
+                        visible: false,
+                    });
+                    props.history.push("/menu")
+                }}
+
             >
-                <p>{`Company:  ${toUpCase(currParticipant.Company)}`}</p>
-                <p>{`Position: ${toUpCase(currParticipant.Position)}`}</p>
-                <p>{`Role ${toUpCase(currParticipant.Role)}`}</p>
-                <p>{`Gender ${toUpCase(currParticipant.Gender)}`}</p>
-                <p>{`Birthdate: ${ moment.unix(currParticipant.Birthdate).format('LL')}`}</p>
-                <p>{`Country: ${toUpCase(currParticipant.CountryPicker)}`}</p>
-                <p>{`Visit conference: ${moment.unix(currParticipant.RangePicker[0]).format("LL") + ' - ' + moment.unix(currParticipant.RangePicker[1]).format("LL")}`}</p>
-                <p>{`Status: ${toUpCase(currParticipant.Status)}`}</p>
-                <div className="divider">
-                    <Button onClick={()=> changeStatusThunk(currParticipant._id, "Approve")} className="approve">Approve</Button>
-                    <Divider type="vertical"/>
-                    <Button onClick={()=> changeStatusThunk(currParticipant._id, "Decline") } className="decline">Decline</Button>
-                </div>
-            </Card>
+
+                {fromCreator(props, props.dispatch, props.state, props.changeStatusThunk , props.selectedAreaThunk   )}
+            </Modal>
         </div>) : null
 };
 
-export default EditParticipant;
+const WrappedNormalLoginForm = Form.create({name: 'normal_login'});
 
-
+export default compose(WrappedNormalLoginForm, withRouter)(EditParticipant);

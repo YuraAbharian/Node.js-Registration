@@ -39,10 +39,10 @@ const StepMenu = () => {
                 {steps.map(item => <Step key={item.title} title={item.title}/>)}
             </Steps>}
 
-            {typeof state === 'number' && steps[state].content &&
-            <div className="steps-content">{steps[state].content}</div>}
-
-
+            {
+                typeof state === 'number' && steps[state].content &&
+            <div className="steps-content">{steps[state].content}</div>
+            }
         </div>
     );
 };

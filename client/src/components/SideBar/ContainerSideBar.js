@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import SideBar from "./SideBar";
 import {connect} from "react-redux";
-import {deleteOrRestore, deleteUser, getParticipantThunk, getUserThunk} from "../../Redux/actions";
+import {deleteOrRestore, deleteUser, getParticipantThunk, getUserThunk, selectedAreaThunk} from "../../Redux/actions";
 import {withRouter} from "react-router-dom";
 
 const ContainerSideBar = (props) => {
@@ -17,6 +17,7 @@ const ContainerSideBar = (props) => {
     }, [isSuperAdmin, isAdmin]);
 
 
+
     return (
         <div>
             <SideBar  {...props}/>
@@ -30,4 +31,4 @@ const mapStateToProps = state => ({
     participant: state.participant
 });
 
-export default withRouter(connect(mapStateToProps, {getParticipantThunk, getUserThunk,deleteUser, deleteOrRestore})(ContainerSideBar));
+export default withRouter(connect(mapStateToProps, {getParticipantThunk, selectedAreaThunk, getUserThunk,deleteUser, deleteOrRestore})(ContainerSideBar));

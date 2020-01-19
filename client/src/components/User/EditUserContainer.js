@@ -14,7 +14,7 @@ const EditUserContainer = (props) =>{
     const [state, dispatch] = useReducer(setState, initialState);
 
      const currUser = user.length > 0 && user.find(el=> el._id === id);
-
+    console.log('currUser: ', currUser);
     useEffect(() => {
         // getParticipantThunk();
         // getUserThunk();
@@ -28,10 +28,10 @@ const EditUserContainer = (props) =>{
                 Password: currUser.password,
             }
         });
-    }, [getParticipantThunk, getUserThunk, currUser.email, id, currUser.password,currUser.lastname,currUser.username, user.length]);
+    }, [  currUser.email, id, currUser.password,currUser.lastname,currUser.username, user.length]);
 
 
-  return  <EditUser {...props} state={state} dispatch={dispatch}  buttonTitle="Edit" onForm="editUser"/>
+  return currUser ? <EditUser {...props} state={state} dispatch={dispatch} currUser={currUser}  buttonTitle="Edit" onForm="editUser"/> : null
 
 };
 

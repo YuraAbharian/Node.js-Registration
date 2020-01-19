@@ -31,6 +31,7 @@ const AdminReducer = (state = initialState, action) => {
             }
         }
         case SET_SELECTED_AREA: {
+            console.log(action.payload)
             return {
                 ...state,
                 selectedArea: action.payload

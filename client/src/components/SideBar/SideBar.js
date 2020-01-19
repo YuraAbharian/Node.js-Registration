@@ -8,6 +8,7 @@ import {WidgetContext} from "../../Context/Context";
 import EditUserContainer from "../User/EditUserContainer";
 import EditParticipantContainer from "../Participant/EditParticipant/EditParticipantContainer";
 import Highlighter from "react-highlight-words";
+import UserContainer from "../User/UserContainer";
 
 const {Sider, Content} = Layout;
 
@@ -24,6 +25,7 @@ const SideBar = (props) => {
         sortedInfo: null,
         data: [],
         loading: false,
+        visible: true,
 
     });
     useEffect(() => {
@@ -55,8 +57,6 @@ const SideBar = (props) => {
             searchedColumn: '',
         });
     };
-
-
     const handleSearch = (selectedKeys, confirm, dataIndex) => {
         confirm();
         setState({
@@ -65,7 +65,6 @@ const SideBar = (props) => {
             searchedColumn: dataIndex,
         });
     };
-
     const handleReset = clearFilters => {
         clearFilters();
         setState({...state, searchText: ''});
@@ -135,8 +134,6 @@ const SideBar = (props) => {
     });
 
 
-
-
     const columns = isParticipant ? newColumns(sortedInfos, getColumnSearchProps) : newColumnsUser(state.show, deleteOrRestore, deleteUser, history);
 
     const newData = isParticipant  ? chooseCurrentRoles(participants, "Participants") :
@@ -146,14 +143,12 @@ const SideBar = (props) => {
         if (e.target.className !== "ant-layout-sider-children") return null;
         setState({...state, collapsed: !state.collapsed});
     };
-
-
-
+    console.log('state: ', state);
     return (
         <Layout className="side-bar__wrapper">
             <Sider collapsible onClick={toggle} collapsed={state.collapsed}>
                 <div className="logo"/>
-                <Menu defaultSelectedKeys={[`${selectedArea}`]} theme="dark" mode="inline">
+                <Menu defaultSelectedKeys={`${selectedArea}`} theme="dark" mode="inline">
                     {isSuperAdminTrue ? <Menu.Item key="1" onClick={() => setState({...state, show: "Users"})}>
                         <Icon type="user"/>
                         <span>Users</span>
@@ -170,20 +165,51 @@ const SideBar = (props) => {
             </Sider>
             <Layout>
 
+                {/*<Route exact path='/menu/applyParticipant/:id' render={() => <EditParticipantContainer/>}/>*/}
+
+                <Route exact path='/menu/editUser/:id' render={() => <EditUserContainer store={state} setState={setState}/>}/>
+                <Route exact path='/menu/applyParticipant/:id' render={() => <EditParticipantContainer store={state} setState={setState}/>}/>
+                <Route exact path='/menu/user' render={() => <UserContainer store={state} setState={setState}/>}/>
                 <Content className="content__wrapper">
-                    <Route exact path='/menu/editUser/:id' render={() => <EditUserContainer/>}/>
-                    <Route exact path='/menu/applyParticipant/:id' render={() => <EditParticipantContainer/>}/>
-                    {state.show && <Table
+
+                    {   isSuperAdmin && <Button onClick={()=>{
+                        setState({
+                            ...state,
+                            show: "Add User",
+                            visible: true,
+                        });
+                        history.push("/menu/user")
+                    }} key="2">Add User</Button> }
+
+
+
+                    {state.show && state.show !== "Add User" && <Table
                         onChange={handleChange}
                         onRow={(record) => {
-                            return isParticipant && {
-                                onClick: event => history.push(`/menu/applyParticipant/${record.key}`), // click row
+                            return isParticipant ?  {
+                                onClick: event =>{
+                                    setState({
+                                        ...state,
+                                        visible: true,
+                                    });
+                                    history.push(`/menu/applyParticipant/${record.key}`)
+                                }, // click row
 
-                            };
+                            } : {
+                                onClick: event =>{
+                                    setState({
+                                        ...state,
+                                        visible: true,
+                                    });
+                                    // history.push(`/menu/applyParticipant/${record.key}`)
+                                }, // click row
+
+                            } ;
                         }}
 
 
                         columns={columns} dataSource={newData}/>}
+
 
                 </Content>
             </Layout>

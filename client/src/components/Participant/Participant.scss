@@ -1,3 +1,11 @@
+.modal__buttons{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
 .form_container {
   display: flex;
   margin: 12.7em auto;
@@ -10,7 +18,7 @@
 
 .login-form {
   margin: 0 auto;
-  width: 50%;
+  width: 80%;
 }
 
 .form_container_header {
@@ -107,4 +115,11 @@
     background: #ff0000d4;
     border: 1px solid red;
   }
+}
+
+.accept{
+  color: green
+}
+.denny{
+  color: red
 }

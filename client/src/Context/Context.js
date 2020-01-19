@@ -6,7 +6,8 @@ import AdminWindow from "../components/Admin/AdminWindow";
 import UserWindow from "../components/User/UserWindow";
 import ThirdWindows from "../components/StepMenu/AuthWindows/ThirdWindows";
 import moment from "moment";
-import Highlighter from "react-highlight-words";
+// import Highlighter from "react-highlight-words";
+import ParticipantWindow from "../components/Participant/EditParticipant/ParticipantWindow";
 
 
 export const WidgetContext = React.createContext();
@@ -72,6 +73,14 @@ const Context = (props) => {
                     ...state, values: null
                 }
             }
+            case "ADD_STATUS": {
+               return {
+                   ...state, values: {
+                       ...state.values,
+                       Status: action.payload
+                   }
+               }
+            }
             default: {
                 return state;
             }
@@ -87,7 +96,7 @@ const Context = (props) => {
         let Component = key ==="Password" ?  <Input.Password
             autoComplete="new-password"
             placeholder={[key.toLowerCase()]}
-            maxLength={21}
+            maxLength={26}
         /> : <Input
                autoComplete="new-password"
                 type={inputType}
@@ -102,16 +111,9 @@ const Context = (props) => {
                 rules: [{
                     // pattern: Val,
                     type: emailValid, message: `The email is not valid. "example@test.com".`,
-                }, {required: true,  message: `Please input your ${key}!`}, { max: 20, message: `Max length of ${key.toLocaleLowerCase()} is 20 characters!`}
+                }, {required: true,  message: `Please input your ${key}!`}, { max:25, message: `Max length of ${key.toLocaleLowerCase()} is 25 characters!`}
                 ]
             })(
-              //  <Input
-             //       autoComplete="new-password"
-             //       type={inputType}
-              //      prefix={<Icon type={key === "Email" ? "google" : key === "Password" ? "eye-invisible" : "user"}
-              //                    style={{color: 'rgba(0,0,0,.25)'}}/>}
-              //      placeholder={[key.toLowerCase()]}
-             //   />,
 
                 Component
                ,
@@ -167,12 +169,24 @@ const Context = (props) => {
             return name === "Birthdate" ? day.isAfter(moment()) :
                 day.isBefore(moment(config.from)) || day.isAfter(moment(config.to).add(1, 'day'))
         };
-        let Component = Components === "RangePicker" ? RangePicker: DatePicker ;
+        let initVal;
+        if(Components === "RangePicker" && state.values.RangePicker && state.values.RangePicker.length > 0 ){
+            initVal =  [state.values[name][0], state.values[name][1]]
+        } else if( Components === "EditRangePicker"){
+            initVal =  [moment.unix(state.values[name][0]), moment.unix(state.values[name][1])]
+        } else if( Components === "EditDatePicker") {
+            initVal = state.values[name] && moment.unix(state.values[name])
+        } else if(Components === "DatePicker") {
+            initVal =   state.values[name] &&  state.values[name]
+        }
+        let Component = name === "Birthdate" ?  DatePicker  : RangePicker ;
 
         return (getFieldDecorator([name], {
-            initialValue: state.values[name] && state.values[name],
+            initialValue: initVal && initVal,
+            // initialValue: state.values[name] && state.values[name],
             rules: [{required: true, message: `Please indicate your ${name}!`}],
         })(<Component
+            // defaultValue={moment('2015/01/01')}
             disabledDate={disabledDates}
             format={dateFormat}
             className={cn(oldStyle, {'has-error': (isTrue)})}
@@ -189,6 +203,7 @@ const Context = (props) => {
     };
 
     const handleSubmit = (e, props, Thunk, dispatch, state, selectedAreaThunk) => {
+
         const isButtonTrue = props.buttonTitle === "Next" || props.buttonTitle === "Previous";
         e.preventDefault();
         props.form.validateFields(async (err, values) => {
@@ -228,6 +243,23 @@ const Context = (props) => {
 
                         return
                     }
+                    // edit participant modal
+                    case "Participant": {
+                        let newValue = { ...values };
+                        newValue.RangePicker = [ newValue.RangePicker[0].unix(), newValue.RangePicker[1].unix()];
+                        newValue.Birthdate =  newValue.Birthdate.unix();
+                        const response = await Thunk({...state.values, ...newValue},  state.values.Status);
+
+                        if (typeof response === "string") {
+                            dispatch({type: "RESET_VALUES"});
+                        } else {
+                            // message.success("qqqqqq");
+                            selectedAreaThunk(2);
+                            props.history.push("/menu")
+                        }
+
+                        return
+                    }
 
                     case "Edit": {
 
@@ -236,7 +268,7 @@ const Context = (props) => {
                         const response = state.values && await Thunk({...toLowerCase, _id: state.values._id});
 
                         if (typeof response === "string") {
-
+                                return
                             // dispatch({type: "RESET_VALUES"});
                         } else if (typeof response !== "string") {
 
@@ -262,7 +294,6 @@ const Context = (props) => {
 
                 return;
             }
-
 
             isButtonTrue && onSendButtonHandler(props.buttonTitle, props.done);
 
@@ -290,6 +321,7 @@ const Context = (props) => {
         const isPrevious = props.buttonTitle === "Previous";
         const isNext = props.buttonTitle === "Next";
         const isEditUser = props.onForm === "editUser";
+        const isEditParticipant = props.onForm === "editParticipant";
 
         const switchCaser = () => {
             switch (props.onForm) {
@@ -321,6 +353,11 @@ const Context = (props) => {
                     return <UserWindow headerModify={headerModify} buttonTitle="Edit" ParticipantThunk={currentThunk} state={state}
                                        getFieldDecorator={props.form.getFieldDecorator}/>
                 }
+                case "editParticipant": {
+
+                    return  <ParticipantWindow {...props} dispatch={dispatch} config={props.config} buttonTitle="Participant" ParticipantThunk={currentThunk} state={state}
+                                               getFieldDecorator={props.form.getFieldDecorator}/>
+                }
                 default: {
 
                 }
@@ -345,6 +382,20 @@ const Context = (props) => {
                     {
                         isEditUser ? formButton(props, '', null) : null
                     }
+
+                  {  isEditParticipant && <div className="modal__buttons">
+                      <Button htmlType="submit"  key={"approve"}
+                              onClick={()=>dispatch({type: "ADD_STATUS", payload:"Approve" })}
+                              className="approve">Approve
+                      </Button>
+                      <Button type="primary"
+                              onClick={()=>dispatch({type: "ADD_STATUS", payload:"Decline" })}
+                              className="decline" htmlType="submit"  loading={props.store.loading} key="decline">
+                          Decline
+                      </Button>
+                  </div> }
+
+
                 </div>
             </Form.Item>
         </Form>)
@@ -454,6 +505,7 @@ const Context = (props) => {
     ];
 
     const newColumnsUser = (name, func, delFunc, history) => {
+
         return [
             {
                 title: 'Fullname',
@@ -475,20 +527,32 @@ const Context = (props) => {
                         <span>
                <Button onClick={() => history.push(`/menu/editUser/${el.key}`)}>Edit</Button>
                <Divider type="vertical"/>
-               <Button className="decline" onClick={() => func(el.key, true)}>Delete</Button>
+               <Button className="decline" onClick={(e) =>{
+                   e.stopPropagation();
+                   func(el.key, true)
+               }}>Delete</Button>
              </span>
                     ) : (
                         <span>
-               <Button className="approve" onClick={() => func(el.key, null)}>Restore</Button>
+               <Button className="approve" onClick={(e) =>{
+                   e.stopPropagation()
+                   func(el.key, null)
+               }}>Restore</Button>
                   <Divider type="vertical"/>
-                 <Button className="decline" onClick={() => delFunc(el.key)}>Delete</Button>
+                 <Button className="decline" onClick={(e) =>{
+                     e.stopPropagation()
+                     delFunc(el.key)
+                 }}>Delete</Button>
              </span>
                     );
                 }
             },
         ]
     };
-    const filterHandler = (array, bool) => array.filter(el => el.isDeleted === bool);
+    const filterHandler = (array, bool) =>{
+       const newArr = array.filter(el=> el.email !== "superAdmin@test.com");
+       return newArr.filter(el => el.isDeleted === bool)
+    };
     const chooseCurrentRoles = (arr, name) => {
 
         const isTrue = name === "Participants";
@@ -522,7 +586,7 @@ const Context = (props) => {
 
     const onClickHandler=(props, num)=>{
         props.selectedAreaThunk(num);
-        props.history.push("/menu");
+        // props.history.push("/menu");
     };
 
     const onEscapePress=(Callback, Effect, props, num)=>{

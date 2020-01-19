@@ -1,6 +1,7 @@
 import express from 'express';
 import  Participant  from "../Collections/ParticipantsCollections";
 import {getAllDatas, mailSender, registerHandler} from "../helper/helper";
+import User from "../Collections/UserCollections";
 const router = new express.Router();
 
 
@@ -10,16 +11,17 @@ router.post("/apply", registerHandler(Participant, "participant" ));
 router.get("/getParticipant",getAllDatas(Participant));
 
 router.put("/changeStatus",async (req, res)=>{
-    const { id, status } = req.body;
-
-    const participant = await Participant.findByIdAndUpdate({  _id: id });
-
-
-    participant.Status = status;
-    mailSender(status, participant);
-    participant.save();
-    res.status(200).send(participant);
+    const { obj, status } = req.body;
+    console.log('obj: ', obj);
+    const participant = await Participant.findByIdAndUpdate({  _id: obj._id }, { $set: obj});
+   try {
+       // await mailSender(status,await participant);
+       await res.status(200).send({statusCode:0, message: "Updated"})
+   }catch (e) {
+       res.status(200).send({err: e.message, statusCode: 1})
+   }
 
 });
+
 
 export default router;

@@ -4,7 +4,7 @@ export const registerHandler=( Collection, name )=>  async (req, res) => {
     const { email } = req.body;
 
     let newName = name;
-        if(name==='admin'){
+        if(name==='admin' || name ==="user"){
                 switch (email) {
                     case "superAdmin@test.com":{
                          req.body.isSuperAdmin = true;
@@ -15,7 +15,7 @@ export const registerHandler=( Collection, name )=>  async (req, res) => {
                     }
                 }
         }
-        // if(name ==="user" && req.user.email !=="superAdmin@test.com" ) throw new Error("Only Super Admin can work with USERS!")
+
         [newName] =  [new Collection(await req.body)];
 
         try {
@@ -76,5 +76,5 @@ export const mailSender=async (key, obj) =>{
         // html:key === "Approve" ? '<strong>Welcome to the conference in Kiev</strong>' : '<strong>We hope to see you there next time</strong>',
     };
 
-   await sgMail.send(msg);
+   // await sgMail.send(msg);
 };
