@@ -6,6 +6,7 @@ import {
 } from "./types";
 import {requestHttp} from "../api/api";
 import {message} from "antd";
+// import * as moment from "moment";
 
 export const setNewError = (err) => async dispatch => {
 
@@ -23,6 +24,7 @@ export const ParticipantThunk = (data) => async dispatch => {
     };
 
     const res = await requestHttp.apply(newData);
+    console.log("res.data.statusCode: ", res.data.statusCode);
 
     switch (res.data.statusCode) {
         case 0: {
@@ -44,31 +46,7 @@ export const getParticipantThunk = () => async dispatch => {
     const res = await requestHttp.getParticipant();
     dispatch({type: GET_PARTICIPANT, payload: res.data});
 };
-//
-// export const LoginAdminThunk = (data, type ) => async dispatch => {
 
-//     if(type) return dispatch({type: ADMIN_LOGIN, payload: data });
-
-//     const res = await requestHttp.logIn(data);
-
-//     switch (res.data.statusCode) {
-//         case 0: {
-//             const { isSuperAdmin, isAdmin, _id, } =res.data.info;
-//             localStorage.setItem('isSuperAdmin',isSuperAdmin );
-//             localStorage.setItem('isAdmin', isAdmin );
-//             localStorage.setItem('id',_id );
-//             dispatch({type: SET_ADMIN_ERROR, payload: null});
-//             dispatch({type: ADMIN_LOGIN, payload: res.data.info });
-//             return
-//         }
-//         case 1 :{
-//             // dispatch({ type: "SET_ERR", payload: res.data.message});
-//             message.error(res.data.message);
-//             return res.data.message
-//         }
-//         default: return
-//     }
-// };
 export const addNewUserThunk = (data) => async dispatch => {
     const res = await requestHttp.addUser(data);
     switch (res.data.statusCode) {
@@ -77,6 +55,7 @@ export const addNewUserThunk = (data) => async dispatch => {
             return
         }
         case 1 : {
+
             message.error("User with this email is already exist");
             return "User with this email is already exist"
         }
@@ -92,10 +71,14 @@ export const getUserThunk = () => async dispatch => {
 };
 export const deleteOrRestore = (id, isDeleted) => async (dispatch) => {
     await requestHttp.removeOrRestore(id, isDeleted);
+    isDeleted  && message.error("User has been moved to Bin!");
+    !isDeleted  && message.success("User has been restored!");
+
     dispatch({type: DELETE_USER, payload: {id, isDeleted}})
 };
 export const deleteUser = (id) => async (dispatch) => {
     await requestHttp.deleteUser(id);
+    message.error("User has been removed!");
     dispatch({type: REMOVE_USER, payload: id})
 };
 export const UpdateUser = (obj) => async dispatch => {
@@ -120,7 +103,14 @@ export const UpdateUser = (obj) => async dispatch => {
 // changeStatus
 export const changeStatusThunk = (obj, status) => async dispatch => {
 
-    await requestHttp.changeStatus(obj, status);
+
+    const res = await requestHttp.changeStatus(obj, status);
+    if(await res.data.old) {
+        message.success("Participant has been updated");
+    } else if(await !res.data.old){
+        message.success(`Changed participant status to: ${status}`);
+    }
+
     dispatch({type: CHANGE_STATUS, payload: {obj, status}});
 };
 // logOut
@@ -137,9 +127,25 @@ export const getConfig = () => async dispatch => {
 };
 
 
-export const newVerifyThunk = () => async dispatch => {
+export const newVerifyThunk = (location,history) => async dispatch => {
     const res = await requestHttp.verify();
-    dispatch({type: ADMIN_LOGIN, payload: res.data.user});
+
+    // console.log("location: ", location.pathname === '/menu' && history.push("/"));
+    switch (res.data.statusCode) {
+
+        case 1: {
+
+            if (location.pathname === '/menu') return history.push("/");
+            break
+
+        }
+        default:{
+            dispatch({type: ADMIN_LOGIN, payload: res.data.user});
+        }
+
+    }
+
+
 };
 
 export const LoginAdminThunk = (data, type) => async dispatch => {

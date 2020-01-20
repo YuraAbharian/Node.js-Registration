@@ -23,16 +23,13 @@ const EditParticipantContainer = (props) => {
     const {_id,Status,  RangePicker,Company ,Position,Role, Gender, Birthdate,CountryPicker,Username,Lastname, Email } = currParticipant;
 
     useEffect(() => {
-        // getParticipantThunk();
-        // getUserThunk();
-        // getConfig()
         participants.length > 0 && dispatch({
             type: "SET_VALUES",
             payload: {
                 _id ,RangePicker,Birthdate, Company ,Position,Role, Gender, CountryPicker,Username,Lastname, Email,Status
             }
         });
-    }, [participants.length,  _id, Status, RangePicker,Company ,Position,Role, Gender, Birthdate,CountryPicker,Username,Lastname, Email]);
+    }, [participants.length, _id, Status, RangePicker,Company ,Position,Role, Gender, Birthdate,CountryPicker,Username,Lastname, Email]);
 
 
 

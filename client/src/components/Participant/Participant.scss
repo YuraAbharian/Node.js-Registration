@@ -1,7 +1,10 @@
 .modal__buttons{
   display: flex;
-  align-items: center;
-  justify-content: center;
+  justify-content: space-around;
+  button{
+      min-width: 6rem;
+      border: none;
+  }
 }
 
 
@@ -83,7 +86,7 @@
 
 .participantEdit{
   width: 420px;
-  margin: 13em auto;
+  //margin: 13em auto;
 }
 
 .divider{
@@ -116,6 +119,16 @@
     border: 1px solid red;
   }
 }
+.editButton{
+  color: white;
+  background: rgba(25, 72, 255, 0.2);
+
+  &:hover{
+    color: white;
+    background: rgba(25, 72, 255, 0.64);
+
+  }
+}
 
 .accept{
   color: green
@@ -123,3 +136,4 @@
 .denny{
   color: red
 }
+

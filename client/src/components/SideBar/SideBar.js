@@ -13,7 +13,7 @@ import UserContainer from "../User/UserContainer";
 const {Sider, Content} = Layout;
 
 const SideBar = (props) => {
-    const {participant: {participants}, admin: {selectedArea, isSuperAdmin}, user: {user}, deleteOrRestore, deleteUser, history} = props;
+    const {participant: {participants}, admin: {selectedArea,isAdmin, isSuperAdmin}, user: {user}, deleteOrRestore, deleteUser, history} = props;
 
 
     const { chooseCurrentRoles, newColumns, newColumnsUser } = useContext(WidgetContext);
@@ -143,7 +143,6 @@ const SideBar = (props) => {
         if (e.target.className !== "ant-layout-sider-children") return null;
         setState({...state, collapsed: !state.collapsed});
     };
-    console.log('state: ', state);
     return (
         <Layout className="side-bar__wrapper">
             <Sider collapsible onClick={toggle} collapsed={state.collapsed}>
@@ -153,10 +152,10 @@ const SideBar = (props) => {
                         <Icon type="user"/>
                         <span>Users</span>
                     </Menu.Item> : null}
-                    <Menu.Item key="2" onClick={() => setState({...state, show: "Participants"})}>
+                 { isSuperAdminTrue || isAdmin ?  <Menu.Item key="2" onClick={() => setState({...state, show: "Participants"})}>
                         <Icon type="qq"/>
                         <span>Participants</span>
-                    </Menu.Item>
+                    </Menu.Item>:null}
                     {isSuperAdminTrue ? <Menu.Item key="3" onClick={() => setState({...state, show: "Bin"})}>
                         <Icon type="rest"/>
                         <span>Bin</span>
@@ -172,14 +171,17 @@ const SideBar = (props) => {
                 <Route exact path='/menu/user' render={() => <UserContainer store={state} setState={setState}/>}/>
                 <Content className="content__wrapper">
 
-                    {   isSuperAdmin && <Button onClick={()=>{
+                    {   isSuperAdmin && state.show === "Users" && <Button
+                        className="add__user__button"
+                        onClick={()=>{
                         setState({
                             ...state,
-                            show: "Add User",
+                            // show: "Users",
                             visible: true,
                         });
                         history.push("/menu/user")
-                    }} key="2">Add User</Button> }
+                    }} key="2">Add User</Button>
+                    }
 
 
 
@@ -206,11 +208,7 @@ const SideBar = (props) => {
 
                             } ;
                         }}
-
-
                         columns={columns} dataSource={newData}/>}
-
-
                 </Content>
             </Layout>
         </Layout>

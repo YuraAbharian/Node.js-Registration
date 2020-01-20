@@ -6,15 +6,12 @@ import {withRouter} from "react-router-dom";
 
 const ContainerSideBar = (props) => {
 
-    const { getParticipantThunk, getUserThunk, admin:{isSuperAdmin,isAdmin }, history} = props;
+    const { getParticipantThunk, getUserThunk} = props;
 
     useEffect(() => {
         getParticipantThunk();
         getUserThunk();
-
-        (isSuperAdmin || isAdmin ?  history.push("/menu") :   history.push("/"))
-
-    }, [isSuperAdmin, isAdmin]);
+    }, []);
 
 
 

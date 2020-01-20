@@ -6,18 +6,16 @@ import {getConfig, newVerifyThunk, logOut} from "../../Redux/actions";
 
 const HeaderContainer = (props) => {
 
-const { newVerifyThunk, admin:{isSuperAdmin, isAdmin }, history , getConfig } = props;
+const { newVerifyThunk,  history, location , getConfig } = props;
     useEffect(()=>{
 
-        newVerifyThunk();
+        newVerifyThunk(location,history);
         getConfig();
 
-   // if( isSuperAdmin || isAdmin ){
-   //          // history.push("/menu")
-   //      }
 
-    },[isSuperAdmin,isAdmin ]);
-    // },[LoginAdminThunk,history]);
+
+    },[]);
+
 
 
     return   <Header {...props}/>

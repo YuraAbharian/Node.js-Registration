@@ -4,7 +4,8 @@
   .content__wrapper {
 
     margin: 24px 16px;
-    padding: 24px;
+    /*padding: 24px;*/
+    padding: 10px 24px 24px 24px;
     background: #fff;
     min-height: 280px;
 
@@ -47,4 +48,21 @@
   color: white;
   background: #ff0000d4;
   border: 1px solid red;
+}
+
+
+
+
+.add__user__button{
+  margin-bottom: 0.7em;
+  color: white;
+  background: rgba(0, 128, 0, 0.45);
+
+
+}
+.add__user__button:hover{
+  color: white;
+  background: rgba(0, 128, 0, 0.84);
+  border: 1px solid green;
+
 }

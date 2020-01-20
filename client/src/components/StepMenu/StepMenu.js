@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import "./StepMenu.css";
 import {Steps, message} from 'antd';
-import AuthContainer from "../Participant/AuthContainer";
+import AuthContainer from "../Participant/ParticipantContainer";
 
 
 const {Step} = Steps;

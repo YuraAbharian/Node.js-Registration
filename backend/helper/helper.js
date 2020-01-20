@@ -1,8 +1,9 @@
 import sgMail from '@sendgrid/mail';
-// register user/ participant / admin
+
 export const registerHandler=( Collection, name )=>  async (req, res) => {
     const { email } = req.body;
 
+    console.log("email: ",await email);
     let newName = name;
         if(name==='admin' || name ==="user"){
                 switch (email) {
@@ -15,6 +16,8 @@ export const registerHandler=( Collection, name )=>  async (req, res) => {
                     }
                 }
         }
+
+
 
         [newName] =  [new Collection(await req.body)];
 
@@ -43,7 +46,6 @@ export const registerHandler=( Collection, name )=>  async (req, res) => {
 export const getAllDatas =(Collection)=>   async (req, res) => {
 
     const data = await Collection.find();
-
     res.status(200).send(data)
 
 };
@@ -54,6 +56,7 @@ export const deleteOrRestore =(Collection)=>async (req, res)=>{
     try {
         const obj = await Collection.findByIdAndUpdate(id);
         obj.isDeleted = isDeleted;
+
         obj.save();
         res.status(200).send(obj)
     } catch (e) {
@@ -65,16 +68,17 @@ export const deleteOrRestore =(Collection)=>async (req, res)=>{
 
 export const mailSender=async (key, obj) =>{
 
-    sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+   sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
     const msg = {
         to: obj.Email,
-        from: 'cook20091@gmail.com',
+        from: 't3rminator2000@yandex.ru',
+        // from: 'cook20091@gmail.com',
         // from: 'cook55@yandex.ru',
         subject: 'JAVASCRIPT FEST',
-        text:  key === "Approve" ? `Dear ${obj.Username + ' ' +obj.Lastname} your ticket has been Approved. See you at conference! Best regards`: `Dear ${obj.Username + ' ' +obj.Lastname} sorry but we Decline your ticket.  Best regards`,
+        text:  key === "Approved" ? `Dear ${obj.Username + ' ' +obj.Lastname} your ticket has been Approved. See you at conference! Best regards`: `Dear ${obj.Username + ' ' +obj.Lastname} sorry but we Decline your ticket.  Best regards`,
         // html:key === "Approve" ? '<strong>Welcome to the conference in Kiev</strong>' : '<strong>We hope to see you there next time</strong>',
     };
 
-   // await sgMail.send(msg);
+   await sgMail.send(msg);
 };

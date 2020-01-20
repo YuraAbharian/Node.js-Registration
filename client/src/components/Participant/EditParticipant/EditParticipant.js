@@ -42,7 +42,7 @@ const EditParticipant = (props) => {
 
             >
 
-                {fromCreator(props, props.dispatch, props.state, props.changeStatusThunk , props.selectedAreaThunk   )}
+                {fromCreator(props, props.dispatch, props.state, props.changeStatusThunk , props.selectedAreaThunk )}
             </Modal>
         </div>) : null
 };

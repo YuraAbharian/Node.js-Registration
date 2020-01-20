@@ -9,12 +9,12 @@ import {WidgetContext} from "../../Context/Context";
 const EditUserContainer = (props) =>{
 
     const { initialState, setState} = useContext(WidgetContext);
-    const {getUserThunk,getParticipantThunk, match:{params:{id}}, user } = props;
+    const {  match:{params:{id}}, user } = props;
 
     const [state, dispatch] = useReducer(setState, initialState);
 
      const currUser = user.length > 0 && user.find(el=> el._id === id);
-    console.log('currUser: ', currUser);
+
     useEffect(() => {
         // getParticipantThunk();
         // getUserThunk();

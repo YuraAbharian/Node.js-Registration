@@ -1,6 +1,6 @@
 import React, {useCallback, useEffect,useContext, useReducer} from 'react';
 // import {fromCreator, initialState, setState} from "../../functions";
-import {Card, Form, Icon, Modal} from "antd";
+import { Form,  Modal} from "antd";
 import "./User.css";
 import {compose} from "redux";
 import {withRouter} from "react-router-dom";
@@ -10,7 +10,7 @@ const User = (props) => {
 
     const { initialState, setState, fromCreator, onEscapePress, onClickHandler } = useContext(WidgetContext);
     const [state, dispatch] = useReducer(setState, initialState);
-    console.log('state: ', state);
+
     onEscapePress(useCallback, useEffect, props, 1);
     return (
 
@@ -28,7 +28,7 @@ const User = (props) => {
             onClickHandler(props, 1);
             props.setState({
                 ...props.store,
-                show: "Add User",
+                show: "Users",
                 visible: false,
             });
             props.history.push("/menu")

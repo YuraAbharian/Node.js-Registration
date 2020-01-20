@@ -19,7 +19,7 @@ router.post("/addUser", authMiddleware,async (req, res)=>{
                 }
             }
       const newAdmin = await new Auth(await  req.body);
-      console.log('newAdmin: ', newAdmin);
+
     try {
         const data = {
             newAdmin,
@@ -56,7 +56,7 @@ router.delete("/deleteUser/:id",authMiddleware, async (req, res)=>{
 
 router.put("/update",authMiddleware, async (req, res)=>{
       const { obj } = req.body;
-    if( req.user.email !=="superAdmin@test.com" ) throw new Error("Only Super Admin can work with USERS!")
+    if( req.user.email !=="superAdmin@test.com" ) throw new Error("Only Super Admin can work with USERS!");
 
      try {
          await Auth.updateOne({  _id: obj._id }, obj);

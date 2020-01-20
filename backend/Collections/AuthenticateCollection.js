@@ -54,6 +54,7 @@ newAuth.methods.toJSON = function () {
     const userPrivat = user.toObject();
 
     // delete userPrivat.password;
+    // userPrivat.password = await bcrypt.compare(userPrivat.password, user.password);
     delete userPrivat.tokens;
     // delete userPrivat.email;
 
@@ -80,21 +81,25 @@ newAuth.statics.findByCredentials = async (email, password) => {
     if (!user) {
         throw new Error('Unable to login')
     }
-    const isMatch = await bcrypt.compare(password, user.password);
 
+    // const isMatch = await bcrypt.compare(password, user.password);
+
+    const isMatch = user.password === password;
+    //
     if (!isMatch) {
         throw new Error('Unable to login')
     }
     return user;
 };
 
-newAuth.pre('save', async function (next) {
-    const user = this;
-    if (user.isModified('password')) {
-        user.password = await bcrypt.hash(user.password, 8);
-    }
-    next();
-});
+// newAuth.pre('save', async function (next) {
+//     const user = this;
+//     if (user.isModified('password')) {
+//         user.password = await bcrypt.hash(user.password, 8);
+//
+//     }
+//     next();
+// });
 
 const Auth = mongoose.model('Auth', newAuth);
 export default Auth;

@@ -7,8 +7,9 @@ const initialState = {
 const userReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_USER :{
+
             return {
-                ...state, user: [...state.user, action.payload]
+                ...state, user: [...state.user, action.payload.data.newAdmin]
             }
         }
         case GET_USER :{
@@ -28,12 +29,7 @@ const userReducer = (state = initialState, action) => {
             }
         }
         case EDIT_USER :{
-            // user: state.user.map(el=>{
-            //     if(el._id === action.payload._id){
-            //         return action.payload
-            //     }
-            //     return el
-            // })
+
             return {
                 ...state, user: state.user.map(el=>{
                   if(el._id === action.payload._id){

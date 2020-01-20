@@ -246,6 +246,7 @@ const Context = (props) => {
                     // edit participant modal
                     case "Participant": {
                         let newValue = { ...values };
+
                         newValue.RangePicker = [ newValue.RangePicker[0].unix(), newValue.RangePicker[1].unix()];
                         newValue.Birthdate =  newValue.Birthdate.unix();
                         const response = await Thunk({...state.values, ...newValue},  state.values.Status);
@@ -363,6 +364,9 @@ const Context = (props) => {
                 }
             }
         };
+        const isApproved =  props.currParticipant && props.currParticipant.Status === "Approved";
+        const isDeclined =  props.currParticipant && props.currParticipant.Status === "Declined";
+            // console.log("props: ", props.currParticipant.Status);
 
         return (<Form onSubmit={(e) => handleSubmit(e, props, currentThunk, dispatch, state, selectedAreaThunk)}
                       className={`login-form ${ modify }` }>
@@ -383,17 +387,27 @@ const Context = (props) => {
                         isEditUser ? formButton(props, '', null) : null
                     }
 
-                  {  isEditParticipant && <div className="modal__buttons">
-                      <Button htmlType="submit"  key={"approve"}
-                              onClick={()=>dispatch({type: "ADD_STATUS", payload:"Approve" })}
-                              className="approve">Approve
-                      </Button>
-                      <Button type="primary"
-                              onClick={()=>dispatch({type: "ADD_STATUS", payload:"Decline" })}
-                              className="decline" htmlType="submit"  loading={props.store.loading} key="decline">
-                          Decline
-                      </Button>
-                  </div> }
+                  {  isEditParticipant &&
+                      <div className="modal__buttons">
+                          <Button htmlType="submit" key={"editParticipant"}
+                                  className="editButton"
+                          >Edit
+                          </Button>
+                          <Button htmlType="submit" key={"approve"}
+                                  onClick={() => dispatch({type: "ADD_STATUS", payload: "Approved"})}
+                                  className="approve"
+                                  disabled={isApproved}
+                          >Approve
+                          </Button>
+                          <Button type="primary"
+                                  onClick={() => dispatch({type: "ADD_STATUS", payload: "Declined"})}
+                                  className="decline" htmlType="submit" loading={props.store.loading} key="decline"
+                                  disabled={isDeclined}
+                          >
+                              Decline
+                          </Button>
+                      </div>
+                  }
 
 
                 </div>
@@ -419,7 +433,10 @@ const Context = (props) => {
             title: 'Company',
             dataIndex: 'company',
             key: 'company',
-            sorter: (a, b) => a.company.localeCompare(b.company),
+            sorter: (a, b) => {
+
+                return  a.company && a.company.localeCompare(b.company)
+            },
             // a.company.length - b.company.length,
             sortOrder: sortedInfo.columnKey === 'company' && sortedInfo.order,
 
@@ -430,7 +447,7 @@ const Context = (props) => {
             title: 'Position',
             dataIndex: 'position',
             key: 'position',
-            sorter: (a, b) => a.position.localeCompare(b.position),
+            sorter: (a, b) => a.position && a.position.localeCompare(b.position),
             // a.company.length - b.company.length,
             sortOrder: sortedInfo.columnKey === 'position' && sortedInfo.order,
             ellipsis: true
@@ -439,7 +456,7 @@ const Context = (props) => {
             title: 'Email',
             dataIndex: 'email',
             key: 'email',
-            sorter: (a, b) => a.email.localeCompare(b.email),
+            sorter: (a, b) =>  a.email && a.email.localeCompare(b.email),
             // a.company.length - b.company.length,
             sortOrder: sortedInfo.columnKey === 'email' && sortedInfo.order,
             ...getColumnSearchProps("email"),
@@ -450,7 +467,7 @@ const Context = (props) => {
             title: 'Country',
             dataIndex: 'country',
             key: 'country',
-            sorter: (a, b) => a.country.localeCompare(b.country),
+            sorter: (a, b) =>a.country && a.country.localeCompare(b.country),
             // a.company.length - b.company.length,
             sortOrder: sortedInfo.columnKey === 'country' && sortedInfo.order,
             ellipsis: true
@@ -459,7 +476,8 @@ const Context = (props) => {
             title: 'Registration date',
             dataIndex: 'registration',
             key: 'registration',
-            sorter: (a, b) => moment((new Date(a.registration))).unix() - moment(new Date(b.registration)).unix(),
+            sorter: (a, b) => moment((new Date(a.registration))).unix() - moment(new Date(b.registration)).unix()
+            ,
             sortOrder: sortedInfo.columnKey === 'registration' && sortedInfo.order,
             ellipsis: true
 
@@ -473,16 +491,16 @@ const Context = (props) => {
                     value: 'New',
                 },
                 {
-                    text: 'Approve',
-                    value: 'Approve',
+                    text: 'Approved',
+                    value: 'Approved',
                 },
                 {
-                    text: 'Decline',
-                    value: 'Decline',
+                    text: 'Declined',
+                    value: 'Declined',
                 }
             ],
             dataIndex: 'tags',
-            sorter: (a, b) => a.tags[0].localeCompare(b.tags[0]),
+            sorter: (a, b) => a.tags && a.tags[0].localeCompare(b.tags[0]),
             // ,
 
             sortOrder: sortedInfo.columnKey === 'tags' && sortedInfo.order,
@@ -491,8 +509,8 @@ const Context = (props) => {
             render: tags => (
                 <span>
           {tags.map(tag => {
-              let newTag = tag ? tag : 'new';
-              let color = newTag === "New" ? 'geekblue' : tag === "Approve" ? 'green' : tag === "Decline" ? 'volcano' : null;
+              let newTag = tag ? tag : 'New';
+              let color = newTag === "New" ? 'geekblue' : tag === "Approved" ? 'green' : tag === "Declined" ? 'volcano' : null;
               return (
                   <Tag color={color} key={newTag}>
                       {newTag.toUpperCase()}
@@ -535,12 +553,12 @@ const Context = (props) => {
                     ) : (
                         <span>
                <Button className="approve" onClick={(e) =>{
-                   e.stopPropagation()
+                   e.stopPropagation();
                    func(el.key, null)
                }}>Restore</Button>
                   <Divider type="vertical"/>
                  <Button className="decline" onClick={(e) =>{
-                     e.stopPropagation()
+                     e.stopPropagation();
                      delFunc(el.key)
                  }}>Delete</Button>
              </span>
@@ -586,7 +604,7 @@ const Context = (props) => {
 
     const onClickHandler=(props, num)=>{
         props.selectedAreaThunk(num);
-        // props.history.push("/menu");
+        props.history.push("/menu");
     };
 
     const onEscapePress=(Callback, Effect, props, num)=>{
@@ -606,65 +624,6 @@ const Context = (props) => {
             };
           }, []);
     };
- // column search func
- //    let searchInput;
- //    const columnsSearchProps =(handleReset, handleSearch, state )=>{
- //
- //
- //
- //        const getColumnSearchProps = (dataIndex) => ({
- //            filterDropdown: ({setSelectedKeys, selectedKeys, confirm, clearFilters}) => (
- //                <div style={{padding: 8}}>
- //                    <Input
- //                        ref={node => {
- //                            searchInput = node;
- //                        }}
- //                        placeholder={`Search ${dataIndex}`}
- //                        value={selectedKeys[0]}
- //                        onChange={e => setSelectedKeys(e.target.value ? [e.target.value] : [])}
- //                        onPressEnter={() => handleSearch(selectedKeys, confirm, dataIndex)}
- //                        style={{width: 188, marginBottom: 8, display: 'block'}}
- //                    />
- //                    <Button
- //                        type="primary"
- //                        onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
- //                        icon="search"
- //                        size="small"
- //                        style={{width: 90, marginRight: 8}}
- //                    >
- //                        Search
- //                    </Button>
- //                    <Button onClick={() => handleReset(clearFilters)} size="small" style={{width: 90}}>
- //                        Reset
- //                    </Button>
- //                </div>
- //            ),
- //            filterIcon: filtered => (
- //                <Icon type="search" style={{color: filtered ? '#1890ff' : undefined}}/>
- //            ),
- //            onFilter: (value, record) =>
- //                record[dataIndex]
- //                    .toString()
- //                    .toLowerCase()
- //                    .includes(value.toLowerCase()),
- //            onFilterDropdownVisibleChange: visible => {
- //                if (visible) {
- //                    setTimeout(() => searchInput.select());
- //                }
- //            },
- //            render: text =>
- //                state.searchedColumn === dataIndex ? (
- //                    <Highlighter
- //                        highlightStyle={{backgroundColor: '#ffc069', padding: 0}}
- //                        searchWords={[state.searchText]}
- //                        autoEscape
- //                        textToHighlight={text.toString()}
- //                    />
- //                ) : (
- //                    text
- //                ),
- //        });
- //    };
 
     return (
         <WidgetContext.Provider value={{
