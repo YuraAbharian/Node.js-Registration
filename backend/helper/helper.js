@@ -15,9 +15,7 @@ export const registerHandler=( Collection, name )=>  async (req, res) => {
                          req.body.isAdmin = true
                     }
                 }
-        }
-
-
+        } 
 
         [newName] =  [new Collection(await req.body)];
 
