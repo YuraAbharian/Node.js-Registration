@@ -25,15 +25,17 @@ router.post("/register", authMiddleware, registerHandler (Auth, "admin" ));
 router.post("/admin", async (req, res) => {
     const { email, password } = await req.body;
 
-    const admin = await Auth.findByCredentials(email, password);
 
-    if(admin. isDeleted){
-        const data = { message:"You have been temporarily blocked", statusCode: 1 };
-        res.status(200).send(data);
-        return
-    }
 
     try{
+        const admin = await Auth.findByCredentials(email, password);
+
+        if(admin.isDeleted){
+
+            const data = { message:"You have been temporarily blocked", statusCode: 1 };
+            res.status(200).send(data);
+            return
+        }
 
         const token = await admin.generateAuthToken();
 

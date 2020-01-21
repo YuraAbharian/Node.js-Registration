@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback, useContext } from 'react';
+import React, { useEffect, useCallback, useContext, useState } from 'react';
 import {    Form, Modal} from "antd";
 import "../Participant.css";
 // import moment from "moment"
@@ -8,7 +8,7 @@ import {withRouter} from "react-router-dom";
 
 
 const EditParticipant = (props) => {
-
+const [show, setShow] = useState(false);
     const {currParticipant, setState,store} = props;
 
     const { onEscapePress, onClickHandler,fromCreator} = useContext(WidgetContext);
@@ -42,7 +42,7 @@ const EditParticipant = (props) => {
 
             >
 
-                {fromCreator(props, props.dispatch, props.state, props.changeStatusThunk , props.selectedAreaThunk )}
+                {fromCreator(props, props.dispatch, props.state, props.changeStatusThunk , props.selectedAreaThunk ,'','',show, setShow)}
             </Modal>
         </div>) : null
 };

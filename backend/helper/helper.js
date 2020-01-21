@@ -3,7 +3,7 @@ import sgMail from '@sendgrid/mail';
 export const registerHandler=( Collection, name )=>  async (req, res) => {
     const { email } = req.body;
 
-    console.log("email: ",await email);
+
     let newName = name;
         if(name==='admin' || name ==="user"){
                 switch (email) {
@@ -15,7 +15,7 @@ export const registerHandler=( Collection, name )=>  async (req, res) => {
                          req.body.isAdmin = true
                     }
                 }
-        } 
+        }
 
         [newName] =  [new Collection(await req.body)];
 

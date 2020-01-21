@@ -34,7 +34,8 @@ const Context = (props) => {
                 errors: []
             }
         },
-        values: null
+        values: null,
+        disableButtons: true
     };
 
     // reducers
@@ -79,6 +80,12 @@ const Context = (props) => {
                        ...state.values,
                        Status: action.payload
                    }
+               }
+            }
+            case "DISABLE": {
+               return {
+                   ...state,
+                   disableButtons: action.payload
                }
             }
             default: {
@@ -317,7 +324,7 @@ const Context = (props) => {
             </Button>)
     };
     // form creator
-    const fromCreator = (props, dispatch, state, currentThunk, selectedAreaThunk , modify,headerModify) => {
+    const fromCreator = (props, dispatch, state, currentThunk, selectedAreaThunk , modify,headerModify, ) => {
 
         const isPrevious = props.buttonTitle === "Previous";
         const isNext = props.buttonTitle === "Next";
@@ -364,8 +371,8 @@ const Context = (props) => {
                 }
             }
         };
-        const isApproved =  props.currParticipant && props.currParticipant.Status === "Approved";
-        const isDeclined =  props.currParticipant && props.currParticipant.Status === "Declined";
+        const isApproved = props.currParticipant && props.state.disableButtons &&   props.currParticipant.Status === "Approved";
+        const isDeclined =props.currParticipant && props.state.disableButtons &&  props.currParticipant.Status === "Declined";
             // console.log("props: ", props.currParticipant.Status);
 
         return (<Form onSubmit={(e) => handleSubmit(e, props, currentThunk, dispatch, state, selectedAreaThunk)}
@@ -394,13 +401,26 @@ const Context = (props) => {
                           >Edit
                           </Button>
                           <Button htmlType="submit" key={"approve"}
-                                  onClick={() => dispatch({type: "ADD_STATUS", payload: "Approved"})}
+                                  onClick={() => {
+
+                                      dispatch({
+                                          type: "ADD_STATUS", payload: "Approved"
+                                      });
+                                      dispatch({
+                                          type: "DISABLE", payload: false
+                                      });
+                                  }
+                                  }
                                   className="approve"
                                   disabled={isApproved}
                           >Approve
                           </Button>
                           <Button type="primary"
-                                  onClick={() => dispatch({type: "ADD_STATUS", payload: "Declined"})}
+                                  onClick={() =>{
+                                      dispatch({
+                                          type: "DISABLE", payload: false
+                                      });
+                                      dispatch({type: "ADD_STATUS", payload: "Declined"})}}
                                   className="decline" htmlType="submit" loading={props.store.loading} key="decline"
                                   disabled={isDeclined}
                           >

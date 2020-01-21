@@ -16,7 +16,7 @@ router.put("/changeStatus",async (req, res)=>{
 
     const participant = await Participant.findByIdAndUpdate({  _id: obj._id }, { $set: obj});
    try {
-       await mailSender(status,await participant);
+       // await mailSender(status,await participant);
        const old = oldParticipant.Status === obj.Status;
        await res.status(200).send({statusCode:0, message: "Updated", old})
    }catch (e) {
